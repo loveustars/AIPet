@@ -6,29 +6,28 @@ A gemini based chatting agent
 
 打开终端，执行以下命令来安装 CMake 构建工具、C++ 编译器以及本项目所需的 `SDL2`, `libcurl` 和 `FreeType` 库。
 
-
-# 更新软件包列表
 ```bash
+# 更新软件包列表
 sudo apt update
 ```
 
-# 安装基础编译工具
 ```bash
+# 安装基础编译工具
 sudo apt install build-essential g++ cmake
 ```
 
-# 安装 libcurl，用于网络通信
 ```bash
+# 安装 libcurl，用于网络通信
 sudo apt install libcurl4-openssl-dev
 ```
 
-# 安装 SDL2，用于创建窗口和处理输入
 ```bash
+# 安装 SDL2，用于创建窗口和处理输入
 sudo apt install libsdl2-dev
 ```
 
-# 安装 FreeType，用于字体渲染
 ```bash
+# 安装 FreeType，用于字体渲染
 sudo apt install libfreetype-dev
 ```
 
