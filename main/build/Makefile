@@ -862,6 +862,30 @@ lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
 .PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
 
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o
+
+# target to build an object file
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
+
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i
+
+# target to preprocess a source file
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
+
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s
+
+# target to generate assembly for a file
+lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
+.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
+
 lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o
 .PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o
 
@@ -1394,6 +1418,9 @@ help:
 	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.o"
 	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.i"
 	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.s"
+	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o"
+	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i"
+	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s"
 	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o"
 	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.i"
 	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.s"

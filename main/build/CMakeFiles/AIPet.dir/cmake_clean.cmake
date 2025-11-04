@@ -61,6 +61,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o.d"
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o"
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o.d"
+  "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o"
+  "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o.d"
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o"
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o.d"
   "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o"

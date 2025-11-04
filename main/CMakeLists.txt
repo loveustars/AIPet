@@ -4,9 +4,7 @@ project(AIPet CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# 告诉 CMake 我们项目同时使用 C 和 C++
-enable_language(C CXX)
+# .a库是预编译的，不再需要C语言支持
 
 # --- 查找系统库 ---
 find_package(SDL2 REQUIRED)
@@ -19,7 +17,7 @@ find_package(Threads REQUIRED)
 file(GLOB IMGUI_SOURCES
     "lib/imgui/*.cpp"
     "lib/imgui/backends/imgui_impl_sdl2.cpp"
-    "lib/imgui/backends/imgui_impl_opengl3.cpp"
+    "lib/imgui/backends/imgui_impl_opengl3.cpp" # <-- 已修正拼写错误！
 )
 add_library(imgui_lib STATIC ${IMGUI_SOURCES})
 target_include_directories(imgui_lib PUBLIC 
@@ -28,16 +26,10 @@ target_include_directories(imgui_lib PUBLIC
     ${SDL2_INCLUDE_DIRS}
 )
 
-# --- Cubism SDK 源文件 (最终精确版) ---
+# --- Cubism SDK 配置 (使用 .a 静态库) ---
 set(CUBISM_SDK_DIR "lib/CubismSdkForNative")
 
-# 1. 查找 Core 库的源文件 (!!! 关键修复：同时查找 .c 和 .cpp 文件 !!!)
-file(GLOB_RECURSE CUBISM_CORE_SOURCES 
-    "${CUBISM_SDK_DIR}/Core/src/*.cpp"
-    "${CUBISM_SDK_DIR}/Core/src/*.c"
-)
-
-# 2. 查找 Framework 库的源文件
+# 只查找并编译 Framework 的源代码
 file(GLOB CUBISM_FRAMEWORK_SOURCES
     "${CUBISM_SDK_DIR}/Framework/src/*.cpp"
     "${CUBISM_SDK_DIR}/Framework/src/Effect/*.cpp"
@@ -49,27 +41,21 @@ file(GLOB CUBISM_FRAMEWORK_SOURCES
     "${CUBISM_SDK_DIR}/Framework/src/Type/*.cpp"
     "${CUBISM_SDK_DIR}/Framework/src/Utils/*.cpp"
     "${CUBISM_SDK_DIR}/Framework/src/Platform/*.cpp"
-    "${CUBISM_SDK_DIR}/Framework/src/Rendering/*.cpp" # <-- !!! 关键修复：补上这个目录 !!!
+    "${CUBISM_SDK_DIR}/Framework/src/Rendering/*.cpp"
     "${CUBISM_SDK_DIR}/Framework/src/Rendering/OpenGL/*.cpp"
 )
 
-# --- 预处理器定义 (全局) ---
-add_definitions(
-    -DCSM_TARGET_LINUX_GL
-    -DCSM_ENABLE_DEBUG
-)
+# --- 预处理器定义 ---
+add_definitions(-DCSM_TARGET_LINUX_GL -DCSM_ENABLE_DEBUG)
 
 # --- 创建主程序可执行文件 ---
 add_executable(AIPet main.cpp
     src/WindowManager.cpp
     src/AIManager.cpp
-    
-    # 添加 Live2D 的所有源文件
-    ${CUBISM_CORE_SOURCES}
     ${CUBISM_FRAMEWORK_SOURCES}
 )
 
-# --- 为 AIPet 目标精确指定它需要的所有头文件搜索路径 ---
+# --- 为 AIPet 目标指定头文件搜索路径 ---
 target_include_directories(AIPet PRIVATE
     src
     lib
@@ -79,7 +65,10 @@ target_include_directories(AIPet PRIVATE
 
 # --- 链接所有需要的库到主程序 ---
 target_link_libraries(AIPet PRIVATE 
-    imgui_lib
+    # 使用 ${CMAKE_SOURCE_DIR} 构造绝对路径
+    "${CMAKE_SOURCE_DIR}/${CUBISM_SDK_DIR}/Core/lib/linux/x86_64/libLive2DCubismCore.a"
+
+    imgui_lib # <-- 链接 ImGui 库
     ${SDL2_LIBRARIES} 
     ${OPENGL_LIBRARIES}
     ${GLEW_LIBRARIES}
@@ -87,4 +76,4 @@ target_link_libraries(AIPet PRIVATE
     Threads::Threads
 )
 
-message(STATUS "Project configured precisely for Linux with OpenGL, Cubism SDK, and Dear ImGui.")
+message(STATUS "Project configured to STATICALLY LINK against pre-compiled Cubism Core library.")
