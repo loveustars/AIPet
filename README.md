@@ -43,15 +43,15 @@ ai-desktop-pet/
 │   ├── dear_imgui/          # 在此放入 Dear ImGui 源码
 │   └── nlohmann/            # 在此放入 nlohmann/json.hpp
 ├── src/
-|   ├── WindowManager.hpp
-|   ├── WindowManager.cpp    # 待重构为纯OpenGL渲染
-|   ├── AIManager.hpp
-|   ├── AIManager.cpp        # 无需重构
-|   ...
+│   ├── WindowManager.hpp
+│   ├── WindowManager.cpp    # 待重构为纯OpenGL渲染
+│   ├── AIManager.hpp
+│   ├── AIManager.cpp        # 无需重构
+│   ...
 ├── assets/
-|   ├── fonts/               # 放入文字（待重构）
-|   ├── live2d_models/       # live2d模型
-|   ...
+│   ├── fonts/               # 放入文字（待重构）
+│   ├── live2d_models/       # live2d模型
+│   ...
 ├──
 └── ... 
 ```
