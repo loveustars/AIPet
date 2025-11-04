@@ -1,24 +1,34 @@
 # AIPet
 A gemini based chatting agent
+鉴于Cubism未声明arm64的Ubuntu支持，本程序在amd64架构的Ubuntu测试
 
 ### 1. 安装基础编译环境和核心库
 
 打开终端，执行以下命令来安装 CMake 构建工具、C++ 编译器以及本项目所需的 `SDL2`, `libcurl` 和 `FreeType` 库。
 
-```bash
+
 # 更新软件包列表
+```bash
 sudo apt update
+```
 
 # 安装基础编译工具
+```bash
 sudo apt install build-essential g++ cmake
+```
 
 # 安装 libcurl，用于网络通信
+```bash
 sudo apt install libcurl4-openssl-dev
+```
 
 # 安装 SDL2，用于创建窗口和处理输入
+```bash
 sudo apt install libsdl2-dev
+```
 
 # 安装 FreeType，用于字体渲染
+```bash
 sudo apt install libfreetype-dev
 ```
 
@@ -61,7 +71,7 @@ ai-desktop-pet/
 
 2.  **Dear ImGui (用于UI界面和文本渲染)**
     ```bash
-    # 确保在项目根目录
+    # 确保在项目lib
     # 从 GitHub 克隆 Dear ImGui 库
     git clone https://github.com/ocornut/imgui.git lib/dear_imgui
     ```
