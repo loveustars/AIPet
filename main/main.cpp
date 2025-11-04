@@ -1,47 +1,48 @@
+/**
+ * @file main.cpp
+ */
 #include "WindowManager.hpp"
 #include "AIManager.hpp"
 #include <iostream>
 
+// 临时占位函数，用于连接 ImGui 和 AIManager
+// 可以把它变成 WindowManager 的一个成员函数，或者用其他方式实现
+void handleUserInput(AIManager& aiManager, WindowManager& app, const std::string& userInput) {
+    if (!aiManager.isBusy()) {
+        aiManager.sendMessage(userInput);
+    } else {
+        app.addMessage("System", "AI is still thinking, please wait...");
+    }
+}
+
 int main(int argc, char* argv[]) {
-    // 1. 初始化窗口管理器
-    WindowManager app("AI Desktop Pet - Step 3", 800, 600);
+    // 初始化
+    // 省略了 API Key 的获取，因为 AIManager 内部已经处理
+    AIManager aiManager(std::getenv("GOOGLE_AI_STUDIO_API_KEY") ? std::getenv("GOOGLE_AI_STUDIO_API_KEY") : "");
+
+    WindowManager app("AI Desktop Pet - OpenGL", 800, 600, aiManager); 
     if (!app.init()) {
         std::cerr << "Failed to initialize the WindowManager." << std::endl;
         return -1;
     }
 
-    // 2. 初始化 AI 管理器
-    const char* apiKey = std::getenv("GOOGLE_AI_STUDIO_API_KEY");
-    if (!apiKey) {
-        std::cerr << "Error: GOOGLE_AI_STUDIO_API_KEY environment variable not set." << std::endl;
-        return 1;
-    }
-    AIManager aiManager(apiKey);
-
-    // 3. 主应用循环
+    // 主循环
     while (app.isRunning()) {
-        // --- 处理用户输入 ---
-        std::optional<std::string> userInput = app.handleEvents();
-        if (userInput.has_value()) {
-            if (!aiManager.isBusy()) {
-                aiManager.sendMessage(userInput.value());
-            } else {
-                app.addMessage("System", "AI is still thinking, please wait...");
-            }
-        }
+        // handleEvents 现在只处理窗口关闭等事件
+        app.handleEvents();
 
-        // --- 检查 AI 回复 ---
+        // 检查 AI 是否有新回复
         std::string aiResult = aiManager.getResult();
         if (!aiResult.empty()) {
             app.addMessage("AI", aiResult);
         }
 
-        // --- 更新与渲染 ---
+        // 更新与渲染
         app.update();
-        app.render();
+        app.render(); // render 函数内部现在处理用户输入提交
         
-        // 短暂休眠，避免 CPU 占用率 100%
-        SDL_Delay(16); // 大约 60 FPS
+        // SDL_Delay 不再那么必要，因为垂直同步会限制帧率
+        // SDL_Delay(5); 
     }
 
     return 0;

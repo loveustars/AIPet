@@ -1,3 +1,6 @@
+/**
+ * @file AIManager.hpp
+ */
 #ifndef AI_MANAGER_HPP
 #define AI_MANAGER_HPP
 
@@ -35,7 +38,7 @@ private:
     std::string modelUrl;
     json conversationHistory;
 
-    // --- Threading and State Management ---
+    // Threading and State Management
     std::thread workerThread;
     std::mutex resultMutex;
     std::string lastResult;

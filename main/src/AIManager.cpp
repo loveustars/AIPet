@@ -1,3 +1,7 @@
+/**
+ * @file AIManager.cpp
+ * 这个是交给AI改了半天，注释变成英文了
+ */
 #include "AIManager.hpp"
 #include <iostream>
 #include <curl/curl.h>

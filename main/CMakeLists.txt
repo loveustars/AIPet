@@ -1,68 +1,90 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(AIPetStep4 CXX)
+project(AIPet CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- 查找我们需要的系统库 ---
+# 告诉 CMake 我们项目同时使用 C 和 C++
+enable_language(C CXX)
+
+# --- 查找系统库 ---
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED) # 我们需要 GLEW
+find_package(GLEW REQUIRED)
 find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)
 
-# --- Cubism SDK 配置 ---
-# 添加所有头文件的搜索路径
-include_directories(
-    src                     # 我们自己的头文件
-    lib                     # nlohmann
-    lib/Core/include        # Cubism SDK Core
-    lib/Framework/include   # Cubism SDK Framework
+# --- Dear ImGui 库的配置 ---
+file(GLOB IMGUI_SOURCES
+    "lib/imgui/*.cpp"
+    "lib/imgui/backends/imgui_impl_sdl2.cpp"
+    "lib/imgui/backends/imgui_impl_opengl3.cpp"
+)
+add_library(imgui_lib STATIC ${IMGUI_SOURCES})
+target_include_directories(imgui_lib PUBLIC 
+    lib/imgui 
+    lib/imgui/backends
+    ${SDL2_INCLUDE_DIRS}
 )
 
-# 使用 file(GLOB_RECURSE ...) 自动查找 SDK 的所有 .cpp 源文件
-# 这比手动一个个列出文件要方便得多
-file(GLOB_RECURSE CUBISM_CORE_SOURCES "lib/Core/src/*.cpp")
-file(GLOB_RECURSE CUBISM_FRAMEWORK_SOURCES "lib/Framework/src/*.cpp")
+# --- Cubism SDK 源文件 (最终精确版) ---
+set(CUBISM_SDK_DIR "lib/CubismSdkForNative")
 
-# --- 预处理器定义 ---
-# 这些宏是配置 SDK 的关键
-# CSM_TARGET_LINUX_GL: 告诉 SDK 我们的目标平台是 Linux + OpenGL
-# CSM_ENABLE_DEBUG: 启用 SDK 内部的调试日志，对开发非常有用
+# 1. 查找 Core 库的源文件 (!!! 关键修复：同时查找 .c 和 .cpp 文件 !!!)
+file(GLOB_RECURSE CUBISM_CORE_SOURCES 
+    "${CUBISM_SDK_DIR}/Core/src/*.cpp"
+    "${CUBISM_SDK_DIR}/Core/src/*.c"
+)
+
+# 2. 查找 Framework 库的源文件
+file(GLOB CUBISM_FRAMEWORK_SOURCES
+    "${CUBISM_SDK_DIR}/Framework/src/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Effect/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Id/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Math/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Model/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Motion/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Physics/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Type/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Utils/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Platform/*.cpp"
+    "${CUBISM_SDK_DIR}/Framework/src/Rendering/*.cpp" # <-- !!! 关键修复：补上这个目录 !!!
+    "${CUBISM_SDK_DIR}/Framework/src/Rendering/OpenGL/*.cpp"
+)
+
+# --- 预处理器定义 (全局) ---
 add_definitions(
     -DCSM_TARGET_LINUX_GL
     -DCSM_ENABLE_DEBUG
 )
-# -------------------------
 
-# --- 创建我们的可执行文件 ---
+# --- 创建主程序可执行文件 ---
 add_executable(AIPet main.cpp
-    # 我们自己的 .cpp 文件
     src/WindowManager.cpp
-    src/LAppAllocator.cpp
-    src/LAppPal.cpp
-    src/LAppTextureManager.cpp
-    src/LAppModel.cpp
-    src/LAppLive2DManager.cpp
-
-    # AI 管理器 (暂时保留)
     src/AIManager.cpp
     
-    # SDK 的 .cpp 文件
+    # 添加 Live2D 的所有源文件
     ${CUBISM_CORE_SOURCES}
     ${CUBISM_FRAMEWORK_SOURCES}
 )
 
-# --- 链接所有需要的库 ---
+# --- 为 AIPet 目标精确指定它需要的所有头文件搜索路径 ---
+target_include_directories(AIPet PRIVATE
+    src
+    lib
+    ${CUBISM_SDK_DIR}/Core/include
+    ${CUBISM_SDK_DIR}/Framework/src
+)
+
+# --- 链接所有需要的库到主程序 ---
 target_link_libraries(AIPet PRIVATE 
+    imgui_lib
     ${SDL2_LIBRARIES} 
-    ${SDL2_IMAGE_LIBRARIES}
     ${OPENGL_LIBRARIES}
-    ${GLEW_LIBRARIES} # 链接 GLEW
+    ${GLEW_LIBRARIES}
     ${CURL_LIBRARIES} 
     Threads::Threads
 )
 
-message(STATUS "Project configured for Linux with OpenGL and Cubism SDK.")
+message(STATUS "Project configured precisely for Linux with OpenGL, Cubism SDK, and Dear ImGui.")

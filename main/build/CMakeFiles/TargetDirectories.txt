@@ -1,0 +1,4 @@
+/home/nick/Desktop/main/AIPet/main/build/CMakeFiles/imgui_lib.dir
+/home/nick/Desktop/main/AIPet/main/build/CMakeFiles/AIPet.dir
+/home/nick/Desktop/main/AIPet/main/build/CMakeFiles/edit_cache.dir
+/home/nick/Desktop/main/AIPet/main/build/CMakeFiles/rebuild_cache.dir
