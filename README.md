@@ -1,6 +1,8 @@
 # AIPet
 A gemini based chatting agent
-鉴于Cubism未声明arm64的Ubuntu支持，本程序在amd64架构的Ubuntu测试
+
+
+鉴于Cubism未声明arm64的Ubuntu支持，本程序**在amd64架构的Ubuntu测试**
 
 ### 1. 安装基础编译环境和核心库
 
@@ -31,25 +33,23 @@ sudo apt install libsdl2-dev
 sudo apt install libfreetype-dev
 ```
 
-### 2. 准备第三方库 (手动下载)
-
-部分库需要我们手动下载并放置在项目目录中。
+### 2. 准备第三方库 (仓库中已经有了)
 
 **项目结构约定:**
 ```
 ai-desktop-pet/
 ├── lib/
-│   ├── cubism_sdk_native/   # 在此放入 Live2D SDK
-│   ├── dear_imgui/          # 在此放入 Dear ImGui 源码
-│   └── nlohmann/            # 在此放入 nlohmann/json.hpp
+│   ├── CubismSdkForNative/  # Live2D SDK
+│   ├── dear_imgui/          # Dear ImGui 源码
+│   └── nlohmann/            # nlohmann/json.hpp
 ├── src/
 │   ├── WindowManager.hpp
-│   ├── WindowManager.cpp    # 待重构为纯OpenGL渲染
+│   ├── WindowManager.cpp    # 已重构为纯OpenGL渲染
 │   ├── AIManager.hpp
 │   ├── AIManager.cpp        # 无需重构
 │   ...
 ├── assets/
-│   ├── fonts/               # 放入文字（待重构）
+│   ├── fonts/               # 放入文字
 │   ├── live2d_models/       # live2d模型
 │   ...
 ├──
@@ -58,25 +58,37 @@ ai-desktop-pet/
 
 **操作步骤:**
 
-1.  **nlohmann/json (用于解析JSON)**
-    ```bash
-    # 进入你的项目根目录
-    cd ai-desktop-pet
-    # 创建 lib 目录
-    mkdir -p lib
-    # 从 GitHub 克隆 nlohmann/json 库
-    git clone https://github.com/nlohmann/json.git lib/nlohmann
-    ```
+1. 首先，克隆此仓库到本地。
+```bash
+git clone https://github.com/loveustars/AIPet.git
+```
 
-2.  **Dear ImGui (用于UI界面和文本渲染)**
-    ```bash
-    # 确保在项目lib
-    # 从 GitHub 克隆 Dear ImGui 库
-    git clone https://github.com/ocornut/imgui.git lib/dear_imgui
-    ```
+2. 然后，进入项目根目录，进行编译。
+```bash
+rm -rf build  
+mkdir build && cd build  
+cmake ..
+make
+# 在运行之前，将临时的环境变量添加到系统，用于程序获得与大模型的API.
+export GOOGLE_AI_STUDIO_API_KEY='此处替换为你申请的API'
 
-3.  **Live2D Cubism SDK for Native**
-    *   请前往 [Live2D 官方网站](https://www.live2d.com/en/sdk/download/cubism/) 下载 "SDK for Native"。
-    *   注意使用个人版。
-    *   解压下载的文件。
-    *   将其中的 `Core` 和 `Framework` 文件夹复制到你项目中的 `lib/cubism_sdk_native/` 目录下。
+# 以防路径问题，请退回项目根目录进行运行。
+cd ..
+./build/AIPet
+```
+
+---
+
+### 注意事项:
+1. 对于Apple Silicon电脑运行的arm64 Ubuntu虚拟机，**不支持** CubismSdkForNative，考虑运行云端x86的Ubuntu 或 本地QEMU虚拟（不推荐）。
+2. 若希望实现对话功能，**务必**访问本项目使用的[大模型网页](https://aistudio.google.com)，若跳转为Available Regions...，证明你的网络环境不行，你需要成为魔法少女。
+3. 对于API获取，进入Google AI Studio后有Get API Key按钮，通俗易懂的界面，[点击这里也可以进入](https://aistudio.google.com/app/apikey?hl=zh-cn)，不多说了。
+
+
+## 常见问题(待扩充)
+
+**Q: AI说了一大长串带好几个花括号的话， 还有什么数字的事，这家伙在说什么呢？**  
+A: 取决于数字是什么，403一般是你的API被封锁了，很严格的封锁，这种情况建议
+**重新申请**一个API，如果是因为你试图引导AI说奇怪的话，~~那你纯属魔丸~~ ；502一般是你选错了魔法，可以
+尝试吟唱其他魔法；429(比较少见)说明你话太多了，到达了使用上限，明早起来再试试；其他错误正在发掘。
+
