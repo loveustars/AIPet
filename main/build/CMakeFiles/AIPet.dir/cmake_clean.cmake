@@ -83,6 +83,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AIPet.dir/main.cpp.o.d"
   "CMakeFiles/AIPet.dir/src/AIManager.cpp.o"
   "CMakeFiles/AIPet.dir/src/AIManager.cpp.o.d"
+  "CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o"
+  "CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o.d"
   "CMakeFiles/AIPet.dir/src/WindowManager.cpp.o"
   "CMakeFiles/AIPet.dir/src/WindowManager.cpp.o.d"
 )

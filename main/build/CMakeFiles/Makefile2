@@ -83,7 +83,7 @@ clean: CMakeFiles/AIPet.dir/clean
 CMakeFiles/imgui_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=44,45,46,47,48,49,50,51 "Built target imgui_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=45,46,47,48,49,50,51,52 "Built target imgui_lib"
 .PHONY : CMakeFiles/imgui_lib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -109,12 +109,12 @@ CMakeFiles/imgui_lib.dir/clean:
 CMakeFiles/AIPet.dir/all: CMakeFiles/imgui_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43 "Built target AIPet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44 "Built target AIPet"
 .PHONY : CMakeFiles/AIPet.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/AIPet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/main/AIPet/main/build/CMakeFiles 51
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/main/AIPet/main/build/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/AIPet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/main/AIPet/main/build/CMakeFiles 0
 .PHONY : CMakeFiles/AIPet.dir/rule

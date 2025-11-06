@@ -60,6 +60,7 @@ add_executable(AIPet main.cpp
 target_include_directories(AIPet PRIVATE
     src
     lib
+    lib/stb
     ${CUBISM_SDK_DIR}/Core/include
     ${CUBISM_SDK_DIR}/Framework/src
 )

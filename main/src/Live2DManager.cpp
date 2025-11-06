@@ -15,7 +15,7 @@
 
 // STB Image library for texture loading
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <stb_image.h>
 
 // --- Cubism SDK 5 的文件加载辅助函数 ---
 
@@ -108,7 +108,7 @@ public:
 
 // --- Live2DManager 实现 ---
 Live2DManager::Live2DManager() 
-    : _userModel(nullptr), _allocator(new LAppAllocator()), _windowManager(nullptr) {}
+    : _userModel(nullptr), _allocator(new LAppAllocator()), _windowManager(nullptr), _modelLoaded(false) {}
 
 Live2DManager::~Live2DManager() {
     cleanup();
@@ -140,6 +140,7 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
         _userModel->DeleteRenderer();
         CSM_DELETE(_userModel);
         _userModel = nullptr;
+        _modelLoaded = false;
     }
 
     // 构建 model3.json 文件路径
@@ -179,6 +180,17 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
     _userModel->LoadModel(buffer, size);
     ReleaseFileAsBytes(buffer);
 
+    // 检查模型是否加载成功
+    if (!_userModel->GetModel()) {
+        std::cerr << "[Live2D] Failed to create model from .moc3 file" << std::endl;
+        CSM_DELETE(_userModel);
+        _userModel = nullptr;
+        CSM_DELETE(setting);
+        return false;
+    }
+
+    std::cout << "[Live2D] Model loaded, drawable count: " << _userModel->GetModel()->GetDrawableCount() << std::endl;
+
     // 加载表情数据
     for (Csm::csmInt32 i = 0; i < setting->GetExpressionCount(); i++) {
         std::string expName = setting->GetExpressionName(i);
@@ -201,6 +213,7 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
         if (buffer) {
             _userModel->LoadPhysics(buffer, size);
             ReleaseFileAsBytes(buffer);
+            std::cout << "[Live2D] Physics loaded successfully" << std::endl;
         }
     }
 
@@ -213,6 +226,7 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
         if (buffer) {
             _userModel->LoadPose(buffer, size);
             ReleaseFileAsBytes(buffer);
+            std::cout << "[Live2D] Pose loaded successfully" << std::endl;
         }
     }
 
@@ -228,13 +242,28 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
         }
     }
 
-    // 创建渲染器
+    // 创建渲染器 - 关键：必须在 OpenGL 上下文有效时创建
+    std::cout << "[Live2D] Creating renderer..." << std::endl;
     _userModel->CreateRenderer();
     
-    // 加载并绑定纹理
+    // 验证渲染器创建成功
     Csm::Rendering::CubismRenderer_OpenGLES2* renderer = 
-        *(_userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2*>());
+        _userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>();
     
+    if (!renderer) {
+        std::cerr << "[Live2D] Failed to create renderer!" << std::endl;
+        CSM_DELETE(_userModel);
+        _userModel = nullptr;
+        CSM_DELETE(setting);
+        return false;
+    }
+    
+    std::cout << "[Live2D] Renderer created successfully" << std::endl;
+
+    // 初始化渲染器 - 关键步骤！
+    renderer->Initialize(_userModel->GetModel());
+    
+    // 加载并绑定纹理
     _textureIds.clear();
     for (Csm::csmInt32 i = 0; i < setting->GetTextureCount(); i++) {
         std::string texturePath = modelDir + "/" + setting->GetTextureFileName(i);
@@ -251,12 +280,15 @@ bool Live2DManager::loadModel(const std::string& modelDir) {
     // 清理 setting
     CSM_DELETE(setting);
 
+    // 标记模型已加载
+    _modelLoaded = true;
+
     std::cout << "[Live2D] Model loaded successfully with " << _textureIds.size() << " textures." << std::endl;
     return true;
 }
 
 void Live2DManager::update() {
-    if (!_userModel || !_userModel->GetModel()) return;
+    if (!_modelLoaded || !_userModel || !_userModel->GetModel()) return;
     
     // 获取时间增量
     static Csm::csmFloat32 lastTime = 0.0f;
@@ -264,82 +296,115 @@ void Live2DManager::update() {
     Csm::csmFloat32 deltaTime = currentTime - lastTime;
     lastTime = currentTime;
     
-    // 更新 CubismModel（注意这里调用的是 GetModel()->Update()）
+    // 更新 CubismModel
     _userModel->GetModel()->Update();
-    
-    // 更新物理
-    /*
-    if (_userModel->GetPhysics()) {
-        _userModel->GetPhysics()->Evaluate(_userModel->GetModel(), deltaTime);
-    }
-    
-    // 更新姿态
-    if (_userModel->GetPose()) {
-        _userModel->GetPose()->UpdateParameters(_userModel->GetModel(), deltaTime);
-    }*/
 }
 
 void Live2DManager::draw() {
-    if (!_userModel || !_userModel->GetModel()) return;
+    if (!_modelLoaded || !_userModel || !_userModel->GetModel()) {
+        return;
+    }
 
     int width, height;
     _windowManager->getWindowSize(width, height);
     if (width == 0 || height == 0) return;
+
+    // 获取渲染器
+    Csm::Rendering::CubismRenderer_OpenGLES2* renderer = 
+        _userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>();
+    
+    if (!renderer) {
+        std::cerr << "[Live2D] Renderer is null in draw()" << std::endl;
+        return;
+    }
 
     // 保存 OpenGL 状态
     GLint lastProgram;
     glGetIntegerv(GL_CURRENT_PROGRAM, &lastProgram);
     GLint lastTexture;
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &lastTexture);
+    GLint lastArrayBuffer;
+    glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &lastArrayBuffer);
+    GLint lastElementArrayBuffer;
+    glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &lastElementArrayBuffer);
     GLboolean lastBlend = glIsEnabled(GL_BLEND);
+    GLboolean lastCullFace = glIsEnabled(GL_CULL_FACE);
+    GLboolean lastDepthTest = glIsEnabled(GL_DEPTH_TEST);
     
-    // 启用混合
+    // 设置 OpenGL 状态
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
 
     // 计算投影矩阵
     Csm::CubismMatrix44 projection;
-    float aspect = static_cast<float>(width) / static_cast<float>(height);
-    projection.Scale(1.0f, aspect);
+    
+    // 创建正交投影，适应窗口宽高比
+    if (width > height) {
+        float aspect = static_cast<float>(width) / static_cast<float>(height);
+        projection.Scale(1.0f, aspect);
+    } else {
+        float aspect = static_cast<float>(height) / static_cast<float>(width);
+        projection.Scale(aspect, 1.0f);
+    }
     
     // 模型变换矩阵
     Csm::CubismMatrix44 modelMatrix;
-    modelMatrix.Translate(0.0f, -0.5f);  // 调整位置
-    modelMatrix.Scale(2.0f, 2.0f);       // 调整大小
+    modelMatrix.LoadIdentity();
+    modelMatrix.Translate(0.0f, 0.0f);   // 居中
+    modelMatrix.Scale(1.5f, 1.5f);       // 调整大小
     
     // 合并矩阵
     projection.MultiplyByMatrix(&modelMatrix);
     
-    // 获取渲染器并绘制
-    Csm::Rendering::CubismRenderer_OpenGLES2* renderer = 
-        *(_userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2*>());
+    // 设置 MVP 矩阵
+    renderer->SetMvpMatrix(&projection);
     
-    if (renderer) {
-        renderer->SetMvpMatrix(&projection);
+    // 绘制模型
+    try {
         renderer->DrawModel();
+    } catch (const std::exception& e) {
+        std::cerr << "[Live2D] Exception during DrawModel: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "[Live2D] Unknown exception during DrawModel" << std::endl;
     }
     
     // 恢复 OpenGL 状态
     glUseProgram(lastProgram);
     glBindTexture(GL_TEXTURE_2D, lastTexture);
+    glBindBuffer(GL_ARRAY_BUFFER, lastArrayBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, lastElementArrayBuffer);
     if (!lastBlend) glDisable(GL_BLEND);
+    if (lastCullFace) glEnable(GL_CULL_FACE);
+    if (lastDepthTest) glEnable(GL_DEPTH_TEST);
 }
 
 void Live2DManager::cleanup() {
+    std::cout << "[Live2D] Starting cleanup..." << std::endl;
+    
     // 删除纹理
     if (!_textureIds.empty()) {
         glDeleteTextures(_textureIds.size(), _textureIds.data());
         _textureIds.clear();
+        std::cout << "[Live2D] Textures deleted" << std::endl;
     }
     
     // 删除模型
     if (_userModel) {
-        _userModel->DeleteRenderer();
+        if (_userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()) {
+            _userModel->DeleteRenderer();
+            std::cout << "[Live2D] Renderer deleted" << std::endl;
+        }
         CSM_DELETE(_userModel);
         _userModel = nullptr;
+        std::cout << "[Live2D] Model deleted" << std::endl;
     }
+    
+    _modelLoaded = false;
     
     // 清理框架
     Csm::CubismFramework::Dispose();
+    std::cout << "[Live2D] Framework disposed" << std::endl;
     std::cout << "[Live2D] Cleanup completed." << std::endl;
 }

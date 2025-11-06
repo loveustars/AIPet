@@ -38,6 +38,7 @@ private:
     Csm::ICubismAllocator* _allocator;
     WindowManager* _windowManager;
     std::vector<GLuint> _textureIds;  // 存储加载的纹理 ID
+    bool _modelLoaded;
 };
 
 #endif // LIVE2D_MANAGER_HPP

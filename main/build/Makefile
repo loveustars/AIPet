@@ -1294,6 +1294,30 @@ src/AIManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/AIManager.cpp.s
 .PHONY : src/AIManager.cpp.s
 
+src/Live2DManager.o: src/Live2DManager.cpp.o
+.PHONY : src/Live2DManager.o
+
+# target to build an object file
+src/Live2DManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o
+.PHONY : src/Live2DManager.cpp.o
+
+src/Live2DManager.i: src/Live2DManager.cpp.i
+.PHONY : src/Live2DManager.i
+
+# target to preprocess a source file
+src/Live2DManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.i
+.PHONY : src/Live2DManager.cpp.i
+
+src/Live2DManager.s: src/Live2DManager.cpp.s
+.PHONY : src/Live2DManager.s
+
+# target to generate assembly for a file
+src/Live2DManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.s
+.PHONY : src/Live2DManager.cpp.s
+
 src/WindowManager.o: src/WindowManager.cpp.o
 .PHONY : src/WindowManager.o
 
@@ -1472,6 +1496,9 @@ help:
 	@echo "... src/AIManager.o"
 	@echo "... src/AIManager.i"
 	@echo "... src/AIManager.s"
+	@echo "... src/Live2DManager.o"
+	@echo "... src/Live2DManager.i"
+	@echo "... src/Live2DManager.s"
 	@echo "... src/WindowManager.o"
 	@echo "... src/WindowManager.i"
 	@echo "... src/WindowManager.s"

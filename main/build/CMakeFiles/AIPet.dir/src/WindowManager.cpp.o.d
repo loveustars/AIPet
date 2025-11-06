@@ -419,8 +419,42 @@ CMakeFiles/AIPet.dir/src/WindowManager.cpp.o: \
  /usr/include/c++/13/any \
  /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/macro_unscope.hpp \
  /home/nick/Desktop/main/AIPet/main/lib/nlohmann/thirdparty/hedley/hedley_undef.hpp \
- /usr/include/c++/13/iostream /usr/include/GL/glew.h \
- /usr/include/GL/glu.h /usr/include/GL/gl.h \
+ /home/nick/Desktop/main/AIPet/main/src/Live2DManager.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFramework.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Live2DCubismCore.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Core/include/Live2DCubismCore.h \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFrameworkConfig.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/ICubismAllocator.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/CubismBasicType.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModel.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmMap.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmString.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmVector.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismId.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/ICubismModelSetting.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsInternal.hpp \
+ /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.hpp \
+ /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h \
+ /usr/include/c++/13/iostream \
  /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui.h \
  /home/nick/Desktop/main/AIPet/main/lib/imgui/imconfig.h \
  /home/nick/Desktop/main/AIPet/main/lib/imgui/backends/imgui_impl_sdl2.h \

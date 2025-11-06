@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DCSM_ENABLE_DEBUG -DCSM_TARGET_LINUX_GL
 
-CXX_INCLUDES = -I/home/nick/Desktop/main/AIPet/main/src -I/home/nick/Desktop/main/AIPet/main/lib -I/home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Core/include -I/home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src -I/home/nick/Desktop/main/AIPet/main/lib/imgui -I/home/nick/Desktop/main/AIPet/main/lib/imgui/backends -isystem /usr/include/SDL2
+CXX_INCLUDES = -I/home/nick/Desktop/main/AIPet/main/src -I/home/nick/Desktop/main/AIPet/main/lib -I/home/nick/Desktop/main/AIPet/main/lib/stb -I/home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Core/include -I/home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src -I/home/nick/Desktop/main/AIPet/main/lib/imgui -I/home/nick/Desktop/main/AIPet/main/lib/imgui/backends -isystem /usr/include/SDL2
 
 CXX_FLAGS = -std=gnu++17
 

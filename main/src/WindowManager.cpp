@@ -116,7 +116,8 @@ bool WindowManager::init() {
     }
     std::cout << "[Debug] Font atlas built successfully." << std::endl;
 
-
+    // 初始化Live2D Manager
+    std::cout << "[Debug] 9. Initializing Live2D Manager..." << std::endl;
     if (!_live2dManager.initialize(this)) {
         std::cerr << "Failed to initialize Live2DManager." << std::endl;
         return false;
@@ -124,7 +125,8 @@ bool WindowManager::init() {
 
     // --- 加载你的第一个模型！---
     // !!! 请确保你已经把模型文件放到了这个路径下 !!!
-    if (!_live2dManager.loadModel("assets/Hiyori")) {
+    std::cout << "[Debug] 10. Loading Live2D model..." << std::endl;
+    if (!_live2dManager.loadModel("assets/live2d_models/hiyori_pro_t11")) {
         std::cerr << "Failed to load Live2D model." << std::endl;
         // 这里我们不返回 false，即使模型加载失败，程序也可以继续运行
     }
@@ -260,6 +262,9 @@ void WindowManager::update() {
     _live2dManager.update(); // 每帧更新 Live2D
 }
 
+
+
+/*
 void WindowManager::render() {
     // 开始新的一帧 ImGui
     ImGui_ImplOpenGL3_NewFrame();
@@ -300,23 +305,7 @@ void WindowManager::render() {
         ImGui::EndChild();
         ImGui::Separator();
 
-        // 渲染输入框
-        /*
-        // ImGuiInputTextFlags_EnterReturnsTrue 使得按回车时返回 true
-        if (ImGui::InputText("Input", currentInputBuffer, IM_ARRAYSIZE(currentInputBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
-            if (strlen(currentInputBuffer) > 0) {
-                // 用户按了回车，处理输入
-                std::string submittedText = currentInputBuffer;
-                addMessage("You", submittedText);
-                // TODO: 在这里触发 AI 发送消息
-                // sendMessageToAI(submittedText);
-                
-                // 清空输入框
-                memset(currentInputBuffer, 0, sizeof(currentInputBuffer));
-            }
-            // 让输入框始终保持焦点
-            ImGui::SetKeyboardFocusHere(-1);
-        }*/
+        
         if (ImGui::InputText("Input", currentInputBuffer, IM_ARRAYSIZE(currentInputBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
             if (strlen(currentInputBuffer) > 0) {
                 std::string submittedText = currentInputBuffer;
@@ -338,6 +327,92 @@ void WindowManager::render() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    // 交换缓冲区
+    SDL_GL_SwapWindow(window);
+}*/
+
+void WindowManager::render() {
+    // 清空屏幕为深色背景，便于看到 Live2D 模型
+    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    // 绘制 Live2D 模型（在 UI 之前绘制，这样 UI 会显示在模型上方）
+    _live2dManager.draw();
+    
+    // 开始新的一帧 ImGui
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
+
+    // 绘制半透明的聊天窗口
+    {
+        // 设置窗口位置和大小
+        ImGui::SetNextWindowPos(ImVec2(0, 0));
+        ImGui::SetNextWindowSize(ImVec2(windowWidth, windowHeight));
+        
+        // 设置窗口背景为半透明
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.3f)); // 30% 透明度
+
+        // 创建窗口
+        ImGui::Begin("Chat", nullptr, 
+            ImGuiWindowFlags_NoDecoration | 
+            ImGuiWindowFlags_NoMove | 
+            ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_NoSavedSettings);
+
+        // 创建聊天记录显示区域
+        const float footerHeight = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
+        ImGui::BeginChild("ScrollingRegion", ImVec2(0, -footerHeight), false, ImGuiWindowFlags_HorizontalScrollbar);
+
+        // 渲染聊天记录
+        for (const auto& msg : chatHistory) {
+            ImVec4 color;
+            if (msg.author == "You") {
+                color = ImVec4(0.4f, 0.8f, 1.0f, 1.0f);  // 浅蓝色
+            } else if (msg.author == "AI") {
+                color = ImVec4(0.4f, 1.0f, 0.6f, 1.0f);  // 浅绿色
+            } else {
+                color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);  // 黄色（系统消息）
+            }
+            
+            ImGui::TextColored(color, "%s:", msg.author.c_str());
+            ImGui::SameLine();
+            ImGui::TextWrapped("%s", msg.text.c_str());
+        }
+        
+        // 自动滚动到底部
+        if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY()) {
+            ImGui::SetScrollHereY(1.0f);
+        }
+        
+        ImGui::EndChild();
+        ImGui::Separator();
+
+        // 输入框
+        if (ImGui::InputText("Input", currentInputBuffer, IM_ARRAYSIZE(currentInputBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (strlen(currentInputBuffer) > 0) {
+                std::string submittedText = currentInputBuffer;
+                addMessage("You", submittedText);
+                
+                if (!aiManager.isBusy()) {
+                    aiManager.sendMessage(submittedText);
+                } else {
+                    addMessage("System", "AI is busy, please wait...");
+                }
+                
+                memset(currentInputBuffer, 0, sizeof(currentInputBuffer));
+            }
+            ImGui::SetKeyboardFocusHere(-1);
+        }
+        
+        ImGui::End();
+        ImGui::PopStyleColor(); // 恢复窗口背景色
+    }
+    
+    // 渲染 ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 

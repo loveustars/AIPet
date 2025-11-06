@@ -49,6 +49,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp" "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o" "gcc" "CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o.d"
   "/home/nick/Desktop/main/AIPet/main/main.cpp" "CMakeFiles/AIPet.dir/main.cpp.o" "gcc" "CMakeFiles/AIPet.dir/main.cpp.o.d"
   "/home/nick/Desktop/main/AIPet/main/src/AIManager.cpp" "CMakeFiles/AIPet.dir/src/AIManager.cpp.o" "gcc" "CMakeFiles/AIPet.dir/src/AIManager.cpp.o.d"
+  "/home/nick/Desktop/main/AIPet/main/src/Live2DManager.cpp" "CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o" "gcc" "CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o.d"
   "/home/nick/Desktop/main/AIPet/main/src/WindowManager.cpp" "CMakeFiles/AIPet.dir/src/WindowManager.cpp.o" "gcc" "CMakeFiles/AIPet.dir/src/WindowManager.cpp.o.d"
   )
 
