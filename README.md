@@ -37,22 +37,32 @@ sudo apt install libfreetype-dev
 
 **项目结构约定:**
 ```
-ai-desktop-pet/
+main/
 ├── lib/
 │   ├── CubismSdkForNative/  # Live2D SDK
 │   ├── dear_imgui/          # Dear ImGui 源码
+│   ├── stb/                 # 官方建議的图形解析头文件
 │   └── nlohmann/            # nlohmann/json.hpp
 ├── src/
 │   ├── WindowManager.hpp
 │   ├── WindowManager.cpp    # 已重构为纯OpenGL渲染
 │   ├── AIManager.hpp
 │   ├── AIManager.cpp        # 无需重构
+│   ├── Live2DManager.hpp
+│   └── Live2DManager.cpp
+│   
 │   ...
 ├── assets/
 │   ├── fonts/               # 放入文字
 │   ├── live2d_models/       # live2d模型
+│   │   ├── hiyori_pro_t11
+│   │   └── Haru
+│   └── ...
+│
+│
 │   ...
-├──
+├── CMakelists.txt
+├── main.cpp
 └── ... 
 ```
 
@@ -88,7 +98,7 @@ cd ..
 ## 常见问题(待扩充)
 
 **Q: AI说了一大长串带好几个花括号的话， 还有什么数字的事，这家伙在说什么呢？**  
-A: 取决于数字是什么，403一般是你的API被封锁了，很严格的封锁，这种情况建议
-**重新申请**一个API，如果是因为你试图引导AI说奇怪的话，~~那你纯属魔丸~~ ；502一般是你选错了魔法，可以
-尝试吟唱其他魔法；429(比较少见)说明你话太多了，到达了使用上限，明早起来再试试；其他错误正在发掘。
+A: 取决于数字是什么。400——说明API过期，需要更新；403——你的API被封锁了，很严格的封锁，这种情况建议
+**重新申请**一个API，如果是因为你试图引导AI说奇怪的话，~~那你纯属魔丸~~ ；502——你选错了魔法，可以
+尝试吟唱其他魔法；429——(比较少见)你话太多了，到达了使用上限，明早起来再试试；其他错误正在发掘。
 
