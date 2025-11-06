@@ -72,7 +72,7 @@ GLuint LoadTexture(const char* filePath) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
     // 上传纹理数据
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     
     glBindTexture(GL_TEXTURE_2D, 0);
     stbi_image_free(data);
@@ -305,6 +305,7 @@ void Live2DManager::update() {
     _userModel->GetModel()->Update();
 }
 
+
 void Live2DManager::draw() {
     if (!_modelLoaded || !_userModel || !_userModel->GetModel()) {
         return;
@@ -314,71 +315,142 @@ void Live2DManager::draw() {
     _windowManager->getWindowSize(width, height);
     if (width == 0 || height == 0) return;
 
-    // 获取渲染器
     auto* renderer = _userModel->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>();
     if (!renderer) {
         return;
     }
 
-    // --- 保存 ImGui 和其他程序可能设置的 OpenGL 状态 ---
+    // ===== 详细的错误检查辅助函数 =====
+    auto checkGLError = [](const char* point) {
+        GLenum err;
+        bool hasError = false;
+        while ((err = glGetError()) != GL_NO_ERROR) {
+            std::cerr << "[Live2D] OpenGL Error at " << point << ": ";
+            switch(err) {
+                case GL_INVALID_ENUM:
+                    std::cerr << "GL_INVALID_ENUM (0x0500)" << std::endl;
+                    break;
+                case GL_INVALID_VALUE:
+                    std::cerr << "GL_INVALID_VALUE (0x0501)" << std::endl;
+                    break;
+                case GL_INVALID_OPERATION:
+                    std::cerr << "GL_INVALID_OPERATION (0x0502)" << std::endl;
+                    break;
+                case GL_INVALID_FRAMEBUFFER_OPERATION:
+                    std::cerr << "GL_INVALID_FRAMEBUFFER_OPERATION (0x0506)" << std::endl;
+                    break;
+                case GL_OUT_OF_MEMORY:
+                    std::cerr << "GL_OUT_OF_MEMORY (0x0505)" << std::endl;
+                    break;
+                default:
+                    std::cerr << "Unknown (0x" << std::hex << err << std::dec << ")" << std::endl;
+            }
+            hasError = true;
+        }
+        return hasError;
+    };
+
+    // 检查进入时的状态
+    checkGLError("draw start");
+
+    // --- 保存 OpenGL 状态 ---
     GLint lastProgram, lastTexture, lastArrayBuffer, lastElementArrayBuffer;
     glGetIntegerv(GL_CURRENT_PROGRAM, &lastProgram);
+    checkGLError("get program");
+    
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &lastTexture);
+    checkGLError("get texture");
+    
     glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &lastArrayBuffer);
+    checkGLError("get array buffer");
+    
     glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &lastElementArrayBuffer);
+    checkGLError("get element buffer");
+    
     GLint lastViewport[4];
     glGetIntegerv(GL_VIEWPORT, lastViewport);
+    checkGLError("get viewport");
+    
     GLboolean lastBlend = glIsEnabled(GL_BLEND);
     GLboolean lastCullFace = glIsEnabled(GL_CULL_FACE);
     GLboolean lastDepthTest = glIsEnabled(GL_DEPTH_TEST);
     GLboolean lastScissorTest = glIsEnabled(GL_SCISSOR_TEST);
+    checkGLError("get enable states");
     
-    // --- 为 Live2D 设置它需要的 OpenGL 状态 ---
+    // --- 设置 Live2D 需要的 OpenGL 状态 ---
     glEnable(GL_BLEND);
+    checkGLError("enable blend");
+    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    checkGLError("blend func");
+    
     glDisable(GL_DEPTH_TEST);
+    checkGLError("disable depth test");
+    
     glDisable(GL_CULL_FACE);
-    glEnable(GL_SCISSOR_TEST); // Live2D 的遮罩需要裁剪测试
+    checkGLError("disable cull face");
+    
+    glEnable(GL_SCISSOR_TEST);
+    checkGLError("enable scissor test");
 
+    // --- 设置 MVP 矩阵 ---
     Csm::CubismMatrix44 projection;
-    Csm::CubismModelMatrix* modelMatrix = _userModel->GetModelMatrix();
     projection.LoadIdentity();
-    float ratio = static_cast<float> (width) / static_cast<float> (height);
-    projection.Scale(1.0f / ratio, 1.0f);
-    projection.MultiplyByMatrix(modelMatrix);
-    renderer->SetMvpMatrix(&projection);
-    renderer->DrawModel();
-
-
-    /*
-    // 计算 MVP 矩阵
-    Csm::CubismMatrix44 projection;
-
+    
     float aspect = static_cast<float>(width) / static_cast<float>(height);
-    // ... (你的矩阵计算代码保持不变) ...
-    projection.Scale(1.0f, aspect);
-    Csm::CubismMatrix44 modelMatrix;
-    modelMatrix.LoadIdentity();
-    modelMatrix.Translate(0.0f, -0.5f);
-    modelMatrix.Scale(1.0f, 1.0f); // 先用 1:1 缩放测试
-    projection.MultiplyByMatrix(&modelMatrix);
+    
+    if (width > height) {
+        projection.Scale(1.0f, aspect);
+    } else {
+        projection.Scale(1.0f / aspect, 1.0f);
+    }
+    
+    Csm::CubismModelMatrix* modelMatrix = _userModel->GetModelMatrix();
+    modelMatrix->SetPosition(0.0f, -0.3f);
+    modelMatrix->Scale(2.0f, 2.0f);
+    
+    projection.MultiplyByMatrix(modelMatrix);
     
     renderer->SetMvpMatrix(&projection);
+    checkGLError("set MVP matrix");
     
-    // 绘制模型
+    // --- 打印绘制信息（每 60 帧一次）---
+    static int frameCount = 0;
+    if (frameCount++ % 60 == 0) {
+        std::cout << "[Live2D] Drawing frame " << frameCount 
+                  << ", viewport: " << width << "x" << height 
+                  << ", drawables: " << _userModel->GetModel()->GetDrawableCount()
+                  << ", textures: " << _textureIds.size() << std::endl;
+    }
+    
+    // --- 绘制模型 ---
+    checkGLError("before DrawModel");
     renderer->DrawModel();
-    */
     
-    // --- 恢复 OpenGL 状态，以免影响 ImGui 的渲染 ---
+    // ===== 关键：检查 DrawModel 后的错误 =====
+    if (checkGLError("after DrawModel")) {
+        std::cerr << "[Live2D] Error occurred during DrawModel!" << std::endl;
+        std::cerr << "[Live2D] Renderer info:" << std::endl;
+        std::cerr << "  - Model drawables: " << _userModel->GetModel()->GetDrawableCount() << std::endl;
+        std::cerr << "  - Textures bound: " << _textureIds.size() << std::endl;
+        std::cerr << "  - Viewport: " << width << "x" << height << std::endl;
+    }
+    
+    // --- 恢复 OpenGL 状态 ---
     glUseProgram(lastProgram);
     glBindTexture(GL_TEXTURE_2D, lastTexture);
     glBindBuffer(GL_ARRAY_BUFFER, lastArrayBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, lastElementArrayBuffer);
+    
     if (lastBlend) glEnable(GL_BLEND); else glDisable(GL_BLEND);
     if (lastCullFace) glEnable(GL_CULL_FACE); else glDisable(GL_CULL_FACE);
     if (lastDepthTest) glEnable(GL_DEPTH_TEST); else glDisable(GL_DEPTH_TEST);
     if (lastScissorTest) glEnable(GL_SCISSOR_TEST); else glDisable(GL_SCISSOR_TEST);
-    glViewport(lastViewport[0], lastViewport[1], (GLsizei)lastViewport[2], (GLsizei)lastViewport[3]);
+    
+    glViewport(lastViewport[0], lastViewport[1], 
+               (GLsizei)lastViewport[2], (GLsizei)lastViewport[3]);
+    
+    checkGLError("draw end");
 }
 
 void Live2DManager::cleanup() {
