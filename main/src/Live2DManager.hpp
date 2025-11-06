@@ -39,6 +39,7 @@ private:
     WindowManager* _windowManager;
     std::vector<GLuint> _textureIds;  // 存储加载的纹理 ID
     bool _modelLoaded;
+    Csm::CubismFramework::Option _cubismOption;
 };
 
 #endif // LIVE2D_MANAGER_HPP

@@ -126,7 +126,7 @@ bool WindowManager::init() {
     // --- 加载你的第一个模型！---
     // !!! 请确保你已经把模型文件放到了这个路径下 !!!
     std::cout << "[Debug] 10. Loading Live2D model..." << std::endl;
-    if (!_live2dManager.loadModel("assets/live2d_models/hiyori_pro_t11")) {
+    if (!_live2dManager.loadModel("assets/live2d_models/Haru")) {
         std::cerr << "Failed to load Live2D model." << std::endl;
         // 这里我们不返回 false，即使模型加载失败，程序也可以继续运行
     }

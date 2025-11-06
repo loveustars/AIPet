@@ -118,14 +118,14 @@ Live2DManager::~Live2DManager() {
 bool Live2DManager::initialize(WindowManager* windowManager) {
     _windowManager = windowManager;
 
-    // Cubism SDK 5 的初始化选项
-    Csm::CubismFramework::Option option;
-    option.LogFunction = [](const Csm::csmChar* message) { 
+    // --- 关键修复：使用成员变量 _cubismOption ---
+    _cubismOption.LogFunction = [](const Csm::csmChar* message) { 
         std::cout << "[Live2D] " << message << std::endl; 
     };
-    option.LoggingLevel = Csm::CubismFramework::Option::LogLevel_Verbose;
+    _cubismOption.LoggingLevel = Csm::CubismFramework::Option::LogLevel_Verbose;
 
-    if (!Csm::CubismFramework::StartUp(_allocator, &option)) {
+    // 传递成员变量的地址，它的生命周期和 Live2DManager 实例一样长
+    if (!Csm::CubismFramework::StartUp(_allocator, &_cubismOption)) {
         std::cerr << "[Live2D] Failed to start up CubismFramework!" << std::endl;
         return false;
     }
