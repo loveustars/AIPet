@@ -78,4 +78,14 @@ target_link_libraries(AIPet PRIVATE
     Threads::Threads
 )
 
+
+# 把着色器文件复制到build以便使用
+set(SHADER_SOURCE_DIR "${CUBISM_SDK_DIR}/Framework/src/Rendering/OpenGL/")
+file(GLOB SHADER_FILES
+    "${SHADER_SOURCE_DIR}/*.vert"
+    "${SHADER_SOURCE_DIR}/*.flag"
+)
+
+file(COPY ${SHADER_FILES} DESTINATION "${CMAKE_BINARY_DIR}/FrameworkShaders")
+
 message(STATUS "Project configured to STATICALLY LINK against pre-compiled Cubism Core library.")
