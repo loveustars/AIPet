@@ -320,121 +320,82 @@ void Live2DManager::draw() {
         return;
     }
 
-    // ===== 详细的错误检查辅助函数 =====
-    auto checkGLError = [](const char* point) {
-        GLenum err;
-        bool hasError = false;
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            std::cerr << "[Live2D] OpenGL Error at " << point << ": ";
-            switch(err) {
-                case GL_INVALID_ENUM:
-                    std::cerr << "GL_INVALID_ENUM (0x0500)" << std::endl;
-                    break;
-                case GL_INVALID_VALUE:
-                    std::cerr << "GL_INVALID_VALUE (0x0501)" << std::endl;
-                    break;
-                case GL_INVALID_OPERATION:
-                    std::cerr << "GL_INVALID_OPERATION (0x0502)" << std::endl;
-                    break;
-                case GL_INVALID_FRAMEBUFFER_OPERATION:
-                    std::cerr << "GL_INVALID_FRAMEBUFFER_OPERATION (0x0506)" << std::endl;
-                    break;
-                case GL_OUT_OF_MEMORY:
-                    std::cerr << "GL_OUT_OF_MEMORY (0x0505)" << std::endl;
-                    break;
-                default:
-                    std::cerr << "Unknown (0x" << std::hex << err << std::dec << ")" << std::endl;
-            }
-            hasError = true;
-        }
-        return hasError;
-    };
-
-    // 检查进入时的状态
-    checkGLError("draw start");
-
     // --- 保存 OpenGL 状态 ---
     GLint lastProgram, lastTexture, lastArrayBuffer, lastElementArrayBuffer;
     glGetIntegerv(GL_CURRENT_PROGRAM, &lastProgram);
-    checkGLError("get program");
-    
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &lastTexture);
-    checkGLError("get texture");
-    
     glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &lastArrayBuffer);
-    checkGLError("get array buffer");
-    
     glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &lastElementArrayBuffer);
-    checkGLError("get element buffer");
-    
     GLint lastViewport[4];
     glGetIntegerv(GL_VIEWPORT, lastViewport);
-    checkGLError("get viewport");
-    
     GLboolean lastBlend = glIsEnabled(GL_BLEND);
     GLboolean lastCullFace = glIsEnabled(GL_CULL_FACE);
     GLboolean lastDepthTest = glIsEnabled(GL_DEPTH_TEST);
     GLboolean lastScissorTest = glIsEnabled(GL_SCISSOR_TEST);
-    checkGLError("get enable states");
     
     // --- 设置 Live2D 需要的 OpenGL 状态 ---
     glEnable(GL_BLEND);
-    checkGLError("enable blend");
-    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    checkGLError("blend func");
-    
     glDisable(GL_DEPTH_TEST);
-    checkGLError("disable depth test");
-    
     glDisable(GL_CULL_FACE);
-    checkGLError("disable cull face");
-    
     glEnable(GL_SCISSOR_TEST);
-    checkGLError("enable scissor test");
 
-    // --- 设置 MVP 矩阵 ---
+    // ===== 关键修复：正确计算 MVP 矩阵 =====
+    
+    // 1. 创建投影矩阵（将 Live2D 坐标系映射到 OpenGL 裁剪空间）
     Csm::CubismMatrix44 projection;
     projection.LoadIdentity();
     
-    float aspect = static_cast<float>(width) / static_cast<float>(height);
+    // 计算宽高比
+    float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
     
-    if (width > height) {
-        projection.Scale(1.0f, aspect);
+    // 2. 设置正交投影
+    // Live2D 模型通常在 [-1, 1] 的范围内，我们需要根据窗口宽高比调整
+    if (aspectRatio > 1.0f) {
+        // 横屏：扩展宽度
+        float viewWidth = aspectRatio;
+        projection.Scale(1.0f / viewWidth, 1.0f);
     } else {
-        projection.Scale(1.0f / aspect, 1.0f);
+        // 竖屏：扩展高度
+        float viewHeight = 1.0f / aspectRatio;
+        projection.Scale(1.0f, 1.0f / viewHeight);
     }
     
+    // 3. 获取模型矩阵并设置模型的位置和大小
     Csm::CubismModelMatrix* modelMatrix = _userModel->GetModelMatrix();
-    modelMatrix->SetPosition(0.0f, -0.3f);
-    modelMatrix->Scale(2.0f, 2.0f);
     
+    // 重置模型矩阵的变换
+    modelMatrix->LoadIdentity();
+    
+    // 设置模型的位置（X, Y）
+    // X: 0.0 表示水平居中
+    // Y: -0.2 表示稍微向下移动（根据需要调整）
+    modelMatrix->SetPosition(_modelX, _modelY);
+    
+    // 设置模型缩放
+    // 通常 Live2D 模型需要缩放到合适的大小
+    // 1.8 是一个比较常用的缩放值，你可以根据实际效果调整
+    float modelScale = 1.8f;
+    modelMatrix->Scale(_modelScale, _modelScale);;
+    
+    // 4. 将投影矩阵和模型矩阵相乘
     projection.MultiplyByMatrix(modelMatrix);
     
+    // 5. 设置最终的 MVP 矩阵到渲染器
     renderer->SetMvpMatrix(&projection);
-    checkGLError("set MVP matrix");
     
-    // --- 打印绘制信息（每 60 帧一次）---
+    // --- 调试信息（每 60 帧打印一次）---
     static int frameCount = 0;
     if (frameCount++ % 60 == 0) {
-        std::cout << "[Live2D] Drawing frame " << frameCount 
-                  << ", viewport: " << width << "x" << height 
-                  << ", drawables: " << _userModel->GetModel()->GetDrawableCount()
-                  << ", textures: " << _textureIds.size() << std::endl;
+        std::cout << "[Live2D] Frame " << frameCount 
+                  << " | Viewport: " << width << "x" << height 
+                  << " | Aspect: " << aspectRatio 
+                  << " | Drawables: " << _userModel->GetModel()->GetDrawableCount()
+                  << " | Scale: " << modelScale << std::endl;
     }
     
     // --- 绘制模型 ---
-    checkGLError("before DrawModel");
     renderer->DrawModel();
-    
-    // ===== 关键：检查 DrawModel 后的错误 =====
-    if (checkGLError("after DrawModel")) {
-        std::cerr << "[Live2D] Error occurred during DrawModel!" << std::endl;
-        std::cerr << "[Live2D] Renderer info:" << std::endl;
-        std::cerr << "  - Model drawables: " << _userModel->GetModel()->GetDrawableCount() << std::endl;
-        std::cerr << "  - Textures bound: " << _textureIds.size() << std::endl;
-        std::cerr << "  - Viewport: " << width << "x" << height << std::endl;
-    }
     
     // --- 恢复 OpenGL 状态 ---
     glUseProgram(lastProgram);
@@ -449,9 +410,8 @@ void Live2DManager::draw() {
     
     glViewport(lastViewport[0], lastViewport[1], 
                (GLsizei)lastViewport[2], (GLsizei)lastViewport[3]);
-    
-    checkGLError("draw end");
 }
+
 
 void Live2DManager::cleanup() {
     std::cout << "[Live2D] Starting cleanup..." << std::endl;

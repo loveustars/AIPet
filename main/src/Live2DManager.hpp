@@ -33,6 +33,10 @@ public:
     // 释放资源
     void cleanup();
 
+    void setModelScale(float scale) { _modelScale = scale; }
+    void setModelPosition(float x, float y) { _modelX = x; _modelY = y; }
+    float getModelScale() const { return _modelScale; }
+
 private:
     Csm::CubismUserModel* _userModel;
     Csm::ICubismAllocator* _allocator;
@@ -40,6 +44,10 @@ private:
     std::vector<GLuint> _textureIds;  // 存储加载的纹理 ID
     bool _modelLoaded;
     Csm::CubismFramework::Option _cubismOption;
+    // 新增成员变量
+    float _modelScale = 1.8f;
+    float _modelX = 0.0f;
+    float _modelY = -0.2f;
 };
 
 #endif // LIVE2D_MANAGER_HPP

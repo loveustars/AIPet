@@ -254,6 +254,22 @@ void WindowManager::render() {
         ImGui::PopStyleColor();
     }
 
+    ImGui::Begin("Live2D Debug");
+    static float scale = 1.8f;
+    static float posX = 0.0f;
+    static float posY = -0.2f;
+
+    if (ImGui::SliderFloat("Scale", &scale, 0.5f, 5.0f)) {
+        _live2dManager.setModelScale(scale);
+    } 
+    if (ImGui::SliderFloat("Position X", &posX, -1.0f, 1.0f)) {
+        _live2dManager.setModelPosition(posX, posY);
+    }
+    if (ImGui::SliderFloat("Position Y", &posY, -1.0f, 1.0f)) {
+        _live2dManager.setModelPosition(posX, posY);
+    }
+    ImGui::End();
+
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
