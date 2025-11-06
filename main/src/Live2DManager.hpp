@@ -4,9 +4,11 @@
 #define LIVE2D_MANAGER_HPP
 
 #include <string>
+#include <vector>
 #include <CubismFramework.hpp>
 #include <Model/CubismUserModel.hpp>
 #include <ICubismAllocator.hpp>
+#include <GL/glew.h>
 
 // 前向声明，避免在头文件中包含过多内容
 class WindowManager;
@@ -34,7 +36,8 @@ public:
 private:
     Csm::CubismUserModel* _userModel;
     Csm::ICubismAllocator* _allocator;
-    WindowManager* _windowManager; // 用于获取窗口尺寸等信息
+    WindowManager* _windowManager;
+    std::vector<GLuint> _textureIds;  // 存储加载的纹理 ID
 };
 
 #endif // LIVE2D_MANAGER_HPP
