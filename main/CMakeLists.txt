@@ -52,6 +52,7 @@ add_definitions(-DCSM_TARGET_LINUX_GL -DCSM_ENABLE_DEBUG)
 add_executable(AIPet main.cpp
     src/WindowManager.cpp
     src/AIManager.cpp
+    src/Live2DManager.cpp
     ${CUBISM_FRAMEWORK_SOURCES}
 )
 

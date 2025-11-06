@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <optional>
+#include "Live2DManager.hpp"
 
 // 前向声明 ImGuiIO，避免在头文件中包含 imgui.h
 struct ImGuiIO;
@@ -25,6 +26,7 @@ std::optional<std::string> handleEvents();
 
 void update();
 void render();
+void getWindowSize(int& width, int& height) const;
 
 // 添加一条新消息到聊天记录
 void addMessage(const std::string& author, const std::string& text);
@@ -34,6 +36,7 @@ bool isRunning() const;
 private:
 void cleanup();
 AIManager& aiManager; // 存储引用
+Live2DManager _live2dManager;
 std::string windowTitle;
 int windowWidth;
 int windowHeight;

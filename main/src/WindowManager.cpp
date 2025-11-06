@@ -117,6 +117,18 @@ bool WindowManager::init() {
     std::cout << "[Debug] Font atlas built successfully." << std::endl;
 
 
+    if (!_live2dManager.initialize(this)) {
+        std::cerr << "Failed to initialize Live2DManager." << std::endl;
+        return false;
+    }
+
+    // --- 加载你的第一个模型！---
+    // !!! 请确保你已经把模型文件放到了这个路径下 !!!
+    if (!_live2dManager.loadModel("assets/Hiyori")) {
+        std::cerr << "Failed to load Live2D model." << std::endl;
+        // 这里我们不返回 false，即使模型加载失败，程序也可以继续运行
+    }
+
     std::cout << "[Debug] WindowManager initialized successfully!" << std::endl;
     running = true;
     addMessage("System", "Welcome! Type your message in English and press Enter.");
@@ -245,6 +257,7 @@ void WindowManager::update() {
     // 监听窗口尺寸变化，更新视口
     SDL_GetWindowSize(window, &windowWidth, &windowHeight);
     glViewport(0, 0, windowWidth, windowHeight);
+    _live2dManager.update(); // 每帧更新 Live2D
 }
 
 void WindowManager::render() {
@@ -256,6 +269,7 @@ void WindowManager::render() {
     // 在这里绘制Live2D 模型
     // TODO: Render Live2D Model here.(Not Done)
     // 在绘制 UI 之前绘制模型，UI 就会自然地显示在模型之上。
+    _live2dManager.draw();
 
     // 使用 ImGui 构建我们的聊天窗口
     {
@@ -331,6 +345,15 @@ void WindowManager::render() {
     SDL_GL_SwapWindow(window);
 }
 
+void WindowManager::getWindowSize(int& width, int& height) const {
+    if (window) {
+        SDL_GetWindowSize(window, &width, &height);
+    } else {
+        width = 0;
+        height = 0;
+    }
+}
+
 void WindowManager::addMessage(const std::string& author, const std::string& text) {
     chatHistory.push_back({author, text});
     if (chatHistory.size() > 50) {
@@ -339,6 +362,7 @@ void WindowManager::addMessage(const std::string& author, const std::string& tex
 }
 
 void WindowManager::cleanup() {
+    _live2dManager.cleanup();
     // 清理 ImGui
     if (imgui_io) { // 检查 imgui_io 是否已初始化
         ImGui_ImplOpenGL3_Shutdown();
