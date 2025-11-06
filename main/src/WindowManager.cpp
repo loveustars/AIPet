@@ -336,7 +336,7 @@ void WindowManager::render() {
 
 void WindowManager::render() {
     // 清空屏幕为深色背景，便于看到 Live2D 模型
-    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     // 绘制 Live2D 模型（在 UI 之前绘制，这样 UI 会显示在模型上方）
@@ -411,10 +411,15 @@ void WindowManager::render() {
         ImGui::End();
         ImGui::PopStyleColor(); // 恢复窗口背景色
     }
-    
+    // 清空屏幕
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     // 渲染 ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    _live2dManager.draw();
 
     // 交换缓冲区
     SDL_GL_SwapWindow(window);

@@ -340,8 +340,20 @@ void Live2DManager::draw() {
     glDisable(GL_CULL_FACE);
     glEnable(GL_SCISSOR_TEST); // Live2D 的遮罩需要裁剪测试
 
+    Csm::CubismMatrix44 projection;
+    Csm::CubismModelMatrix* modelMatrix = _userModel->GetModelMatrix();
+    projection.LoadIdentity();
+    float ratio = static_cast<float> (width) / static_cast<float> (height);
+    projection.Scale(1.0f / ratio, 1.0f);
+    projection.MultiplyByMatrix(modelMatrix);
+    renderer->SetMvpMatrix(&projection);
+    renderer->DrawModel();
+
+
+    /*
     // 计算 MVP 矩阵
     Csm::CubismMatrix44 projection;
+
     float aspect = static_cast<float>(width) / static_cast<float>(height);
     // ... (你的矩阵计算代码保持不变) ...
     projection.Scale(1.0f, aspect);
@@ -355,6 +367,7 @@ void Live2DManager::draw() {
     
     // 绘制模型
     renderer->DrawModel();
+    */
     
     // --- 恢复 OpenGL 状态，以免影响 ImGui 的渲染 ---
     glUseProgram(lastProgram);
