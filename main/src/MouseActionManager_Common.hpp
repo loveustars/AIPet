@@ -16,88 +16,84 @@
 #include "CubismSampleViewMatrix_Common.hpp"
 
 /**
-* @brief マウスの動作を通知するクラス
-*
-* マウス操作等を Cubism へ橋渡しする。
-*
-*/
+ * @brief 通知鼠标操作的管理类
+ *
+ * 将鼠标（或触摸）输入桥接到 Cubism 框架。
+ */
 class MouseActionManager_Common
 {
 public:
     /**
-     * @brief   クラスのインスタンス（シングルトン）を返す
+     * @brief 返回类实例（单例）
      *
-     * インスタンスが生成されていない場合は内部でインスタンスを生成する
-     *
-     * @return  クラスのインスタンス
+     * 若实例尚未生成则内部创建并返回。
+     * @return 类实例指针
      */
     static MouseActionManager_Common* GetInstance();
 
     /**
-     * @brief   クラスのインスタンス（シングルトン）を解放する
+     * @brief 释放单例实例
      */
     static void ReleaseInstance();
 
-    MouseActionManager_Common(); ///< コンストラクタ
-    virtual ~MouseActionManager_Common(); ///< デストラクタ
+    MouseActionManager_Common(); ///< 构造函数
+    virtual ~MouseActionManager_Common(); ///< 析构函数
 
     /**
-     * @brief   必要なものを初期化する
+     * @brief 执行必要的初始化
      */
     virtual void Initialize(int windowWidth, int windowHeight);
 
     /**
-     * @brief 行列の初期化をする
+     * @brief 初始化视图矩阵
      */
     virtual void ViewInitialize(int windowWidth, int windowHeight);
 
     /**
-     * @brief _userModelをセットする
+     * @brief 设置要操作的用户模型指针
      */
     virtual void SetUserModel(Csm::CubismUserModel* userModel);
 
     /**
-     * @brief _viewMatrixを取得する
+     * @brief 获取视图矩阵对象
      */
     virtual CubismSampleViewMatrix_Common* GetViewMatrix();
 
     /**
-    * @brief ドラッグ
-    *
-    * ドラッグ時にどれだけ移動したかを通知する
-    */
+     * @brief 拖拽事件
+     *
+     * 在拖拽时通知移动的偏移量。
+     */
     virtual void OnDrag(Csm::csmFloat32 x, Csm::csmFloat32 y);
 
     /**
-    * @brief クリック入力始め
-    *
-    * クリックの入力が始まった時に呼ばれる
-    */
+     * @brief 点击/触摸开始
+     *
+     * 当点击或触摸开始时调用。
+     */
     virtual void OnTouchesBegan(float px, float py);
 
     /**
-    * @brief クリック入力中の移動
-    *
-    * クリック入力中の移動時に呼ばれる
-    */
+     * @brief 在点击/触摸移动时调用
+     */
     virtual void OnTouchesMoved(float px, float py);
 
     /**
-    * @brief クリック入力終了時
-    *
-    * クリックの入力が終了した時に呼ばれる
-    */
+     * @brief 点击/触摸结束
+     *
+     * 当点击或触摸结束时调用。
+     */
     virtual void OnTouchesEnded(float px, float py);
 
 protected:
     Csm::CubismUserModel* _userModel;
 
-    TouchManager_Common* _TouchManager;                 ///< タッチマネージャー
+    TouchManager_Common* _TouchManager;                 ///< 触摸管理器
 
-    bool _captured;                              ///< クリックしているか
-    float _mouseX;                               ///< マウスX座標
-    float _mouseY;                               ///< マウスY座標
+    bool _captured;                              ///< 是否处于按下/捕获状态
+    float _mouseX;                               ///< 鼠标/触摸 X 坐标
+    float _mouseY;                               ///< 鼠标/触摸 Y 坐标
 
-    CubismSampleViewMatrix_Common* _viewMatrix; ///< 画面の表示の拡大縮小や移動の変換を行う行列
-    Csm::CubismMatrix44* _deviceToScreen; ///< デバイスからスクリーンへの行列
+    CubismSampleViewMatrix_Common* _viewMatrix; ///< 用于视图缩放与位移变换的矩阵
+    Csm::CubismMatrix44* _deviceToScreen; ///< 从设备坐标到屏幕坐标的变换矩阵
 };

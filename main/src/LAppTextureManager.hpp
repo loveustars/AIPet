@@ -15,52 +15,49 @@
 #include "LAppTextureManager_Common.hpp"
 
 /**
-* @brief テクスチャ管理クラス
-*
-* 画像読み込み、管理を行うクラス。
-*/
+ * @brief 纹理管理类（继承自 LAppTextureManager_Common）
+ *
+ * 负责图像的加载与管理。
+ */
 class LAppTextureManager : public LAppTextureManager_Common
 {
 public:
     /**
-    * @brief コンストラクタ
+    * @brief 构造函数
     */
     LAppTextureManager();
 
     /**
-    * @brief デストラクタ
-    *
+    * @brief 析构函数
     */
     ~LAppTextureManager();
 
     /**
-    * @brief 画像読み込み
+    * @brief 从 PNG 文件创建纹理
     *
-    * @param[in] fileName  読み込む画像ファイルパス名
-    * @return 画像情報。読み込み失敗時はNULLを返す
+    * @param[in] fileName 要加载的图片文件路径
+    * @return 纹理信息，加载失败时返回 NULL
     */
     TextureInfo* CreateTextureFromPngFile(std::string fileName);
 
     /**
-    * @brief 画像の解放
+    * @brief 释放所有纹理
     *
-    * 配列に存在する画像全てを解放する
+    * 释放存储在数组中的所有纹理
     */
     void ReleaseTextures();
 
     /**
-     * @brief 画像の解放
+     * @brief 释放指定纹理 ID 的纹理
      *
-     * 指定したテクスチャIDの画像を解放する
-     * @param[in] textureId  解放するテクスチャID
-     **/
+     * @param[in] textureId 要释放的纹理 ID
+     */
     void ReleaseTexture(Csm::csmUint32 textureId);
 
     /**
-    * @brief 画像の解放
+    * @brief 释放指定文件名对应的纹理
     *
-    * 指定した名前の画像を解放する
-    * @param[in] fileName  解放する画像ファイルパス名
-    **/
+    * @param[in] fileName 要释放的纹理文件路径
+    */
     void ReleaseTexture(std::string fileName);
 };

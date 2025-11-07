@@ -12,7 +12,7 @@ namespace LAppDefine {
 
     using namespace Csm;
 
-    // 画面
+    // 视图/屏幕
     const csmFloat32 ViewScale = 1.0f;
     const csmFloat32 ViewMaxScale = 2.0f;
     const csmFloat32 ViewMinScale = 0.8f;
@@ -27,46 +27,46 @@ namespace LAppDefine {
     const csmFloat32 ViewLogicalMaxBottom = -2.0f;
     const csmFloat32 ViewLogicalMaxTop = 2.0f;
 
-    // 相対パス
+    // 相对路径
     const csmChar* ResourcesPath = "Resources/";
 
-    // モデルの後ろにある背景の画像ファイル
+    // 模型后方的背景图片文件
     const csmChar* BackImageName = "back_class_normal.png";
     // 歯車
-    const csmChar* GearImageName = "icon_gear.png";
-    // 終了ボタン
+    const csmChar* GearImageName = "icon_gear.png"; // 齿轮图标
+    // 退出按钮
     const csmChar* PowerImageName = "close.png";
 
-    // シェーダー相対パス
+    // 着色器（shader）相对路径
     const csmChar* ShaderPath = "SampleShaders/";
-    // 頂点シェーダー
+    // 顶点着色器
     const csmChar* VertShaderName = "VertSprite.vert";
-    // フラグメントシェーダー
+    // 片段（片元）着色器
     const csmChar* FragShaderName = "FragSprite.frag";
 
-    // モデル定義------------------------------------------
-    // 外部定義ファイル(json)と合わせる
-    const csmChar* MotionGroupIdle = "Idle"; // アイドリング
-    const csmChar* MotionGroupTapBody = "TapBody"; // 体をタップしたとき
+    // 模型定义 ------------------------------------------
+    // 与外部定义文件（json）对应
+    const csmChar* MotionGroupIdle = "Idle"; // 空闲动作
+    const csmChar* MotionGroupTapBody = "TapBody"; // 点击身体时的动作
 
-    // 外部定義ファイル(json)と合わせる
+    // 与外部定义文件（json）对应
     const csmChar* HitAreaNameHead = "Head";
     const csmChar* HitAreaNameBody = "Body";
 
-    // モーションの優先度定数
+    // 动作（motion）的优先级常量
     const csmInt32 PriorityNone = 0;
     const csmInt32 PriorityIdle = 1;
     const csmInt32 PriorityNormal = 2;
     const csmInt32 PriorityForce = 3;
 
-    // デバッグ用ログの表示オプション
+    // 调试用日志显示选项
     const csmBool DebugLogEnable = true;
     const csmBool DebugTouchLogEnable = false;
 
-    // Frameworkから出力するログのレベル設定
+    // 框架输出日志等级设置
     const CubismFramework::Option::LogLevel CubismLoggingLevel = CubismFramework::Option::LogLevel_Verbose;
 
-    // デフォルトのレンダーターゲットサイズ
+    // 默认的渲染目标尺寸
     const csmInt32 RenderTargetWidth = 1900;
     const csmInt32 RenderTargetHeight = 1000;
 }

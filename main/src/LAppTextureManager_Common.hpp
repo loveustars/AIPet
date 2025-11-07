@@ -13,49 +13,47 @@
 #include <Type/csmVector.hpp>
 
 /**
-* @brief テクスチャ管理クラス
-*
-* 画像読み込み、管理を行うクラス。
-*
-*/
+ * @brief 纹理管理类
+ *
+ * 负责图片的加载与管理。
+ */
 class LAppTextureManager_Common
 {
 public:
     /**
-     * @brief 画像情報構造体
+     * @brief 图片信息结构体
      */
     struct TextureInfo
     {
-        Csm::csmUint32 id;      ///< テクスチャID
-        int width;              ///< 横幅
-        int height;             ///< 高さ
-        std::string fileName;   ///< ファイル名
+        Csm::csmUint32 id;      ///< 纹理 ID
+        int width;              ///< 宽度
+        int height;             ///< 高度
+        std::string fileName;   ///< 文件名
     };
 
     /**
-     * @brief コンストラクタ
+     * @brief 构造函数
      */
     LAppTextureManager_Common();
 
     /**
-     * @brief デストラクタ
+     * @brief 析构函数
      */
     virtual ~LAppTextureManager_Common();
 
     /**
-     * @brief texturesInfo の解放
+     * @brief 释放 texturesInfo 中的资源
      */
     virtual void ReleaseTexturesInfo();
 
     /**
-     * @brief プリマルチプライ処理
+     * @brief 预乘（Premultiply）处理
      *
-     * @param[in] red  画像のRed値
-     * @param[in] green  画像のGreen値
-     * @param[in] blue  画像のBlue値
-     * @param[in] alpha  画像のAlpha値
-     *
-     * @return プリマルチプライ処理後のカラー値
+     * @param[in] red   红色分量
+     * @param[in] green 绿色分量
+     * @param[in] blue  蓝色分量
+     * @param[in] alpha 透明度分量
+     * @return  预乘后得到的颜色值
      */
     virtual inline unsigned int Premultiply(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
     {
@@ -68,23 +66,21 @@ public:
     }
 
     /**
-     * @brief ファイル名からテクスチャ情報を得る
+     * @brief 根据文件名获取纹理信息
      *
-     * @param[in] fileName  テクスチャのファイル名
-     *
-     * @return  テクスチャが存在していればtrueが返る
+     * @param[in] fileName 纹理的文件名
+     * @return 如果存在则返回对应的 TextureInfo
      */
     virtual TextureInfo* GetTextureInfoByName(std::string& fileName) const;
 
     /**
-     * @brief テクスチャIDからテクスチャ情報を得る
+     * @brief 根据纹理 ID 获取纹理信息
      *
-     * @param[in] textureId  取得したいテクスチャID
-     *
-     * @return テクスチャが存在していればTextureInfoが返る
-     **/
+     * @param[in] textureId 要查询的纹理 ID
+     * @return 如果存在则返回对应的 TextureInfo
+     */
     virtual TextureInfo* GetTextureInfoById(Csm::csmUint32 textureId) const;
 
 protected:
-    Csm::csmVector<TextureInfo*> _texturesInfo;         ///< テクスチャ情報
+    Csm::csmVector<TextureInfo*> _texturesInfo;         ///< 纹理信息列表
 };

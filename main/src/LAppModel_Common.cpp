@@ -14,6 +14,7 @@ Csm::csmByte* LAppModel_Common::CreateBuffer(const Csm::csmChar* path, Csm::csmS
 {
     if (LAppDefine::DebugLogEnable)
     {
+        // 调试模式下打印创建缓冲区的日志
         LAppPal::PrintLogLn("[APP]create buffer: %s ", path);
     }
     return LAppPal::LoadFileAsBytes(path, size);
@@ -23,6 +24,7 @@ void LAppModel_Common::DeleteBuffer(Csm::csmByte* buffer, const Csm::csmChar* pa
 {
     if (LAppDefine::DebugLogEnable)
     {
+        // 调试模式下打印删除缓冲区的日志
         LAppPal::PrintLogLn("[APP]delete buffer: %s", path);
     }
     LAppPal::ReleaseBytes(buffer);

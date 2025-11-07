@@ -16,104 +16,101 @@
 #include "LAppModel_Common.hpp"
 
  /**
- * @brief CubismUserModelを継承するサンプルクラス
+ * @brief 继承自 CubismUserModel 的示例类
  *
- * CubismUserModelを継承するサンプルクラス
- * このクラスを拡張し、独自の処理を実装する。
+ * 这是一个继承自 CubismUserModel 的示例类。
+ * 可以在此类的基础上扩展并实现自定义处理。
  *
  */
 class CubismUserModelExtend :
     public LAppModel_Common
 {
 public:
-    CubismUserModelExtend(const std::string modelDirectoryName, const std::string _currentModelDirectory); ///< コンストラクタ
-    ~CubismUserModelExtend(); ///< デストラクタ
+    CubismUserModelExtend(const std::string modelDirectoryName, const std::string _currentModelDirectory); ///< 构造函数
+    ~CubismUserModelExtend(); ///< 析构函数
 
     /**
-    * @brief model3.jsonが置かれたディレクトリとファイルパスからモデルを生成する
-    *
+    * @brief 从包含 model3.json 的目录和文件路径生成模型
     */
     void LoadAssets(const  Csm::csmChar* fileName);
 
     /**
-    * @brief モデルの更新
+    * @brief 更新模型
     *
-    * モデルの状態や描画を更新する
+    * 更新模型的状态和渲染
     */
     void ModelOnUpdate(GLFWwindow* window);
 
 private:
     /**
-    * @brief model3.jsonからモデルを生成する
+    * @brief 从 model3.json 生成模型
     *
-    * model3.jsonの記述に従ってモデル生成、モーション、物理演算などのコンポーネント生成を行う
+    * 根据 model3.json 的描述生成模型，并创建动作、物理等组件
     *
-    * @param[in]   setting     ICubismModelSettingのインスタンス
-    *
+    * @param[in]   setting     ICubismModelSetting 的实例
     */
     void SetupModel();
-
     /**
-    * @brief 引数で指定したモーションの再生を開始する
+    * @brief 开始播放由参数指定的动作
     *
-    * @param[in] group                       モーショングループ名
-    * @param[in] no                          グループ内の番号
-    * @param[in] priority                    優先度
-    * @return 開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するIsFinished()の引数で使用する。開始できない時は「-1」
+    * @param[in] group    动作组名
+    * @param[in] no       组内序号
+    * @param[in] priority 优先级
+    * @return 返回已开始动作的识别编号，用于 IsFinished() 判断。无法开始时返回 -1。
     */
+    Csm::CubismMotionQueueEntryHandle StartMotion(const Csm::csmChar* group, Csm::csmInt32 no, Csm::csmInt32 priority);
     Csm::CubismMotionQueueEntryHandle StartMotion(const Csm::csmChar* group, Csm::csmInt32 no, Csm::csmInt32 priority);
 
     /**
-    * @brief 解放
+    * @brief 释放资源
     *
-    * モデルの設定データの解放の処理を行う
+    * 释放模型设置相关的数据
     */
     void ReleaseModelSetting();
 
     /**
-    * @brief モデルを描画する処理。モデルを描画する空間のView-Projection行列を渡す
+    * @brief 绘制模型。传入用于绘制模型的视图-投影矩阵
     *
-    * @param[in]  matrix  View-Projection行列
+    * @param[in]  matrix  视图-投影矩阵
     */
     void Draw(Csm::CubismMatrix44& matrix);
 
     /**
-    * @brief モデルのパラメータ情報の更新
+    * @brief 更新模型参数信息
     *
-    * モデルのパラメータの情報を更新する
+    * 更新模型的参数信息
     */
     void ModelParamUpdate();
 
     /**
-    * @brief OpenGLのテクスチャユニットにテクスチャをロードする
-    *
+    * @brief 将纹理加载到 OpenGL 的纹理单元中
     */
     void SetupTextures();
 
     /**
-    * @brief モーションデータをグループ名から一括でロードする。
+    * @brief 根据组名批量加载动作数据
     *
-    * モーションデータの名前は内部でModelSettingから取得する。
+    * 动作数据的名称从 ModelSetting 中获取
     *
-    * @param[in]   group  モーションデータのグループ名
+    * @param[in]   group  动作组名
     */
     void PreloadMotionGroup(const Csm::csmChar * group);
 
-    std::string _modelDirName; ///< モデルセッティングが置かれたディレクトリの名称
-    std::string _currentModelDirectory; ///< モデルセッティングが置かれたディレクトリ
+    std::string _modelDirName; ///< 存放模型设置的目录名称
+    std::string _currentModelDirectory; ///< 当前模型目录
 
-    Csm::csmFloat32 _userTimeSeconds; ///< デルタ時間の積算値[秒]
-    Csm::CubismModelSettingJson* _modelJson; ///< モデルセッティング情報
-    Csm::csmVector<Csm::CubismIdHandle> _eyeBlinkIds; ///< モデルに設定されたまばたき機能用パラメータID
-    Csm::csmMap<Csm::csmString, Csm::ACubismMotion*> _motions; ///< 読み込まれているモーションのリスト
-    Csm::csmMap<Csm::csmString, Csm::ACubismMotion*> _expressions; ///< 読み込まれている表情のリスト
+    Csm::csmFloat32 _userTimeSeconds; ///< 累计的时间差[秒]
+    Csm::CubismModelSettingJson* _modelJson; ///< 模型设置信息
+    Csm::csmVector<Csm::CubismIdHandle> _eyeBlinkIds; ///< 模型设置的眨眼参数 ID
+    Csm::csmMap<Csm::csmString, Csm::ACubismMotion*> _motions; ///< 已加载的动作列表
+    Csm::csmMap<Csm::csmString, Csm::ACubismMotion*> _expressions; ///< 已加载的表情列表
 
-    LAppTextureManager* _textureManager;         ///< テクスチャマネージャー
+    LAppTextureManager* _textureManager;         ///< 纹理管理器
 
-    const Csm::CubismId* _idParamAngleX; ///< パラメータID: ParamAngleX
-    const Csm::CubismId* _idParamAngleY; ///< パラメータID: ParamAngleX
-    const Csm::CubismId* _idParamAngleZ; ///< パラメータID: ParamAngleX
-    const Csm::CubismId* _idParamBodyAngleX; ///< パラメータID: ParamBodyAngleX
-    const Csm::CubismId* _idParamEyeBallX; ///< パラメータID: ParamEyeBallX
-    const Csm::CubismId* _idParamEyeBallY; ///< パラメータID: ParamEyeBallXY
+    const Csm::CubismId* _idParamAngleX; ///< 参数 ID: ParamAngleX
+    const Csm::CubismId* _idParamAngleY; ///< 参数 ID: ParamAngleY
+    const Csm::CubismId* _idParamAngleZ; ///< 参数 ID: ParamAngleZ
+    const Csm::CubismId* _idParamBodyAngleX; ///< 参数 ID: ParamBodyAngleX
+    const Csm::CubismId* _idParamEyeBallX; ///< 参数 ID: ParamEyeBallX
+    const Csm::CubismId* _idParamEyeBallY; ///< 参数 ID: ParamEyeBallY
 };

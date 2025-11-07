@@ -11,17 +11,17 @@
 #include <Type/CubismBasicType.hpp>
 
  /**
- * @brief スプライトを実装するクラス。
+ * @brief 实现精灵（Sprite）的类。
  *
- * テクスチャID、Rectの管理。
+ * 管理纹理 ID 和 Rect 信息。
  *
  */
 class LAppSprite_Common
 {
 public:
     /**
-    * @brief Rect 構造体。
-    */
+     * @brief Rect 结构体
+     */
     struct Rect
     {
     public:
@@ -32,28 +32,28 @@ public:
     };
 
     /**
-    * @brief デフォルトコンストラクタ
-    */
+     * @brief 默认构造函数
+     */
     LAppSprite_Common();
 
     /**
-    * @brief コンストラクタ
-    *
-    * @param[in]       textureId    テクスチャID
-    */
+     * @brief 构造函数
+     *
+     * @param[in] textureId 纹理 ID
+     */
     LAppSprite_Common(Csm::csmUint64 textureId);
 
     /**
-    * @brief デストラクタ
-    */
+     * @brief 析构函数
+     */
     virtual ~LAppSprite_Common();
 
     /**
-    * @brief Getter テクスチャID
-    * @return テクスチャIDを返す
-    */
+     * @brief 获取纹理 ID
+     * @return 返回纹理 ID
+     */
     virtual Csm::csmUint64 GetTextureId() { return _textureId; }
 
 protected:
-    Csm::csmUint64 _textureId;  ///< テクスチャID
+    Csm::csmUint64 _textureId;  ///< 纹理 ID
 };

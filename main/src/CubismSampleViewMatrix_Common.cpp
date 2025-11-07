@@ -17,42 +17,42 @@ CubismSampleViewMatrix_Common::CubismSampleViewMatrix_Common(Csm::CubismMatrix44
         return;
     }
 
-    // 縦サイズを基準とする
+    // 以高度（竖直尺寸）为基准
     float ratio = static_cast<float>(windowWidth) / static_cast<float>(windowHeight);
     float left = -ratio;
     float right = ratio;
     float bottom = LAppDefine::ViewLogicalLeft;
     float top = LAppDefine::ViewLogicalRight;
 
-    // デバイスに対応する画面の範囲を設定
+    // 设置与设备对应的屏幕范围
     SetScreenRect(left, right, bottom, top);
 
     if (windowWidth > windowHeight)
     {
         float screenW = fabsf(right - left);
-        // 行列の拡大率を相対的に設定
+    // 相对于设备设置矩阵的缩放比例
         deviceToScreen->ScaleRelative(screenW / windowWidth, -screenW / windowWidth);
     }
     else
     {
         float screenH = fabsf(top - bottom);
-        // 行列の拡大率を相対的に設定
+    // 相对于设备设置矩阵的缩放比例
         deviceToScreen->ScaleRelative(screenH / windowHeight, -screenH / windowHeight);
     }
 
-    // 行列の位置を起点に移動を行う
+    // 将矩阵位置平移到以左上为原点的位置
     deviceToScreen->TranslateRelative(-windowWidth * 0.5f, -windowHeight * 0.5f);
 
-    // 拡大率を設定
+    // 设置缩放率
     Scale(LAppDefine::ViewScale, LAppDefine::ViewScale);
 
-    // 最大拡大率を設定
+    // 设置最大缩放率
     SetMaxScale(LAppDefine::ViewMaxScale);
 
-    // 最小拡大率を設定
+    // 设置最小缩放率
     SetMinScale(LAppDefine::ViewMinScale);
 
-    // デバイスに対応する論理座標上の移動可能範囲を設定
+    // 设置在与设备对应的逻辑坐标系上的可移动范围
     SetMaxScreenRect(
         LAppDefine::ViewLogicalMaxLeft,
         LAppDefine::ViewLogicalMaxRight,

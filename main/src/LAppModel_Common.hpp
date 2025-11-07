@@ -12,20 +12,21 @@
 #include <ICubismModelSetting.hpp>
 
 /**
- * @brief ユーザーが実際に使用するモデルの実装クラス<br>
- *         モデル生成、機能コンポーネント生成、更新処理とレンダリングの呼び出しを行う。
+ * @brief 用户实际使用的模型实现类
+ *
+ * 负责模型的生成、功能组件的创建、更新处理以及渲染调用。
  *
  */
 class LAppModel_Common : public Csm::CubismUserModel
 {
 public:
     /**
-     * @brief コンストラクタ
+     * @brief 构造函数
      */
     LAppModel_Common() : Csm::CubismUserModel() {};
 
     /**
-     * @brief デストラクタ
+     * @brief 析构函数
      */
     virtual ~LAppModel_Common() {};
 

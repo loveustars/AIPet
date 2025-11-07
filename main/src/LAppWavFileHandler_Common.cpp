@@ -38,7 +38,7 @@ Csm::csmBool LAppWavFileHandler_Common::Update(Csm::csmFloat32 deltaTimeSeconds)
     Csm::csmUint32 goalOffset;
     Csm::csmFloat32 rms;
 
-    // データロード前/ファイル末尾に達した場合は更新しない
+    // 若尚未加载数据或已到文件末尾则不更新
     if ((_pcmData == NULL)
         || (_sampleOffset >= _wavFileInfo._samplesPerChannel))
     {
@@ -46,7 +46,7 @@ Csm::csmBool LAppWavFileHandler_Common::Update(Csm::csmFloat32 deltaTimeSeconds)
         return false;
     }
 
-    // 経過時間後の状態を保持
+    // 根据经过的时间计算目标样本偏移
     _userTimeSeconds += deltaTimeSeconds;
     goalOffset = static_cast<Csm::csmUint32>(_userTimeSeconds * _wavFileInfo._samplingRate);
     if (goalOffset > _wavFileInfo._samplesPerChannel)
@@ -54,7 +54,7 @@ Csm::csmBool LAppWavFileHandler_Common::Update(Csm::csmFloat32 deltaTimeSeconds)
         goalOffset = _wavFileInfo._samplesPerChannel;
     }
 
-    // RMS計測
+    // 计算 RMS（均方根）值
     rms = 0.0f;
     for (Csm::csmUint32 channelCount = 0; channelCount < _wavFileInfo._numberOfChannels; channelCount++)
     {
@@ -73,17 +73,17 @@ Csm::csmBool LAppWavFileHandler_Common::Update(Csm::csmFloat32 deltaTimeSeconds)
 
 void LAppWavFileHandler_Common::Start(const Csm::csmString& filePath)
 {
-    // WAVファイルのロード
+    // 加载 WAV 文件
     if (!LoadWavFile(filePath))
     {
         return;
     }
 
-    // サンプル参照位置を初期化
+    // 初始化样本读取偏移与计时
     _sampleOffset = 0;
     _userTimeSeconds = 0.0f;
 
-    // RMS値をリセット
+    // 重置 RMS 值
     _lastRms = 0.0f;
 }
 
@@ -134,7 +134,7 @@ Csm::csmFloat32 LAppWavFileHandler_Common::NormalizePcmSample(Csm::csmUint32 bit
 {
     Csm::csmInt32 pcm32;
 
-    // 32ビット幅に拡張してから-1～1の範囲に丸める
+    // 将样本扩展到 32 位宽，然后归一化到 [-1, 1]
     switch (bitsPerSample)
     {
     case 8:
@@ -183,7 +183,7 @@ Csm::csmFloat32 LAppWavFileHandler_Common::NormalizePcmSample(Csm::csmUint32 bit
         }
         break;
     default:
-        // 対応していないビット幅
+        // 不支持的位深
         pcm32 = 0;
         break;
     }
@@ -195,7 +195,7 @@ Csm::csmBool LAppWavFileHandler_Common::LoadWavFile(const Csm::csmString& filePa
 {
     Csm::csmBool ret;
 
-    // 既にwavファイルロード済みならば領域開放
+    // 如果已加载过 wav，则先释放之前的内存
     if (_rawData != NULL)
     {
         CSM_FREE(_rawData);
@@ -206,81 +206,81 @@ Csm::csmBool LAppWavFileHandler_Common::LoadWavFile(const Csm::csmString& filePa
         ReleasePcmData();
     }
 
-    // ファイルロード
+    // 读取文件到内存
     _byteReader._fileByte = LAppPal::LoadFileAsBytes(filePath.GetRawString(), &(_byteReader._fileSize));
     _byteReader._readOffset = 0;
 
-    // ファイルロードに失敗しているか、先頭のシグネチャ"RIFF"を入れるサイズもない場合は失敗
+    // 读取失败或文件小于 4 字节（无法包含 "RIFF"），则失败
     if ((_byteReader._fileByte == NULL) || (_byteReader._fileSize < 4))
     {
         return false;
     }
 
-    // ファイル名
+    // 保存文件名
     _wavFileInfo._fileName = filePath;
 
     do {
-        // シグネチャ "RIFF"
+        // 检查签名 "RIFF"
         if (!_byteReader.GetCheckSignature("RIFF"))
         {
             ret = false;
             break;
         }
-        // ファイルサイズ-8（読み飛ばし）
+        // 跳过文件大小 - 8
         _byteReader.Get32LittleEndian();
-        // シグネチャ "WAVE"
+        // 检查签名 "WAVE"
         if (!_byteReader.GetCheckSignature("WAVE"))
         {
             ret = false;
             break;
         }
-        // シグネチャ "fmt "
+        // 检查签名 "fmt "
         if (!_byteReader.GetCheckSignature("fmt "))
         {
             ret = false;
             break;
         }
-        // fmtチャンクサイズ
+        // 读取 fmt 块大小
         const Csm::csmUint32 fmtChunkSize = _byteReader.Get32LittleEndian();
-        // フォーマットIDは1（リニアPCM）以外受け付けない
+        // 仅接受格式 ID 为 1（线性 PCM）的文件
         if (_byteReader.Get16LittleEndian() != 1)
         {
             ret = false;
             break;
         }
-        // チャンネル数
+        // 通道数
         _wavFileInfo._numberOfChannels = _byteReader.Get16LittleEndian();
-        // サンプリングレート
+        // 采样率
         _wavFileInfo._samplingRate = _byteReader.Get32LittleEndian();
-        // 平均データ速度
+        // 平均字节速率
         _wavFileInfo._avgBytesPerSec = _byteReader.Get32LittleEndian();
-        // ブロックサイズ
+        // 块对齐大小
         _wavFileInfo._blockAlign = _byteReader.Get16LittleEndian();
-        // 量子化ビット数
+        // 每样本位数
         _wavFileInfo._bitsPerSample = _byteReader.Get16LittleEndian();
-        // fmtチャンクの拡張部分の読み飛ばし
+        // 如果 fmt 块有扩展字段则跳过
         if (fmtChunkSize > 16)
         {
             _byteReader._readOffset += (fmtChunkSize - 16);
         }
-        // "data"チャンクが出現するまで読み飛ばし
+        // 跳过直到遇到 "data" 块
         while (!(_byteReader.GetCheckSignature("data"))
             && (_byteReader._readOffset < _byteReader._fileSize))
         {
             _byteReader._readOffset += _byteReader.Get32LittleEndian();
         }
-        // ファイル内に"data"チャンクが出現しなかった
+        // 未找到 "data" 块
         if (_byteReader._readOffset >= _byteReader._fileSize)
         {
             ret = false;
             break;
         }
-        // サンプル数
+        // 读取样本数
         {
             const Csm::csmUint32 dataChunkSize = _byteReader.Get32LittleEndian();
             _wavFileInfo._samplesPerChannel = (dataChunkSize * 8) / (_wavFileInfo._bitsPerSample * _wavFileInfo._numberOfChannels);
         }
-        // 領域確保
+        // 分配内存
         _rawDataSize = static_cast<Csm::csmUint64>(_wavFileInfo._blockAlign) * static_cast<Csm::csmUint64>(_wavFileInfo._samplesPerChannel);
         _rawData = static_cast<Csm::csmByte*>(CSM_MALLOC(sizeof(Csm::csmByte) * _rawDataSize));
         _pcmData = static_cast<Csm::csmFloat32**>(CSM_MALLOC(sizeof(Csm::csmFloat32*) * _wavFileInfo._numberOfChannels));
@@ -288,18 +288,18 @@ Csm::csmBool LAppWavFileHandler_Common::LoadWavFile(const Csm::csmString& filePa
         {
             _pcmData[channelCount] = static_cast<Csm::csmFloat32*>(CSM_MALLOC(sizeof(Csm::csmFloat32) * _wavFileInfo._samplesPerChannel));
         }
-        // 波形データ取得
+        // 读取波形数据
         Csm::csmUint64 rawPos = 0;
         for (Csm::csmUint32 sampleCount = 0; sampleCount < _wavFileInfo._samplesPerChannel; sampleCount++)
         {
             for (Csm::csmUint32 channelCount = 0; channelCount < _wavFileInfo._numberOfChannels; channelCount++)
             {
-                // 正規化前
+                // 读取未归一化的原始字节
                 for (Csm::csmUint32 byteCount = 0; byteCount < _wavFileInfo._bitsPerSample / 8; byteCount++)
                 {
                     _rawData[rawPos++] = _byteReader._fileByte[_byteReader._readOffset + byteCount];
                 }
-                // 正規化後
+                // 归一化到 -1～1 的浮点数
                 _pcmData[channelCount][sampleCount] = GetPcmSample();
             }
         }
@@ -308,7 +308,7 @@ Csm::csmBool LAppWavFileHandler_Common::LoadWavFile(const Csm::csmString& filePa
 
     }  while (false);
 
-    // ファイル開放
+    // 释放读取的文件字节数据
     LAppPal::ReleaseBytes(_byteReader._fileByte);
     _byteReader._fileByte = NULL;
     _byteReader._fileSize = 0;
@@ -330,7 +330,7 @@ Csm::csmFloat32 LAppWavFileHandler_Common::GetPcmSample()
 {
     Csm::csmInt32 pcm32;
 
-    // 32ビット幅に拡張してから-1～1の範囲に丸める
+    // 将样本扩展到 32 位宽并归一化到 [-1, 1]
     switch (_wavFileInfo._bitsPerSample)
     {
     case 8:
@@ -344,7 +344,7 @@ Csm::csmFloat32 LAppWavFileHandler_Common::GetPcmSample()
         pcm32 = _byteReader.Get24LittleEndian() << 8;
         break;
     default:
-        // 対応していないビット幅
+        // 不支持的位深
         pcm32 = 0;
         break;
     }

@@ -15,66 +15,63 @@
 #include "MouseActionManager_Common.hpp"
 
 /**
-* @brief マウスの動作を通知するクラス
-*
-* マウス操作等を Cubism へ橋渡しする。
-*
-*/
+ * @brief 通知鼠标操作的类（用于 OpenGL 平台）
+ *
+ * 将鼠标事件桥接到 Cubism。
+ */
 class MouseActionManager : public MouseActionManager_Common
 {
 public:
-  /**
-  * @brief   クラスのインスタンス（シングルトン）を返す
-  *
-  * インスタンスが生成されていない場合は内部でインスタンスを生成する
-  *
-  * @return  クラスのインスタンス
-  */
+    /**
+     * @brief 返回单例实例
+     *
+     * 若实例尚未创建则内部创建并返回。
+     * @return 单例实例指针
+     */
   static MouseActionManager* GetInstance();
 
-  /**
-  * @brief   クラスのインスタンス（シングルトン）を解放する
-  *
-  */
+    /**
+     * @brief 释放单例实例
+     */
   static void ReleaseInstance();
 
-  MouseActionManager(); ///< コンストラクタ
-  virtual ~MouseActionManager(); ///< デストラクタ
+  MouseActionManager(); ///< 构造函数
+  virtual ~MouseActionManager(); ///< 析构函数
 
-  /**
-  * @brief   OpenGL用 glfwSetMouseButtonCallback用関数。
-  *
-  * @param[in]       window            コールバックを呼んだWindow情報
-  * @param[in]       button            ボタン種類
-  * @param[in]       action            実行結果
-  * @param[in]       modify
-  */
+    /**
+     * @brief GLFW 鼠标按键回调适配函数（用于 OpenGL）
+     *
+     * @param[in] window 回调所属的窗口
+     * @param[in] button 鼠标按键类型
+     * @param[in] action 按键动作（按下/释放）
+     * @param[in] modify 修饰键标志
+     */
   void OnMouseCallBack(GLFWwindow* window, int button, int action, int modify);
 
-  /**
-  * @brief   OpenGL用 glfwSetCursorPosCallback用関数。
-  *
-  * @param[in]       window            コールバックを呼んだWindow情報
-  * @param[in]       x                 x座標
-  * @param[in]       y                 x座標
-  */
+    /**
+     * @brief GLFW 光标位置回调适配函数（用于 OpenGL）
+     *
+     * @param[in] window 回调所属的窗口
+     * @param[in] x 光标 X 坐标
+     * @param[in] y 光标 Y 坐标
+     */
   void OnMouseCallBack(GLFWwindow* window, double x, double y);
 };
 
 class EventHandler
 {
 public:
-    /**
-    * @brief   glfwSetMouseButtonCallback用コールバック関数。
-    */
+  /**
+  * @brief   用于 glfwSetMouseButtonCallback 的回调函数。
+  */
     static void OnMouseCallBack(GLFWwindow* window, int button, int action, int modify)
     {
         MouseActionManager::GetInstance()->OnMouseCallBack(window, button, action, modify);
     }
 
-    /**
-    * @brief   glfwSetCursorPosCallback用コールバック関数。
-    */
+  /**
+  * @brief   用于 glfwSetCursorPosCallback 的回调函数。
+  */
     static void OnMouseCallBack(GLFWwindow* window, double x, double y)
     {
         MouseActionManager::GetInstance()->OnMouseCallBack(window, x, y);

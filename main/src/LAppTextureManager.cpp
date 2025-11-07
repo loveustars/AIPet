@@ -31,7 +31,7 @@ LAppTextureManager::~LAppTextureManager()
 
 LAppTextureManager::TextureInfo* LAppTextureManager::CreateTextureFromPngFile(std::string fileName)
 {
-    //search loaded texture already.
+    // 检查是否已加载该纹理（按文件名查找）
     for (Csm::csmUint32 i = 0; i < _texturesInfo.GetSize(); i++)
     {
         if (_texturesInfo[i]->fileName == fileName)
@@ -48,7 +48,7 @@ LAppTextureManager::TextureInfo* LAppTextureManager::CreateTextureFromPngFile(st
 
     address = LAppPal::LoadFileAsBytes(fileName, &size);
 
-    // png情報を取得する
+    // 从内存中加载 PNG 数据
     png = stbi_load_from_memory(
         address,
         static_cast<int>(size),
@@ -68,7 +68,7 @@ LAppTextureManager::TextureInfo* LAppTextureManager::CreateTextureFromPngFile(st
 #endif
     }
 
-    // OpenGL用のテクスチャを生成する
+    // 为 OpenGL 创建纹理
     glGenTextures(1, &textureId);
     glBindTexture(GL_TEXTURE_2D, textureId);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, png);
@@ -77,7 +77,7 @@ LAppTextureManager::TextureInfo* LAppTextureManager::CreateTextureFromPngFile(st
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    // 解放処理
+    // 释放资源
     stbi_image_free(png);
     LAppPal::ReleaseBytes(address);
 

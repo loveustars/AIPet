@@ -1,13 +1,13 @@
 /**
  * Copyright(c) Live2D Inc. All rights reserved.
+/**
+ * @brief   开始播放由参数指定的动作（motion）。
  *
- * Use of this source code is governed by the Live2D Open Software license
- * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * @param[in]   group       动作组名称
+ * @param[in]   no          组内的序号
+ * @param[in]   priority    优先级
+ * @return                  返回已开始动作的识别编号。用于判断单个动作是否结束的 IsFinished() 的参数。如果无法开始则返回 -1。
  */
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include <Utils/CubismString.hpp>
 #include <Motion/CubismMotion.hpp>
 #include <Physics/CubismPhysics.hpp>
@@ -34,7 +34,7 @@ CubismUserModelExtend::CubismUserModelExtend(const std::string modelDirectoryNam
     , _currentModelDirectory(_currentModelDirectory)
     , _textureManager(new LAppTextureManager())
 {
-    // パラメータIDの取得
+    // 获取参数 ID
     _idParamAngleX = CubismFramework::GetIdManager()->GetId(ParamAngleX);
     _idParamAngleY = CubismFramework::GetIdManager()->GetId(ParamAngleY);
     _idParamAngleZ = CubismFramework::GetIdManager()->GetId(ParamAngleZ);
@@ -45,10 +45,10 @@ CubismUserModelExtend::CubismUserModelExtend(const std::string modelDirectoryNam
 
 CubismUserModelExtend::~CubismUserModelExtend()
 {
-    // モデルの設定データの解放
+    // 释放模型设置数据
     ReleaseModelSetting();
 
-    // テクスチャマネージャーの解放
+    // 释放纹理管理器
     delete _textureManager;
 }
 
@@ -61,7 +61,7 @@ void CubismUserModelExtend::LoadAssets(const Csm::csmChar* fileName)
     _modelJson = new CubismModelSettingJson(buffer, size);
     DeleteBuffer(buffer, path.GetRawString());
 
-    // モデルの生成
+    // 生成模型
     SetupModel();
 }
 
@@ -84,7 +84,7 @@ void CubismUserModelExtend::SetupModel()
         DeleteBuffer(buffer, path.GetRawString());
     }
 
-    // 表情データの読み込み
+    // 读取表情数据
     if (_modelJson->GetExpressionCount() > 0)
     {
         const csmInt32 count = _modelJson->GetExpressionCount();
@@ -111,7 +111,7 @@ void CubismUserModelExtend::SetupModel()
         }
     }
 
-    //ポーズデータの読み込み
+    // 读取姿势（pose）数据
     if (strcmp(_modelJson->GetPoseFileName(), ""))
     {
         csmString path = _modelJson->GetPoseFileName();
@@ -122,7 +122,7 @@ void CubismUserModelExtend::SetupModel()
         DeleteBuffer(buffer, path.GetRawString());
     }
 
-    // 物理演算データの読み込み
+    // 读取物理（physics）数据
     if (strcmp(_modelJson->GetPhysicsFileName(), ""))
     {
         csmString path = _modelJson->GetPhysicsFileName();
@@ -133,7 +133,7 @@ void CubismUserModelExtend::SetupModel()
         DeleteBuffer(buffer, path.GetRawString());
     }
 
-    // モデルに付属するユーザーデータの読み込み
+    // 读取模型附带的用户数据
     if (strcmp(_modelJson->GetUserDataFile(), ""))
     {
         csmString path = _modelJson->GetUserDataFile();
@@ -143,29 +143,29 @@ void CubismUserModelExtend::SetupModel()
         DeleteBuffer(buffer, path.GetRawString());
     }
 
-    // Layout
+    // 布局
     csmMap<csmString, csmFloat32> layout;
     _modelJson->GetLayoutMap(layout);
-    // レイアウト情報から位置を設定
+    // 从布局信息设置位置
     _modelMatrix->SetupFromLayout(layout);
 
-    // パラメータを保存
+    // 保存参数
     _model->SaveParameters();
 
-    // モーションデータの読み込み
+    // 读取动作（motion）数据
     for (csmInt32 i = 0; i < _modelJson->GetMotionGroupCount(); i++)
     {
         const csmChar* group = _modelJson->GetMotionGroupName(i);
-        // モーションデータをグループ名から一括でロードする
-        PreloadMotionGroup(group);
+    // 根据组名一次性预加载该组的动作数据
+    PreloadMotionGroup(group);
     }
 
     _motionManager->StopAllMotions();
 
-    // レンダラの作成
+    // 创建渲染器
     CreateRenderer();
 
-    // テクスチャのセットアップ
+    // 设置纹理
     SetupTextures();
 
     _updating = false;
@@ -174,13 +174,13 @@ void CubismUserModelExtend::SetupModel()
 
 void CubismUserModelExtend::PreloadMotionGroup(const csmChar* group)
 {
-    // グループに登録されているモーション数を取得
+    // 获取组中注册的动作数量
     const csmInt32 count = _modelJson->GetMotionCount(group);
 
     for (csmInt32 i = 0; i < count; i++)
     {
-        //ex) idle_0
-        // モーションのファイル名とパスの取得
+    // ex) idle_0
+    // 获取动作的文件名与路径
         csmString name = Utils::CubismString::GetFormatedString("%s_%d", group, i);
         csmString path = _modelJson->GetMotionFileName(group, i);
         path = csmString(_currentModelDirectory.c_str()) + path;
@@ -188,14 +188,14 @@ void CubismUserModelExtend::PreloadMotionGroup(const csmChar* group)
         csmByte* buffer;
         csmSizeInt size;
         buffer = CreateBuffer(path.GetRawString(), &size);
-        // モーションデータの読み込み
+    // 读取动作数据
         CubismMotion* tmpMotion = static_cast<CubismMotion*>(LoadMotion(buffer, size, name.GetRawString(), NULL, NULL, _modelJson, group, i));
 
         if (tmpMotion)
         {
             if (_motions[name])
             {
-                // インスタンスを破棄
+                // 释放实例
                 ACubismMotion::Delete(_motions[name]);
             }
             _motions[name] = tmpMotion;
@@ -207,7 +207,7 @@ void CubismUserModelExtend::PreloadMotionGroup(const csmChar* group)
 
 void CubismUserModelExtend::ReleaseModelSetting()
 {
-    // モーションの解放
+    // 释放动作（motion）
     for (Csm::csmMap<Csm::csmString, Csm::ACubismMotion*>::const_iterator iter = _motions.Begin(); iter != _motions.End(); ++iter)
     {
         Csm::ACubismMotion::Delete(iter->Second);
@@ -215,7 +215,7 @@ void CubismUserModelExtend::ReleaseModelSetting()
 
     _motions.Clear();
 
-    // すべての表情データを解放する
+    // 释放所有表情数据
     for (Csm::csmMap<Csm::csmString, Csm::ACubismMotion*>::const_iterator iter = _expressions.Begin(); iter != _expressions.End(); ++iter)
     {
         Csm::ACubismMotion::Delete(iter->Second);
@@ -227,16 +227,16 @@ void CubismUserModelExtend::ReleaseModelSetting()
 }
 
 /**
-* @brief   引数で指定したモーションの再生を開始する。
-*
-* @param[in]   group                       モーショングループ名
-* @param[in]   no                          グループ内の番号
-* @param[in]   priority                    優先度
-* @return                                  開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するIsFinished()の引数で使用する。開始できない時は「-1」
-*/
+ * @brief 根据参数开始播放指定的动作（motion）。
+ *
+ * @param[in] group 动作组名称
+ * @param[in] no    组内索引
+ * @param[in] priority 优先级
+ * @return 返回已开始动作的识别 ID。用于 IsFinished() 判断单个动作是否结束。无法开始时返回 -1。
+ */
 Csm::CubismMotionQueueEntryHandle CubismUserModelExtend::StartMotion(const Csm::csmChar* group, Csm::csmInt32 no, Csm::csmInt32 priority)
 {
-    // モーション数が取得出来なかった、もしくは0の時
+    // 未能获取到动作数量或数量为 0
     if (!(_modelJson->GetMotionCount(group)))
     {
         return Csm::InvalidMotionQueueEntryHandleValue;
@@ -244,7 +244,7 @@ Csm::CubismMotionQueueEntryHandle CubismUserModelExtend::StartMotion(const Csm::
 
     if (priority == LAppDefine::PriorityForce)
     {
-        // 予約中のモーションの優先度を設定する
+    // 设置已预定动作的优先级
         _motionManager->SetReservePriority(priority);
     }
     else if (!_motionManager->ReserveMotion(priority))
@@ -252,11 +252,11 @@ Csm::CubismMotionQueueEntryHandle CubismUserModelExtend::StartMotion(const Csm::
         return Csm::InvalidMotionQueueEntryHandleValue;
     }
 
-    // 指定された.motion3.jsonのファイル名を取得
+    // 获取指定的 .motion3.json 文件名
     const Csm::csmString fileName = _modelJson->GetMotionFileName(group, no);
 
-    //ex) idle_0
-    // モーションのデータを生成
+    // ex) idle_0
+    // 生成动作数据对象
     csmString name = Utils::CubismString::GetFormatedString("%s_%d", group, no);
     CubismMotion* motion = static_cast<CubismMotion*>(_motions[name.GetRawString()]);
     csmBool autoDelete = false;
@@ -269,90 +269,90 @@ Csm::CubismMotionQueueEntryHandle CubismUserModelExtend::StartMotion(const Csm::
         csmByte* buffer;
         csmSizeInt size;
         buffer = CreateBuffer(path.GetRawString(), &size);
-        // 一番先頭のモーションを読み込む
+        // 加载第一个（首个）动作
         motion = static_cast<CubismMotion*>(LoadMotion(buffer, size, NULL, NULL, NULL, _modelJson, group, no));
 
         if (motion)
         {
-            // 終了時にメモリから削除
+            // 在结束时从内存中删除
             autoDelete = true;
         }
 
         DeleteBuffer(buffer, path.GetRawString());
     }
 
-    // 優先度を設定してモーションを始める
+    // 设置优先级并开始动作
     return  _motionManager->StartMotionPriority(motion, autoDelete, priority);
 }
 
 void CubismUserModelExtend::ModelParamUpdate()
 {
-    // 前のフレームとの差分を取得
+    // 获取与上一帧的时间差
     const Csm::csmFloat32 deltaTimeSeconds = LAppPal::GetDeltaTime();
     _userTimeSeconds += deltaTimeSeconds;
 
-    // ドラッグ情報を更新
+    // 更新拖拽信息
     _dragManager->Update(deltaTimeSeconds);
     _dragX = _dragManager->GetX();
     _dragY = _dragManager->GetY();
 
-    // モーションによるパラメータ更新の有無
+    // 是否有动作（motion）更新参数
     Csm::csmBool motionUpdated = false;
 
     //-----------------------------------------------------------------
-    // 前回セーブされた状態をロード
+    // 加载上一次保存的状态
     _model->LoadParameters();
 
     if (_motionManager->IsFinished())
     {
-        // モーションの再生がない場合、始めに登録されているモーションを再生する
+    // 如果没有正在播放的动作，则播放初始注册的动作
         StartMotion(LAppDefine::MotionGroupIdle, 0, LAppDefine::PriorityIdle);
     }
     else
     {
-        // モーションを更新し、パラメータを反映
+    // 更新动作并应用参数
         motionUpdated = _motionManager->UpdateMotion(_model, deltaTimeSeconds);
     }
 
-    // 状態を保存
+    // 保存状态
     _model->SaveParameters();
     //-----------------------------------------------------------------
 
     if (_expressionManager)
     {
-        // 表情でパラメータ更新（相対変化）
+        // 通过表情更新参数（相对变化）
         _expressionManager->UpdateMotion(_model, deltaTimeSeconds);
     }
 
-    //ドラッグによる変化
+    // 由拖拽引起的变化
     /**
-    *ドラッグによる顔の向きの調整
-    * -30から30の値を加える
+    * 通过拖拽调整面部朝向
+    * 添加 -30 到 30 的值
     */
     _model->AddParameterValue(_idParamAngleX, _dragX * 30.0f);
     _model->AddParameterValue(_idParamAngleY, _dragY * 30.0f);
     _model->AddParameterValue(_idParamAngleZ, _dragX * _dragY * -30.0f);
 
-    //ドラッグによる体の向きの調整
-    _model->AddParameterValue(_idParamBodyAngleX, _dragX * 10.0f); // -10から10の値を加える
+    // 通过拖拽调整身体的朝向
+    _model->AddParameterValue(_idParamBodyAngleX, _dragX * 10.0f); // 添加 -10 到 10 的值
 
-    //ドラッグによる目の向きの調整
-    _model->AddParameterValue(_idParamEyeBallX, _dragX); // -1から1の値を加える
+    // 通过拖拽调整眼睛朝向
+    _model->AddParameterValue(_idParamEyeBallX, _dragX); // 添加 -1 到 1 的值
     _model->AddParameterValue(_idParamEyeBallY, _dragY);
 
-    // 物理演算の設定
+    // 应用物理演算设置（如果存在）
     if (_physics)
     {
         _physics->Evaluate(_model, deltaTimeSeconds);
     }
 
-    // ポーズの設定
+    // 应用姿势（pose）设置（如果存在）
     if (_pose)
     {
         _pose->UpdateParameters(_model, deltaTimeSeconds);
     }
 
-    // モデルのパラメータ情報を更新
+    // 更新模型参数信息
     _model->Update();
 }
 
@@ -363,13 +363,13 @@ void CubismUserModelExtend::Draw(Csm::CubismMatrix44& matrix)
         return;
     }
 
-    // 現在の行列に行列を乗算
+    // 将模型矩阵乘到当前矩阵上
     matrix.MultiplyByMatrix(_modelMatrix);
 
-    // 行列をモデルビュープロジェクション行列を設定
+    // 将该矩阵设置为渲染器的 Model-View-Projection 矩阵
     GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->SetMvpMatrix(&matrix);
 
-    // モデルの描画を命令・実行する
+    // 发出并执行模型绘制命令
     GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->DrawModel();
 }
 
@@ -377,13 +377,13 @@ void CubismUserModelExtend::SetupTextures()
 {
     for (csmInt32 modelTextureNumber = 0; modelTextureNumber < _modelJson->GetTextureCount(); modelTextureNumber++)
     {
-        // テクスチャ名が空文字だった場合はロード・バインド処理をスキップ
+        // 若纹理名为空则跳过加载与绑定
         if (!strcmp(_modelJson->GetTextureFileName(modelTextureNumber), ""))
         {
             continue;
         }
 
-        // OpenGLのテクスチャユニットにテクスチャをロードする
+        // 将纹理加载到 OpenGL 的纹理单元
         csmString texturePath = _modelJson->GetTextureFileName(modelTextureNumber);
         texturePath = csmString(_currentModelDirectory.c_str()) + texturePath;
 
@@ -394,23 +394,23 @@ void CubismUserModelExtend::SetupTextures()
         GetRenderer<Rendering::CubismRenderer_OpenGLES2>()->BindTexture(modelTextureNumber, glTextueNumber);
     }
 
-    // 乗算済みアルファ値の有効化・無効化を設定
+    // 设置是否启用预乘（premultiplied）alpha
     GetRenderer<Rendering::CubismRenderer_OpenGLES2>()->IsPremultipliedAlpha(false);
 }
 
 void CubismUserModelExtend::ModelOnUpdate(GLFWwindow* window)
 {
     int width, height;
-    // ウィンドウサイズを取得
+    // 获取窗口尺寸
     glfwGetWindowSize(window, &width, &height);
 
     Csm::CubismMatrix44 projection;
-    // 念のため単位行列に初期化
+    // 为安全起见，先重置为单位矩阵
     projection.LoadIdentity();
 
     if (_model->GetCanvasWidth() > 1.0f && width < height)
     {
-        // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
+        // 当横向更宽的模型在纵向窗口中显示时，根据模型宽度计算 scale
         GetModelMatrix()->SetWidth(2.0f);
         projection.Scale(1.0f, static_cast<float>(width) / static_cast<float>(height));
     }
@@ -419,15 +419,15 @@ void CubismUserModelExtend::ModelOnUpdate(GLFWwindow* window)
         projection.Scale(static_cast<float>(height) / static_cast<float>(width), 1.0f);
     }
 
-    // 必要があればここで乗算
+    // 如有需要，在此乘上视图矩阵
     if (MouseActionManager::GetInstance()->GetViewMatrix() != NULL)
     {
         projection.MultiplyByMatrix(MouseActionManager::GetInstance()->GetViewMatrix());
     }
 
-    // モデルのパラメータを更新
+    // 更新模型参数
     ModelParamUpdate();
 
-    // モデルの描画を更新
-    Draw(projection); ///< 参照渡しなのでprojectionは変質する
+    // 更新模型绘制（projection 作为引用会被修改）
+    Draw(projection);
 }

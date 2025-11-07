@@ -1,6 +1,6 @@
-/**
- * @file AIManager.hpp
- */
+#/**
+# * @file AIManager.hpp
+# */
 #ifndef AI_MANAGER_HPP
 #define AI_MANAGER_HPP
 
@@ -18,20 +18,20 @@ public:
     AIManager(std::string apiKey);
     ~AIManager();
 
-    // Sends a message in a separate thread. Non-blocking.
+    // 在独立线程中发送消息。非阻塞。
     void sendMessage(const std::string& userInput);
 
-    // Checks if the AI is currently processing a request.
+    // 检查 AI 当前是否正在处理请求。
     bool isBusy() const;
 
-    // Gets the latest result from the AI. Returns empty string if no new result.
+    // 获取 AI 的最新结果。如果没有新结果，则返回空字符串。
     std::string getResult();
 
 private:
-    // This is the function that will run in the background thread.
+    // 将在后台线程中运行的请求执行函数。
     void performRequest(const std::string userInput);
 
-    // libcurl's callback function must be static.
+    // libcurl 的回调函数必须为静态函数。
     static size_t writeCallback(void* contents, size_t size, size_t nmemb, void* userp);
 
     std::string apiKey;

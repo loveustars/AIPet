@@ -11,16 +11,16 @@
 #include <Math/CubismViewMatrix.hpp>
 
 /**
-* @brief CubismViewMatrixを継承したクラス
-*
-* ビュー行列を Cubism で扱いやすいように機能を加えてラップしたもの。
-*
-*/
+ * @brief 继承自 CubismViewMatrix 的类
+ *
+ * 对视图矩阵进行了包装，以便在 Cubism 中更方便地使用。
+ *
+ */
 class CubismSampleViewMatrix_Common :
     public Csm::CubismViewMatrix
 {
 public:
-    CubismSampleViewMatrix_Common(Csm::CubismMatrix44*& deviceToScreen, int windowWidth, int windowHeight); ///< コンストラクタ
+    CubismSampleViewMatrix_Common(Csm::CubismMatrix44*& deviceToScreen, int windowWidth, int windowHeight); ///< 构造函数
 
-    virtual ~CubismSampleViewMatrix_Common(); ///< デストラクタ
+    virtual ~CubismSampleViewMatrix_Common(); ///< 析构函数
 };

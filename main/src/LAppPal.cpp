@@ -28,7 +28,7 @@ double LAppPal::s_deltaTime = 0.0;
 
 csmByte* LAppPal::LoadFileAsBytes(const string filePath, csmSizeInt* outSize)
 {
-    //filePath;//
+    // 将传入的 std::string 转为 C 字符串路径
     const char* path = filePath.c_str();
 
     int size = 0;
@@ -41,6 +41,7 @@ csmByte* LAppPal::LoadFileAsBytes(const string filePath, csmSizeInt* outSize)
         {
             if (DebugLogEnable)
             {
+                // stat 成功但文件大小为 0
                 PrintLogLn("Stat succeeded but file size is zero. path:%s", path);
             }
             return NULL;
@@ -50,6 +51,7 @@ csmByte* LAppPal::LoadFileAsBytes(const string filePath, csmSizeInt* outSize)
     {
         if (DebugLogEnable)
         {
+            // stat 失败，打印错误
             PrintLogLn("Stat failed. errno:%d path:%s", errno, path);
         }
         return NULL;
@@ -61,6 +63,7 @@ csmByte* LAppPal::LoadFileAsBytes(const string filePath, csmSizeInt* outSize)
     {
         if (DebugLogEnable)
         {
+            // 文件打开失败
             PrintLogLn("File open failed. path:%s", path);
         }
         return NULL;
@@ -96,7 +99,7 @@ void LAppPal::PrintLog(const csmChar* format, ...)
     va_list args;
     csmChar buf[256];
     va_start(args, format);
-    vsnprintf(buf, sizeof(buf), format, args); // 標準出力でレンダリング
+    vsnprintf(buf, sizeof(buf), format, args); // 使用标准输出打印日志
     std::cout << buf;
     va_end(args);
 }
@@ -106,7 +109,7 @@ void LAppPal::PrintLogLn(const csmChar* format, ...)
     va_list args;
     csmChar buf[256];
     va_start(args, format);
-    vsnprintf(buf, sizeof(buf), format, args); // 標準出力でレンダリング
+    vsnprintf(buf, sizeof(buf), format, args); // 使用标准输出打印日志并换行
     std::cout << buf << std::endl;
     va_end(args);
 }

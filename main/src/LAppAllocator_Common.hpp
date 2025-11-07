@@ -11,42 +11,42 @@
 #include <ICubismAllocator.hpp>
 
 /**
-* @brief メモリアロケーションを実装するクラス。
-*
-* メモリ確保・解放処理のインターフェースの実装。
-* フレームワークから呼び出される。
-*
-*/
+ * @brief 实现内存分配的类。
+ *
+ * 实现了内存分配与释放的接口。
+ * 由框架调用。
+ *
+ */
 class LAppAllocator_Common : public Csm::ICubismAllocator
 {
     /**
-    * @brief  メモリ領域を割り当てる。
-    *
-    * @param[in]   size    割り当てたいサイズ。
-    * @return  指定したメモリ領域
-    */
+     * @brief 分配内存区域
+     *
+     * @param[in] size 要分配的大小
+     * @return 分配到的内存指针
+     */
     virtual void* Allocate(const Csm::csmSizeType size);
 
     /**
-    * @brief   メモリ領域を解放する
-    *
-    * @param[in]   memory    解放するメモリ。
-    */
+     * @brief 释放内存区域
+     *
+     * @param[in] memory 要释放的内存指针
+     */
     virtual void Deallocate(void* memory);
 
     /**
-    * @brief
-    *
-    * @param[in]   size         割り当てたいサイズ。
-    * @param[in]   alignment    割り当てたいサイズ。
-    * @return  alignedAddress
-    */
+     * @brief 按对齐要求分配内存
+     *
+     * @param[in] size 要分配的大小
+     * @param[in] alignment 对齐字节数
+     * @return 对齐后的地址
+     */
     virtual void* AllocateAligned(const Csm::csmSizeType size, const Csm::csmUint32 alignment);
 
     /**
-    * @brief
-    *
-    * @param[in]   alignedMemory    解放するメモリ。
-    */
+     * @brief 释放对齐分配的内存
+     *
+     * @param[in] alignedMemory 要释放的对齐内存指针
+     */
     virtual void DeallocateAligned(void* alignedMemory);
 };

@@ -39,18 +39,19 @@ MouseActionManager_Common::MouseActionManager_Common()
 
 MouseActionManager_Common::~MouseActionManager_Common()
 {
-    // 行列データの解放
+    // 释放矩阵数据
     delete _viewMatrix;
 
+    // 释放触摸管理器
     delete _TouchManager;
 }
 
 void MouseActionManager_Common::Initialize(int windowWidth, int windowHeight)
 {
-    // 行列の初期化
+    // 初始化视图矩阵
     ViewInitialize(windowWidth, windowHeight);
 
-    // タッチ関係のイベント管理
+    // 创建触摸事件管理器
     _TouchManager = new TouchManager_Common();
 
     _captured = false;
@@ -76,21 +77,21 @@ void MouseActionManager_Common::OnTouchesBegan(float px, float py)
 
 void MouseActionManager_Common::OnTouchesMoved(float px, float py)
 {
-    float screenX = _deviceToScreen->TransformX(_TouchManager->GetX()); // 論理座標変換した座標を取得。
-    float viewX = _viewMatrix->InvertTransformX(screenX); // 拡大、縮小、移動後の値。
+    float screenX = _deviceToScreen->TransformX(_TouchManager->GetX()); // 将设备/窗口坐标转换到逻辑屏幕坐标。
+    float viewX = _viewMatrix->InvertTransformX(screenX); // 应用视图的缩放/平移得到视图坐标。
 
-    float screenY = _deviceToScreen->TransformY(_TouchManager->GetY()); // 論理座標変換した座標を取得。
-    float viewY = _viewMatrix->InvertTransformY(screenY); // 拡大、縮小、移動後の値。
+    float screenY = _deviceToScreen->TransformY(_TouchManager->GetY()); // 将设备/窗口坐标转换到逻辑屏幕坐标。
+    float viewY = _viewMatrix->InvertTransformY(screenY); // 应用视图的缩放/平移得到视图坐标。
 
     _TouchManager->TouchesMoved(px, py);
 
-    // ドラッグ情報を設定
+    // 设置拖拽信息到模型
     _userModel->SetDragging(viewX, viewY);
 }
 
 void MouseActionManager_Common::OnTouchesEnded(float px, float py)
 {
-    // タッチ終了
+    // 触摸/点击结束，清除拖拽信息
     OnDrag(0.0f, 0.0f);
 }
 

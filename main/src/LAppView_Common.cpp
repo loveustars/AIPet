@@ -13,10 +13,10 @@
 
 LAppView_Common::LAppView_Common()
 {
-    // デバイス座標からスクリーン座標に変換するための
+    // 用于将设备坐标转换为屏幕坐标的矩阵
     _deviceToScreen = new Csm::CubismMatrix44();
 
-    // 画面の表示の拡大縮小や移動の変換を行う行列
+    // 用于处理屏幕显示的缩放与平移变换的视图矩阵
     _viewMatrix = new Csm::CubismViewMatrix();
 }
 
@@ -33,34 +33,36 @@ void LAppView_Common::Initialize(int width, int height)
         return;
     }
 
-    // 縦サイズを基準とする
+    // 以高度（竖直尺寸）为基准计算纵横比
     float ratio = static_cast<float>(width) / static_cast<float>(height);
     float left = -ratio;
     float right = ratio;
     float bottom = LAppDefine::ViewLogicalLeft;
     float top = LAppDefine::ViewLogicalRight;
 
-    _viewMatrix->SetScreenRect(left, right, bottom, top); // デバイスに対応する画面の範囲。 Xの左端, Xの右端, Yの下端, Yの上端
+    _viewMatrix->SetScreenRect(left, right, bottom, top); // 设置与设备对应的屏幕范围：X左端, X右端, Y下端, Y上端
     _viewMatrix->Scale(LAppDefine::ViewScale, LAppDefine::ViewScale);
 
-    _deviceToScreen->LoadIdentity(); // サイズが変わった際などリセット必須
+    _deviceToScreen->LoadIdentity(); // 当尺寸改变时需要重置
     if (width > height)
     {
         float screenW = fabsf(right - left);
+        // 相对于设备设置矩阵的缩放比例（横向变换）
         _deviceToScreen->ScaleRelative(screenW / width, -screenW / width);
     }
     else
     {
         float screenH = fabsf(top - bottom);
+        // 相对于设备设置矩阵的缩放比例（纵向变换）
         _deviceToScreen->ScaleRelative(screenH / height, -screenH / height);
     }
     _deviceToScreen->TranslateRelative(-width * 0.5f, -height * 0.5f);
 
-    // 表示範囲の設定
-    _viewMatrix->SetMaxScale(LAppDefine::ViewMaxScale); // 限界拡大率
-    _viewMatrix->SetMinScale(LAppDefine::ViewMinScale); // 限界縮小率
+    // 设置视图缩放范围
+    _viewMatrix->SetMaxScale(LAppDefine::ViewMaxScale); // 最大缩放比例
+    _viewMatrix->SetMinScale(LAppDefine::ViewMinScale); // 最小缩放比例
 
-    // 表示できる最大範囲
+    // 设置视图在逻辑坐标系中可移动的最大范围
     _viewMatrix->SetMaxScreenRect(
         LAppDefine::ViewLogicalMaxLeft,
         LAppDefine::ViewLogicalMaxRight,
@@ -71,14 +73,14 @@ void LAppView_Common::Initialize(int width, int height)
 
 float LAppView_Common::TransformViewX(float deviceX) const
 {
-    float screenX = _deviceToScreen->TransformX(deviceX); // 論理座標変換した座標を取得。
-    return _viewMatrix->InvertTransformX(screenX); // 拡大、縮小、移動後の値。
+    float screenX = _deviceToScreen->TransformX(deviceX); // 获取逻辑坐标变换后的 X 值。
+    return _viewMatrix->InvertTransformX(screenX); // 应用视图的缩放/平移后的坐标。
 }
 
 float LAppView_Common::TransformViewY(float deviceY) const
 {
-    float screenY = _deviceToScreen->TransformY(deviceY); // 論理座標変換した座標を取得。
-    return _viewMatrix->InvertTransformY(screenY); // 拡大、縮小、移動後の値。
+    float screenY = _deviceToScreen->TransformY(deviceY); // 获取逻辑坐标变换后的 Y 值。
+    return _viewMatrix->InvertTransformY(screenY); // 应用视图的缩放/平移后的坐标。
 }
 
 float LAppView_Common::TransformScreenX(float deviceX) const
