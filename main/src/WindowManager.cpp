@@ -180,7 +180,7 @@ void WindowManager::render() {
     }
     
     // 绘制 Live2D 模型
-    _live2dManager.draw();
+    //_live2dManager.draw();
     
     // ===== 检查 Live2D 渲染后的错误 =====
     err = glGetError();
