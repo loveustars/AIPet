@@ -2,7 +2,7 @@
 A gemini based chatting agent
 
 
-鉴于Cubism未声明arm64的Ubuntu支持，本程序**在amd64架构的Ubuntu测试**
+鉴于Cubism未声明arm64的Ubuntu支持，本程序**在amd64架构的VMware Ubuntu 虚拟机测试**，实体机效果未知。
 
 ### 1. 安装基础编译环境和核心库
 
