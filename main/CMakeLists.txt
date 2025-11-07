@@ -39,8 +39,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# ===== 关键修改：不使用静态GLEW =====
-# 注释掉静态GLEW定义
+# 不使用静态GLEW（虽然也没运行起来）
 # add_compile_definitions(GLEW_STATIC)
 
 # 添加 Cubism Core（静态库）
@@ -54,7 +53,6 @@ set_target_properties(Live2DCubismCore
 # 添加 GLFW（仍然使用第三方的GLFW）
 add_subdirectory(${GLFW_PATH} ${CMAKE_CURRENT_BINARY_DIR}/glfw)
 
-# ===== 关键修改：使用系统的GLEW库 =====
 # 注释掉第三方GLEW
 # add_subdirectory(${GLEW_PATH}/build/cmake ${CMAKE_CURRENT_BINARY_DIR}/glew)
 
@@ -73,7 +71,6 @@ target_compile_definitions(Framework PUBLIC CSM_TARGET_LINUX_GL)
 # 为 Framework 添加 GLEW 头文件路径（使用系统GLEW）
 target_include_directories(Framework PUBLIC ${GLEW_INCLUDE_DIRS})
 
-# ===== 关键修改：链接系统GLEW库 =====
 # 将 glew_s 改为 GLEW::GLEW
 target_link_libraries(Framework Live2DCubismCore GLEW::GLEW)
 
@@ -99,7 +96,7 @@ target_include_directories(imgui_lib PUBLIC
 # ImGui 需要链接 OpenGL
 target_link_libraries(imgui_lib PUBLIC ${OPENGL_LIBRARIES})
 
-# ===== 创建可执行文件 =====
+# 创建可执行文件
 add_executable(${APP_NAME}
     # 主程序
     main.cpp
@@ -123,7 +120,7 @@ add_executable(${APP_NAME}
     src/CubismSampleViewMatrix_Common.hpp
 
     
-    # Live2D 官方示例代码（简化版）
+    # Live2D 辅助类
     src/LAppDefine.cpp
     src/LAppDefine.hpp
     src/LAppPal.cpp
@@ -136,18 +133,18 @@ add_executable(${APP_NAME}
     src/MouseActionManager.hpp
 )
 
-# ===== 关键修改：链接系统GLEW库 =====
+# 链接系统GLEW库
 target_link_libraries(${APP_NAME}
     Framework
     glfw
     imgui_lib
-    GLEW::GLEW              # 使用系统GLEW
+    GLEW::GLEW
     ${OPENGL_LIBRARIES}
     ${CURL_LIBRARIES}
     Threads::Threads
 )
 
-# ===== 指定头文件搜索路径 =====
+# 指定头文件搜索路径
 target_include_directories(${APP_NAME} PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/lib
@@ -157,7 +154,7 @@ target_include_directories(${APP_NAME} PRIVATE
     ${GLEW_INCLUDE_DIRS}    # 添加系统GLEW头文件路径
 )
 
-# ===== 复制资源文件到构建目录 =====
+# 复制资源文件到构建目录
 add_custom_command(
   TARGET ${APP_NAME}
   POST_BUILD
