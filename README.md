@@ -93,7 +93,7 @@ cd bin
 ---
 
 ### 注意事项:
-1. 对于Apple Silicon电脑运行的arm64 Ubuntu虚拟机，**不支持** CubismSdkForNative，考虑运行云端x86的Ubuntu 或 本地QEMU虚拟（不推荐）。
+1. 对于Apple Silicon电脑运行的arm64 Ubuntu虚拟机，**未知**对CubismSdkForNative兼容性，考虑运行云端x86的Ubuntu或本地QEMU虚拟（不推荐）。
 2. 若希望实现对话功能，**务必**访问本项目使用的[大模型网页](https://aistudio.google.com)，若跳转为Available Regions...，证明你的网络环境不行，你需要成为魔法少女。
 3. 对于API获取，进入Google AI Studio后有Get API Key按钮，通俗易懂的界面，[点击这里也可以进入](https://aistudio.google.com/app/apikey?hl=zh-cn)，不赘述。
 
@@ -113,7 +113,7 @@ A: 检查bin文件夹里有没有assets文件夹被自动复制过去，模型�
 
 **Q: 终端报错 vert Shaders...$$$? fonts ... $$$?**
 
-A: 有没有在bin文件夹执行？如果有那就得把根目录的复制过来。没有的话那就进bin再执行。
+A: 有没有在bin文件夹执行？如果有那就得把根目录的assets和Shaders复制过去，并且将Shaders重命名为FrameworkShaders。没有的话那就进bin再执行。
 
 **Q: 窗口加载失败？**
 
