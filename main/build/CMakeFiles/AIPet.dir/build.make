@@ -287,20 +287,14 @@ bin/AIPet: CMakeFiles/AIPet.dir/build.make
 bin/AIPet: Framework/libFramework.a
 bin/AIPet: glfw/src/libglfw3.a
 bin/AIPet: libimgui_lib.a
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLEW.so
 bin/AIPet: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLX.so
 bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLU.so
 bin/AIPet: /usr/lib/x86_64-linux-gnu/libcurl.so
 bin/AIPet: /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Core/lib/linux/x86_64/libLive2DCubismCore.a
-bin/AIPet: lib/libGLEW.a
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libGL.so
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libSM.so
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libICE.so
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libX11.so
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libXext.so
 bin/AIPet: /usr/lib/x86_64-linux-gnu/librt.a
 bin/AIPet: /usr/lib/x86_64-linux-gnu/libm.so
-bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLU.so
 bin/AIPet: CMakeFiles/AIPet.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable bin/AIPet"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AIPet.dir/link.txt --verbose=$(VERBOSE)

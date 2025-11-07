@@ -116,8 +116,7 @@ CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o: \
  /usr/include/c++/13/bits/memory_resource.h /usr/include/c++/13/cstddef \
  /usr/include/c++/13/bits/uses_allocator.h \
  /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
- /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Samples/OpenGL/thirdParty/glew/include/GL/glew.h \
- /usr/include/c++/13/cstdint \
+ /usr/include/GL/glew.h /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h /usr/include/GL/glu.h \

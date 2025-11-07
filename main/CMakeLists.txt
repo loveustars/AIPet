@@ -39,7 +39,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_definitions(GLEW_STATIC)
+# ===== 关键修改：不使用静态GLEW =====
+# 注释掉静态GLEW定义
+# add_compile_definitions(GLEW_STATIC)
 
 # 添加 Cubism Core（静态库）
 add_library(Live2DCubismCore STATIC IMPORTED)
@@ -49,9 +51,15 @@ set_target_properties(Live2DCubismCore
     INTERFACE_INCLUDE_DIRECTORIES ${CORE_PATH}/include
 )
 
-# 添加 GLEW 和 GLFW
-add_subdirectory(${GLEW_PATH}/build/cmake ${CMAKE_CURRENT_BINARY_DIR}/glew)
+# 添加 GLFW（仍然使用第三方的GLFW）
 add_subdirectory(${GLFW_PATH} ${CMAKE_CURRENT_BINARY_DIR}/glfw)
+
+# ===== 关键修改：使用系统的GLEW库 =====
+# 注释掉第三方GLEW
+# add_subdirectory(${GLEW_PATH}/build/cmake ${CMAKE_CURRENT_BINARY_DIR}/glew)
+
+# 查找系统的GLEW库
+find_package(GLEW REQUIRED)
 
 # 指定 Cubism Framework 渲染方式
 set(FRAMEWORK_SOURCE OpenGL)
@@ -62,11 +70,12 @@ add_subdirectory(${FRAMEWORK_PATH} ${CMAKE_CURRENT_BINARY_DIR}/Framework)
 # 为 Framework 添加渲染定义
 target_compile_definitions(Framework PUBLIC CSM_TARGET_LINUX_GL)
 
-# 为 Framework 添加 GLEW 头文件路径
-target_include_directories(Framework PUBLIC ${GLEW_PATH}/include)
+# 为 Framework 添加 GLEW 头文件路径（使用系统GLEW）
+target_include_directories(Framework PUBLIC ${GLEW_INCLUDE_DIRS})
 
-# 链接库到 Framework
-target_link_libraries(Framework Live2DCubismCore glew_s)
+# ===== 关键修改：链接系统GLEW库 =====
+# 将 glew_s 改为 GLEW::GLEW
+target_link_libraries(Framework Live2DCubismCore GLEW::GLEW)
 
 # 查找系统库
 find_package(OpenGL REQUIRED)
@@ -85,7 +94,7 @@ target_include_directories(imgui_lib PUBLIC
     ${IMGUI_PATH}
     ${IMGUI_PATH}/backends
     ${GLFW_PATH}/include      # 添加 GLFW 头文件路径
-    ${GLEW_PATH}/include      # 添加 GLEW 头文件路径
+    ${GLEW_INCLUDE_DIRS}      # 使用系统GLEW头文件
 )
 # ImGui 需要链接 OpenGL
 target_link_libraries(imgui_lib PUBLIC ${OPENGL_LIBRARIES})
@@ -127,11 +136,12 @@ add_executable(${APP_NAME}
     src/MouseActionManager.hpp
 )
 
-# ===== 链接所有库 =====
+# ===== 关键修改：链接系统GLEW库 =====
 target_link_libraries(${APP_NAME}
     Framework
     glfw
     imgui_lib
+    GLEW::GLEW              # 使用系统GLEW
     ${OPENGL_LIBRARIES}
     ${CURL_LIBRARIES}
     Threads::Threads
@@ -144,6 +154,7 @@ target_include_directories(${APP_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/nlohmann
     ${STB_PATH}
     ${CURL_INCLUDE_DIR}
+    ${GLEW_INCLUDE_DIRS}    # 添加系统GLEW头文件路径
 )
 
 # ===== 复制资源文件到构建目录 =====
@@ -165,4 +176,5 @@ message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Output Directory: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 message(STATUS "Cubism SDK Path: ${SDK_ROOT_PATH}")
+message(STATUS "Using System GLEW: ${GLEW_LIBRARIES}")
 message(STATUS "==========================")

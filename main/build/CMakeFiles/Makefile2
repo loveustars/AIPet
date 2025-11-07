@@ -65,13 +65,11 @@ CMAKE_BINARY_DIR = /home/nick/Desktop/AIPet/main/build
 # The main recursive "all" target.
 all: CMakeFiles/imgui_lib.dir/all
 all: CMakeFiles/AIPet.dir/all
-all: glew/all
 all: glfw/all
 all: Framework/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: glew/preinstall
 preinstall: glfw/preinstall
 preinstall: Framework/preinstall
 .PHONY : preinstall
@@ -79,7 +77,6 @@ preinstall: Framework/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/imgui_lib.dir/clean
 clean: CMakeFiles/AIPet.dir/clean
-clean: glew/clean
 clean: glfw/clean
 clean: Framework/clean
 .PHONY : clean
@@ -291,24 +288,6 @@ Framework/src/Utils/clean:
 .PHONY : Framework/src/Utils/clean
 
 #=============================================================================
-# Directory level rules for directory glew
-
-# Recursive "all" directory target.
-glew/all: glew/CMakeFiles/glew.dir/all
-glew/all: glew/CMakeFiles/glew_s.dir/all
-.PHONY : glew/all
-
-# Recursive "preinstall" directory target.
-glew/preinstall:
-.PHONY : glew/preinstall
-
-# Recursive "clean" directory target.
-glew/clean: glew/CMakeFiles/glew.dir/clean
-glew/clean: glew/CMakeFiles/glew_s.dir/clean
-glew/clean: glew/CMakeFiles/uninstall.dir/clean
-.PHONY : glew/clean
-
-#=============================================================================
 # Directory level rules for directory glfw
 
 # Recursive "all" directory target.
@@ -370,7 +349,6 @@ CMakeFiles/imgui_lib.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/AIPet.dir/all: CMakeFiles/imgui_lib.dir/all
-CMakeFiles/AIPet.dir/all: glew/CMakeFiles/glew_s.dir/all
 CMakeFiles/AIPet.dir/all: glfw/src/CMakeFiles/glfw.dir/all
 CMakeFiles/AIPet.dir/all: Framework/CMakeFiles/Framework.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/depend
@@ -380,7 +358,7 @@ CMakeFiles/AIPet.dir/all: Framework/CMakeFiles/Framework.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/AIPet.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 97
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 99
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/AIPet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
 .PHONY : CMakeFiles/AIPet.dir/rule
@@ -395,96 +373,18 @@ CMakeFiles/AIPet.dir/clean:
 .PHONY : CMakeFiles/AIPet.dir/clean
 
 #=============================================================================
-# Target rules for target glew/CMakeFiles/glew.dir
-
-# All Build rule for target.
-glew/CMakeFiles/glew.dir/all:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew.dir/build.make glew/CMakeFiles/glew.dir/depend
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew.dir/build.make glew/CMakeFiles/glew.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=49,50 "Built target glew"
-.PHONY : glew/CMakeFiles/glew.dir/all
-
-# Build rule for subdir invocation for target.
-glew/CMakeFiles/glew.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glew/CMakeFiles/glew.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
-.PHONY : glew/CMakeFiles/glew.dir/rule
-
-# Convenience name for target.
-glew: glew/CMakeFiles/glew.dir/rule
-.PHONY : glew
-
-# clean rule for target.
-glew/CMakeFiles/glew.dir/clean:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew.dir/build.make glew/CMakeFiles/glew.dir/clean
-.PHONY : glew/CMakeFiles/glew.dir/clean
-
-#=============================================================================
-# Target rules for target glew/CMakeFiles/glew_s.dir
-
-# All Build rule for target.
-glew/CMakeFiles/glew_s.dir/all:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew_s.dir/build.make glew/CMakeFiles/glew_s.dir/depend
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew_s.dir/build.make glew/CMakeFiles/glew_s.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=51 "Built target glew_s"
-.PHONY : glew/CMakeFiles/glew_s.dir/all
-
-# Build rule for subdir invocation for target.
-glew/CMakeFiles/glew_s.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glew/CMakeFiles/glew_s.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
-.PHONY : glew/CMakeFiles/glew_s.dir/rule
-
-# Convenience name for target.
-glew_s: glew/CMakeFiles/glew_s.dir/rule
-.PHONY : glew_s
-
-# clean rule for target.
-glew/CMakeFiles/glew_s.dir/clean:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew_s.dir/build.make glew/CMakeFiles/glew_s.dir/clean
-.PHONY : glew/CMakeFiles/glew_s.dir/clean
-
-#=============================================================================
-# Target rules for target glew/CMakeFiles/uninstall.dir
-
-# All Build rule for target.
-glew/CMakeFiles/uninstall.dir/all:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/uninstall.dir/build.make glew/CMakeFiles/uninstall.dir/depend
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/uninstall.dir/build.make glew/CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num= "Built target uninstall"
-.PHONY : glew/CMakeFiles/uninstall.dir/all
-
-# Build rule for subdir invocation for target.
-glew/CMakeFiles/uninstall.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glew/CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
-.PHONY : glew/CMakeFiles/uninstall.dir/rule
-
-# Convenience name for target.
-uninstall: glew/CMakeFiles/uninstall.dir/rule
-.PHONY : uninstall
-
-# clean rule for target.
-glew/CMakeFiles/uninstall.dir/clean:
-	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/uninstall.dir/build.make glew/CMakeFiles/uninstall.dir/clean
-.PHONY : glew/CMakeFiles/uninstall.dir/clean
-
-#=============================================================================
 # Target rules for target glfw/src/CMakeFiles/glfw.dir
 
 # All Build rule for target.
 glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/glfw.dir/build.make glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/glfw.dir/build.make glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 "Built target glfw"
 .PHONY : glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
 glfw/src/CMakeFiles/glfw.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 40
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 41
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw/src/CMakeFiles/glfw.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
 .PHONY : glfw/src/CMakeFiles/glfw.dir/rule
@@ -528,15 +428,15 @@ glfw/src/CMakeFiles/update_mappings.dir/clean:
 # Target rules for target Framework/CMakeFiles/Framework.dir
 
 # All Build rule for target.
-Framework/CMakeFiles/Framework.dir/all: glew/CMakeFiles/glew_s.dir/all
+Framework/CMakeFiles/Framework.dir/all:
 	$(MAKE) $(MAKESILENT) -f Framework/CMakeFiles/Framework.dir/build.make Framework/CMakeFiles/Framework.dir/depend
 	$(MAKE) $(MAKESILENT) -f Framework/CMakeFiles/Framework.dir/build.make Framework/CMakeFiles/Framework.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48 "Built target Framework"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Built target Framework"
 .PHONY : Framework/CMakeFiles/Framework.dir/all
 
 # Build rule for subdir invocation for target.
 Framework/CMakeFiles/Framework.dir/rule:
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 37
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 38
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Framework/CMakeFiles/Framework.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
 .PHONY : Framework/CMakeFiles/Framework.dir/rule

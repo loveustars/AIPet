@@ -130,8 +130,7 @@ Framework/CMakeFiles/Framework.dir/src/Rendering/OpenGL/CubismOffscreenSurface_O
  /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.hpp \
  /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.hpp \
  /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmMap.hpp \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
- /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Samples/OpenGL/thirdParty/glew/include/GL/glew.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h /usr/include/GL/glew.h \
  /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \

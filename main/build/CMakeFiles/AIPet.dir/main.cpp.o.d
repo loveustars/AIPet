@@ -161,12 +161,19 @@ CMakeFiles/AIPet.dir/main.cpp.o: /home/nick/Desktop/AIPet/main/main.cpp \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/libgen.h \
- /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Samples/OpenGL/thirdParty/glew/include/GL/glew.h \
+ /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
+ /usr/include/c++/13/bits/unique_ptr.h \
+ /usr/include/c++/13/bits/this_thread_sleep.h \
+ /usr/include/c++/13/bits/chrono.h /usr/include/c++/13/ratio \
  /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-least.h /usr/include/GL/glu.h \
- /usr/include/GL/gl.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /usr/include/c++/13/limits /usr/include/c++/13/ctime \
+ /usr/include/c++/13/bits/parse_numbers.h /usr/include/c++/13/atomic \
+ /usr/include/c++/13/bits/atomic_base.h \
+ /usr/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h \
  /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Samples/OpenGL/thirdParty/glfw/include/GLFW/glfw3.h \
  /home/nick/Desktop/AIPet/main/lib/imgui/imgui.h \
  /home/nick/Desktop/AIPet/main/lib/imgui/imconfig.h \
@@ -242,8 +249,7 @@ CMakeFiles/AIPet.dir/main.cpp.o: /home/nick/Desktop/AIPet/main/main.cpp \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/13/bits/specfun.h /usr/include/c++/13/limits \
- /usr/include/c++/13/tr1/gamma.tcc \
+ /usr/include/c++/13/bits/specfun.h /usr/include/c++/13/tr1/gamma.tcc \
  /usr/include/c++/13/tr1/special_function_util.h \
  /usr/include/c++/13/tr1/bessel_function.tcc \
  /usr/include/c++/13/tr1/beta_function.tcc \
@@ -263,15 +269,8 @@ CMakeFiles/AIPet.dir/main.cpp.o: /home/nick/Desktop/AIPet/main/main.cpp \
  /home/nick/Desktop/AIPet/main/src/CubismSampleViewMatrix_Common.hpp \
  /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.hpp \
  /home/nick/Desktop/AIPet/main/src/AIManager.hpp \
- /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
- /usr/include/c++/13/bits/unique_ptr.h \
- /usr/include/c++/13/bits/this_thread_sleep.h \
- /usr/include/c++/13/bits/chrono.h /usr/include/c++/13/ratio \
- /usr/include/c++/13/ctime /usr/include/c++/13/bits/parse_numbers.h \
  /usr/include/c++/13/mutex /usr/include/c++/13/bits/std_mutex.h \
- /usr/include/c++/13/bits/unique_lock.h /usr/include/c++/13/atomic \
- /usr/include/c++/13/bits/atomic_base.h \
- /usr/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/13/bits/unique_lock.h \
  /home/nick/Desktop/AIPet/main/lib/nlohmann/json.hpp \
  /usr/include/c++/13/algorithm \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \

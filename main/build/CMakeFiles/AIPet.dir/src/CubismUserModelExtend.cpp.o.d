@@ -1,7 +1,6 @@
 CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o: \
  /home/nick/Desktop/AIPet/main/src/CubismUserModelExtend.cpp \
- /usr/include/stdc-predef.h \
- /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Samples/OpenGL/thirdParty/glew/include/GL/glew.h \
+ /usr/include/stdc-predef.h /usr/include/GL/glew.h \
  /usr/include/c++/13/cstddef \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
