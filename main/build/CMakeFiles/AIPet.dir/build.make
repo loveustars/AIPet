@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nick/Desktop/main/AIPet/main
+CMAKE_SOURCE_DIR = /home/nick/Desktop/AIPet/main
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nick/Desktop/main/AIPet/main/build
+CMAKE_BINARY_DIR = /home/nick/Desktop/AIPet/main/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/AIPet.dir/depend.make
@@ -70,714 +70,245 @@ include CMakeFiles/AIPet.dir/progress.make
 include CMakeFiles/AIPet.dir/flags.make
 
 CMakeFiles/AIPet.dir/main.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/main.cpp.o: /home/nick/Desktop/main/AIPet/main/main.cpp
+CMakeFiles/AIPet.dir/main.cpp.o: /home/nick/Desktop/AIPet/main/main.cpp
 CMakeFiles/AIPet.dir/main.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AIPet.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/main.cpp.o -MF CMakeFiles/AIPet.dir/main.cpp.o.d -o CMakeFiles/AIPet.dir/main.cpp.o -c /home/nick/Desktop/main/AIPet/main/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AIPet.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/main.cpp.o -MF CMakeFiles/AIPet.dir/main.cpp.o.d -o CMakeFiles/AIPet.dir/main.cpp.o -c /home/nick/Desktop/AIPet/main/main.cpp
 
 CMakeFiles/AIPet.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/main.cpp > CMakeFiles/AIPet.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/main.cpp > CMakeFiles/AIPet.dir/main.cpp.i
 
 CMakeFiles/AIPet.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/main.cpp -o CMakeFiles/AIPet.dir/main.cpp.s
-
-CMakeFiles/AIPet.dir/src/WindowManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/src/WindowManager.cpp.o: /home/nick/Desktop/main/AIPet/main/src/WindowManager.cpp
-CMakeFiles/AIPet.dir/src/WindowManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AIPet.dir/src/WindowManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/WindowManager.cpp.o -MF CMakeFiles/AIPet.dir/src/WindowManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/WindowManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/src/WindowManager.cpp
-
-CMakeFiles/AIPet.dir/src/WindowManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/WindowManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/src/WindowManager.cpp > CMakeFiles/AIPet.dir/src/WindowManager.cpp.i
-
-CMakeFiles/AIPet.dir/src/WindowManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/WindowManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/src/WindowManager.cpp -o CMakeFiles/AIPet.dir/src/WindowManager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/main.cpp -o CMakeFiles/AIPet.dir/main.cpp.s
 
 CMakeFiles/AIPet.dir/src/AIManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/src/AIManager.cpp.o: /home/nick/Desktop/main/AIPet/main/src/AIManager.cpp
+CMakeFiles/AIPet.dir/src/AIManager.cpp.o: /home/nick/Desktop/AIPet/main/src/AIManager.cpp
 CMakeFiles/AIPet.dir/src/AIManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AIPet.dir/src/AIManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/AIManager.cpp.o -MF CMakeFiles/AIPet.dir/src/AIManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/AIManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/src/AIManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AIPet.dir/src/AIManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/AIManager.cpp.o -MF CMakeFiles/AIPet.dir/src/AIManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/AIManager.cpp.o -c /home/nick/Desktop/AIPet/main/src/AIManager.cpp
 
 CMakeFiles/AIPet.dir/src/AIManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/AIManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/src/AIManager.cpp > CMakeFiles/AIPet.dir/src/AIManager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/AIManager.cpp > CMakeFiles/AIPet.dir/src/AIManager.cpp.i
 
 CMakeFiles/AIPet.dir/src/AIManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/AIManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/src/AIManager.cpp -o CMakeFiles/AIPet.dir/src/AIManager.cpp.s
-
-CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o: /home/nick/Desktop/main/AIPet/main/src/Live2DManager.cpp
-CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o -MF CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/src/Live2DManager.cpp
-
-CMakeFiles/AIPet.dir/src/Live2DManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/Live2DManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/src/Live2DManager.cpp > CMakeFiles/AIPet.dir/src/Live2DManager.cpp.i
-
-CMakeFiles/AIPet.dir/src/Live2DManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/Live2DManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/src/Live2DManager.cpp -o CMakeFiles/AIPet.dir/src/Live2DManager.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o: CMakeFiles/AIPet.dir/flags.make
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o -MF CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o.d -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o -c /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp > CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i
-
-CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp -o CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/AIManager.cpp -o CMakeFiles/AIPet.dir/src/AIManager.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppAllocator_Common.cpp
+CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppAllocator_Common.cpp
+
+CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppAllocator_Common.cpp > CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppAllocator_Common.cpp -o CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppModel_Common.cpp
+CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppModel_Common.cpp
+
+CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppModel_Common.cpp > CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppModel_Common.cpp -o CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/MouseActionManager_Common.cpp
+CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/MouseActionManager_Common.cpp
+
+CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/MouseActionManager_Common.cpp > CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/MouseActionManager_Common.cpp -o CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppTextureManager_Common.cpp
+CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppTextureManager_Common.cpp
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppTextureManager_Common.cpp > CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppTextureManager_Common.cpp -o CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/TouchManager_Common.cpp
+CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/TouchManager_Common.cpp
+
+CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/TouchManager_Common.cpp > CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/TouchManager_Common.cpp -o CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o: /home/nick/Desktop/AIPet/main/src/CubismSampleViewMatrix_Common.cpp
+CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o -MF CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o.d -o CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o -c /home/nick/Desktop/AIPet/main/src/CubismSampleViewMatrix_Common.cpp
+
+CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/CubismSampleViewMatrix_Common.cpp > CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.i
+
+CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/CubismSampleViewMatrix_Common.cpp -o CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppDefine.cpp
+CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppDefine.cpp
+
+CMakeFiles/AIPet.dir/src/LAppDefine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppDefine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppDefine.cpp > CMakeFiles/AIPet.dir/src/LAppDefine.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppDefine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppDefine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppDefine.cpp -o CMakeFiles/AIPet.dir/src/LAppDefine.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppPal.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppPal.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppPal.cpp
+CMakeFiles/AIPet.dir/src/LAppPal.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/AIPet.dir/src/LAppPal.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppPal.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppPal.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppPal.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppPal.cpp
+
+CMakeFiles/AIPet.dir/src/LAppPal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppPal.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppPal.cpp > CMakeFiles/AIPet.dir/src/LAppPal.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppPal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppPal.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppPal.cpp -o CMakeFiles/AIPet.dir/src/LAppPal.cpp.s
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o: /home/nick/Desktop/AIPet/main/src/LAppTextureManager.cpp
+CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o -MF CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o -c /home/nick/Desktop/AIPet/main/src/LAppTextureManager.cpp
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/LAppTextureManager.cpp > CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.i
+
+CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/LAppTextureManager.cpp -o CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.s
+
+CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o: /home/nick/Desktop/AIPet/main/src/CubismUserModelExtend.cpp
+CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o -MF CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o.d -o CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o -c /home/nick/Desktop/AIPet/main/src/CubismUserModelExtend.cpp
+
+CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/CubismUserModelExtend.cpp > CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.i
+
+CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/CubismUserModelExtend.cpp -o CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.s
+
+CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o: CMakeFiles/AIPet.dir/flags.make
+CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o: /home/nick/Desktop/AIPet/main/src/MouseActionManager.cpp
+CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o: CMakeFiles/AIPet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o -MF CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o.d -o CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o -c /home/nick/Desktop/AIPet/main/src/MouseActionManager.cpp
+
+CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nick/Desktop/AIPet/main/src/MouseActionManager.cpp > CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.i
+
+CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nick/Desktop/AIPet/main/src/MouseActionManager.cpp -o CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.s
 
 # Object files for target AIPet
 AIPet_OBJECTS = \
 "CMakeFiles/AIPet.dir/main.cpp.o" \
-"CMakeFiles/AIPet.dir/src/WindowManager.cpp.o" \
 "CMakeFiles/AIPet.dir/src/AIManager.cpp.o" \
-"CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o" \
-"CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o"
+"CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o" \
+"CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o" \
+"CMakeFiles/AIPet.dir/src/LAppPal.cpp.o" \
+"CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o" \
+"CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o" \
+"CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o"
 
 # External object files for target AIPet
 AIPet_EXTERNAL_OBJECTS =
 
-AIPet: CMakeFiles/AIPet.dir/main.cpp.o
-AIPet: CMakeFiles/AIPet.dir/src/WindowManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/src/AIManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o
-AIPet: CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o
-AIPet: CMakeFiles/AIPet.dir/build.make
-AIPet: /home/nick/Desktop/main/AIPet/main/lib/CubismSdkForNative/Core/lib/linux/x86_64/libLive2DCubismCore.a
-AIPet: libimgui_lib.a
-AIPet: /usr/lib/x86_64-linux-gnu/libSDL2.so
-AIPet: /usr/lib/x86_64-linux-gnu/libOpenGL.so
-AIPet: /usr/lib/x86_64-linux-gnu/libGLX.so
-AIPet: /usr/lib/x86_64-linux-gnu/libGLU.so
-AIPet: /usr/lib/x86_64-linux-gnu/libGLEW.so
-AIPet: /usr/lib/x86_64-linux-gnu/libcurl.so
-AIPet: CMakeFiles/AIPet.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nick/Desktop/main/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Linking CXX executable AIPet"
+bin/AIPet: CMakeFiles/AIPet.dir/main.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/AIManager.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppPal.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o
+bin/AIPet: CMakeFiles/AIPet.dir/build.make
+bin/AIPet: Framework/libFramework.a
+bin/AIPet: glfw/src/libglfw3.a
+bin/AIPet: libimgui_lib.a
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLX.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLU.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libcurl.so
+bin/AIPet: /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Core/lib/linux/x86_64/libLive2DCubismCore.a
+bin/AIPet: lib/libGLEW.a
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libGL.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libSM.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libICE.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libX11.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libXext.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/librt.a
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libm.so
+bin/AIPet: /usr/lib/x86_64-linux-gnu/libGLU.so
+bin/AIPet: CMakeFiles/AIPet.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nick/Desktop/AIPet/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable bin/AIPet"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AIPet.dir/link.txt --verbose=$(VERBOSE)
+	/usr/bin/cmake -E copy_directory /home/nick/Desktop/AIPet/main/assets /home/nick/Desktop/AIPet/main/build/bin/assets
+	/usr/bin/cmake -E copy_directory /home/nick/Desktop/AIPet/main/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/Shaders /home/nick/Desktop/AIPet/main/build/bin/FrameworkShaders
 
 # Rule to build all files generated by this target.
-CMakeFiles/AIPet.dir/build: AIPet
+CMakeFiles/AIPet.dir/build: bin/AIPet
 .PHONY : CMakeFiles/AIPet.dir/build
 
 CMakeFiles/AIPet.dir/clean:
@@ -785,6 +316,6 @@ CMakeFiles/AIPet.dir/clean:
 .PHONY : CMakeFiles/AIPet.dir/clean
 
 CMakeFiles/AIPet.dir/depend:
-	cd /home/nick/Desktop/main/AIPet/main/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nick/Desktop/main/AIPet/main /home/nick/Desktop/main/AIPet/main /home/nick/Desktop/main/AIPet/main/build /home/nick/Desktop/main/AIPet/main/build /home/nick/Desktop/main/AIPet/main/build/CMakeFiles/AIPet.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/nick/Desktop/AIPet/main/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nick/Desktop/AIPet/main /home/nick/Desktop/AIPet/main /home/nick/Desktop/AIPet/main/build /home/nick/Desktop/AIPet/main/build /home/nick/Desktop/AIPet/main/build/CMakeFiles/AIPet.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/AIPet.dir/depend
 

@@ -1,8 +1,8 @@
 CMakeFiles/imgui_lib.dir/lib/imgui/imgui_draw.cpp.o: \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui_draw.cpp \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imgui_draw.cpp \
  /usr/include/stdc-predef.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imconfig.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imgui.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h /usr/include/string.h \
@@ -17,7 +17,7 @@ CMakeFiles/imgui_lib.dir/lib/imgui/imgui_draw.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/assert.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui_internal.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imgui_internal.h \
  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
@@ -207,5 +207,5 @@ CMakeFiles/imgui_lib.dir/lib/imgui/imgui_draw.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imstb_rectpack.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imstb_truetype.h
+ /home/nick/Desktop/AIPet/main/lib/imgui/imstb_rectpack.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imstb_truetype.h

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nick/Desktop/main/AIPet/main
+CMAKE_SOURCE_DIR = /home/nick/Desktop/AIPet/main
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nick/Desktop/main/AIPet/main/build
+CMAKE_BINARY_DIR = /home/nick/Desktop/AIPet/main/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -85,11 +85,56 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
-all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/main/AIPet/main/build/CMakeFiles /home/nick/Desktop/main/AIPet/main/build//CMakeFiles/progress.marks
+all:
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles /home/nick/Desktop/AIPet/main/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/main/AIPet/main/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nick/Desktop/AIPet/main/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,16 +156,11 @@ preinstall/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
-# clear depends
-depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
-.PHONY : depend
-
 #=============================================================================
 # Target rules for targets named imgui_lib
 
 # Build rule for target.
-imgui_lib: cmake_check_build_system
+imgui_lib:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 imgui_lib
 .PHONY : imgui_lib
 
@@ -133,7 +173,7 @@ imgui_lib/fast:
 # Target rules for targets named AIPet
 
 # Build rule for target.
-AIPet: cmake_check_build_system
+AIPet:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AIPet
 .PHONY : AIPet
 
@@ -142,941 +182,107 @@ AIPet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/build
 .PHONY : AIPet/fast
 
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.o: lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.o
+#=============================================================================
+# Target rules for targets named glew
+
+# Build rule for target.
+glew:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glew
+.PHONY : glew
+
+# fast build rule for target.
+glew/fast:
+	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew.dir/build.make glew/CMakeFiles/glew.dir/build
+.PHONY : glew/fast
+
+#=============================================================================
+# Target rules for targets named glew_s
+
+# Build rule for target.
+glew_s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glew_s
+.PHONY : glew_s
+
+# fast build rule for target.
+glew_s/fast:
+	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/glew_s.dir/build.make glew/CMakeFiles/glew_s.dir/build
+.PHONY : glew_s/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f glew/CMakeFiles/uninstall.dir/build.make glew/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named glfw
+
+# Build rule for target.
+glfw:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw
+.PHONY : glfw
+
+# fast build rule for target.
+glfw/fast:
+	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/glfw.dir/build.make glfw/src/CMakeFiles/glfw.dir/build
+.PHONY : glfw/fast
+
+#=============================================================================
+# Target rules for targets named update_mappings
+
+# Build rule for target.
+update_mappings:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 update_mappings
+.PHONY : update_mappings
+
+# fast build rule for target.
+update_mappings/fast:
+	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
+.PHONY : update_mappings/fast
+
+#=============================================================================
+# Target rules for targets named Framework
+
+# Build rule for target.
+Framework:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Framework
+.PHONY : Framework
+
+# fast build rule for target.
+Framework/fast:
+	$(MAKE) $(MAKESILENT) -f Framework/CMakeFiles/Framework.dir/build.make Framework/CMakeFiles/Framework.dir/build
+.PHONY : Framework/fast
+
+lib/imgui/backends/imgui_impl_glfw.o: lib/imgui/backends/imgui_impl_glfw.cpp.o
+.PHONY : lib/imgui/backends/imgui_impl_glfw.o
 
 # target to build an object file
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.o
+lib/imgui/backends/imgui_impl_glfw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_glfw.cpp.o
+.PHONY : lib/imgui/backends/imgui_impl_glfw.cpp.o
 
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.i: lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.s: lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismCdiJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.o: lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.o
-
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.i: lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.i
+lib/imgui/backends/imgui_impl_glfw.i: lib/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : lib/imgui/backends/imgui_impl_glfw.i
 
 # target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.i
+lib/imgui/backends/imgui_impl_glfw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : lib/imgui/backends/imgui_impl_glfw.cpp.i
 
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.s: lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.cpp.s
-
-lib/CubismSdkForNative/Framework/src/CubismFramework.o: lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.o
-
-lib/CubismSdkForNative/Framework/src/CubismFramework.i: lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.i
-
-lib/CubismSdkForNative/Framework/src/CubismFramework.s: lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.s
+lib/imgui/backends/imgui_impl_glfw.s: lib/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : lib/imgui/backends/imgui_impl_glfw.s
 
 # target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismFramework.cpp.s
-
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.o: lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.o
-
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.i: lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.s: lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.o: lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.i: lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.s: lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.o: lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.i: lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.s: lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.o: lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.i: lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.s: lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Effect/CubismPose.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Id/CubismId.o: lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Id/CubismId.i: lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Id/CubismId.s: lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismId.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.o: lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.i: lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.s: lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.o: lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.i: lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.s: lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMath.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.o: lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.i: lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.s: lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.o: lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.i: lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.s: lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.o: lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.i: lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.s: lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.o: lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.i: lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.s: lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismVector2.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.o: lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.i: lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.s: lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.o: lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.i: lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.s: lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismMoc.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.o: lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.i: lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.s: lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModel.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.o: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.i: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.s: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.o: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.i: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.s: lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.o: lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.i: lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.s: lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.o: lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.i: lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.s: lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.o: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.i: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.s: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.o: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.i: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.s: lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.o: lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.i: lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.s: lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.o: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.i: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.s: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.o: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.i: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.s: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.o: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.i: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.s: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.o: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.i: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.s: lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.o: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.i: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.s: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.o: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.i: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.s: lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s: lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.i: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.s: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.o: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.i: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.s: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.o: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.i: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.s: lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.o: lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.i: lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.s: lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmRectF.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Type/csmString.o: lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Type/csmString.i: lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Type/csmString.s: lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Type/csmString.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.o: lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.i: lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.s: lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.o: lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.i: lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.s: lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismJson.cpp.s
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.o: lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.o
-
-# target to build an object file
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.o
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.i: lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.i
-
-# target to preprocess a source file
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.i
-
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.s: lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.s
-
-# target to generate assembly for a file
-lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s
-.PHONY : lib/CubismSdkForNative/Framework/src/Utils/CubismString.cpp.s
+lib/imgui/backends/imgui_impl_glfw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : lib/imgui/backends/imgui_impl_glfw.cpp.s
 
 lib/imgui/backends/imgui_impl_opengl3.o: lib/imgui/backends/imgui_impl_opengl3.cpp.o
 .PHONY : lib/imgui/backends/imgui_impl_opengl3.o
@@ -1101,30 +307,6 @@ lib/imgui/backends/imgui_impl_opengl3.s: lib/imgui/backends/imgui_impl_opengl3.c
 lib/imgui/backends/imgui_impl_opengl3.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_opengl3.cpp.s
 .PHONY : lib/imgui/backends/imgui_impl_opengl3.cpp.s
-
-lib/imgui/backends/imgui_impl_sdl2.o: lib/imgui/backends/imgui_impl_sdl2.cpp.o
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.o
-
-# target to build an object file
-lib/imgui/backends/imgui_impl_sdl2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_sdl2.cpp.o
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.cpp.o
-
-lib/imgui/backends/imgui_impl_sdl2.i: lib/imgui/backends/imgui_impl_sdl2.cpp.i
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.i
-
-# target to preprocess a source file
-lib/imgui/backends/imgui_impl_sdl2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_sdl2.cpp.i
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.cpp.i
-
-lib/imgui/backends/imgui_impl_sdl2.s: lib/imgui/backends/imgui_impl_sdl2.cpp.s
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.s
-
-# target to generate assembly for a file
-lib/imgui/backends/imgui_impl_sdl2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui_lib.dir/build.make CMakeFiles/imgui_lib.dir/lib/imgui/backends/imgui_impl_sdl2.cpp.s
-.PHONY : lib/imgui/backends/imgui_impl_sdl2.cpp.s
 
 lib/imgui/imgui.o: lib/imgui/imgui.cpp.o
 .PHONY : lib/imgui/imgui.o
@@ -1294,187 +476,295 @@ src/AIManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/AIManager.cpp.s
 .PHONY : src/AIManager.cpp.s
 
-src/Live2DManager.o: src/Live2DManager.cpp.o
-.PHONY : src/Live2DManager.o
+src/CubismSampleViewMatrix_Common.o: src/CubismSampleViewMatrix_Common.cpp.o
+.PHONY : src/CubismSampleViewMatrix_Common.o
 
 # target to build an object file
-src/Live2DManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.o
-.PHONY : src/Live2DManager.cpp.o
+src/CubismSampleViewMatrix_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.o
+.PHONY : src/CubismSampleViewMatrix_Common.cpp.o
 
-src/Live2DManager.i: src/Live2DManager.cpp.i
-.PHONY : src/Live2DManager.i
+src/CubismSampleViewMatrix_Common.i: src/CubismSampleViewMatrix_Common.cpp.i
+.PHONY : src/CubismSampleViewMatrix_Common.i
 
 # target to preprocess a source file
-src/Live2DManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.i
-.PHONY : src/Live2DManager.cpp.i
+src/CubismSampleViewMatrix_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.i
+.PHONY : src/CubismSampleViewMatrix_Common.cpp.i
 
-src/Live2DManager.s: src/Live2DManager.cpp.s
-.PHONY : src/Live2DManager.s
+src/CubismSampleViewMatrix_Common.s: src/CubismSampleViewMatrix_Common.cpp.s
+.PHONY : src/CubismSampleViewMatrix_Common.s
 
 # target to generate assembly for a file
-src/Live2DManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/Live2DManager.cpp.s
-.PHONY : src/Live2DManager.cpp.s
+src/CubismSampleViewMatrix_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismSampleViewMatrix_Common.cpp.s
+.PHONY : src/CubismSampleViewMatrix_Common.cpp.s
 
-src/WindowManager.o: src/WindowManager.cpp.o
-.PHONY : src/WindowManager.o
+src/CubismUserModelExtend.o: src/CubismUserModelExtend.cpp.o
+.PHONY : src/CubismUserModelExtend.o
 
 # target to build an object file
-src/WindowManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/WindowManager.cpp.o
-.PHONY : src/WindowManager.cpp.o
+src/CubismUserModelExtend.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.o
+.PHONY : src/CubismUserModelExtend.cpp.o
 
-src/WindowManager.i: src/WindowManager.cpp.i
-.PHONY : src/WindowManager.i
+src/CubismUserModelExtend.i: src/CubismUserModelExtend.cpp.i
+.PHONY : src/CubismUserModelExtend.i
 
 # target to preprocess a source file
-src/WindowManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/WindowManager.cpp.i
-.PHONY : src/WindowManager.cpp.i
+src/CubismUserModelExtend.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.i
+.PHONY : src/CubismUserModelExtend.cpp.i
 
-src/WindowManager.s: src/WindowManager.cpp.s
-.PHONY : src/WindowManager.s
+src/CubismUserModelExtend.s: src/CubismUserModelExtend.cpp.s
+.PHONY : src/CubismUserModelExtend.s
 
 # target to generate assembly for a file
-src/WindowManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/WindowManager.cpp.s
-.PHONY : src/WindowManager.cpp.s
+src/CubismUserModelExtend.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/CubismUserModelExtend.cpp.s
+.PHONY : src/CubismUserModelExtend.cpp.s
+
+src/LAppAllocator_Common.o: src/LAppAllocator_Common.cpp.o
+.PHONY : src/LAppAllocator_Common.o
+
+# target to build an object file
+src/LAppAllocator_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.o
+.PHONY : src/LAppAllocator_Common.cpp.o
+
+src/LAppAllocator_Common.i: src/LAppAllocator_Common.cpp.i
+.PHONY : src/LAppAllocator_Common.i
+
+# target to preprocess a source file
+src/LAppAllocator_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.i
+.PHONY : src/LAppAllocator_Common.cpp.i
+
+src/LAppAllocator_Common.s: src/LAppAllocator_Common.cpp.s
+.PHONY : src/LAppAllocator_Common.s
+
+# target to generate assembly for a file
+src/LAppAllocator_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppAllocator_Common.cpp.s
+.PHONY : src/LAppAllocator_Common.cpp.s
+
+src/LAppDefine.o: src/LAppDefine.cpp.o
+.PHONY : src/LAppDefine.o
+
+# target to build an object file
+src/LAppDefine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppDefine.cpp.o
+.PHONY : src/LAppDefine.cpp.o
+
+src/LAppDefine.i: src/LAppDefine.cpp.i
+.PHONY : src/LAppDefine.i
+
+# target to preprocess a source file
+src/LAppDefine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppDefine.cpp.i
+.PHONY : src/LAppDefine.cpp.i
+
+src/LAppDefine.s: src/LAppDefine.cpp.s
+.PHONY : src/LAppDefine.s
+
+# target to generate assembly for a file
+src/LAppDefine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppDefine.cpp.s
+.PHONY : src/LAppDefine.cpp.s
+
+src/LAppModel_Common.o: src/LAppModel_Common.cpp.o
+.PHONY : src/LAppModel_Common.o
+
+# target to build an object file
+src/LAppModel_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.o
+.PHONY : src/LAppModel_Common.cpp.o
+
+src/LAppModel_Common.i: src/LAppModel_Common.cpp.i
+.PHONY : src/LAppModel_Common.i
+
+# target to preprocess a source file
+src/LAppModel_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.i
+.PHONY : src/LAppModel_Common.cpp.i
+
+src/LAppModel_Common.s: src/LAppModel_Common.cpp.s
+.PHONY : src/LAppModel_Common.s
+
+# target to generate assembly for a file
+src/LAppModel_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppModel_Common.cpp.s
+.PHONY : src/LAppModel_Common.cpp.s
+
+src/LAppPal.o: src/LAppPal.cpp.o
+.PHONY : src/LAppPal.o
+
+# target to build an object file
+src/LAppPal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppPal.cpp.o
+.PHONY : src/LAppPal.cpp.o
+
+src/LAppPal.i: src/LAppPal.cpp.i
+.PHONY : src/LAppPal.i
+
+# target to preprocess a source file
+src/LAppPal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppPal.cpp.i
+.PHONY : src/LAppPal.cpp.i
+
+src/LAppPal.s: src/LAppPal.cpp.s
+.PHONY : src/LAppPal.s
+
+# target to generate assembly for a file
+src/LAppPal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppPal.cpp.s
+.PHONY : src/LAppPal.cpp.s
+
+src/LAppTextureManager.o: src/LAppTextureManager.cpp.o
+.PHONY : src/LAppTextureManager.o
+
+# target to build an object file
+src/LAppTextureManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.o
+.PHONY : src/LAppTextureManager.cpp.o
+
+src/LAppTextureManager.i: src/LAppTextureManager.cpp.i
+.PHONY : src/LAppTextureManager.i
+
+# target to preprocess a source file
+src/LAppTextureManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.i
+.PHONY : src/LAppTextureManager.cpp.i
+
+src/LAppTextureManager.s: src/LAppTextureManager.cpp.s
+.PHONY : src/LAppTextureManager.s
+
+# target to generate assembly for a file
+src/LAppTextureManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager.cpp.s
+.PHONY : src/LAppTextureManager.cpp.s
+
+src/LAppTextureManager_Common.o: src/LAppTextureManager_Common.cpp.o
+.PHONY : src/LAppTextureManager_Common.o
+
+# target to build an object file
+src/LAppTextureManager_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.o
+.PHONY : src/LAppTextureManager_Common.cpp.o
+
+src/LAppTextureManager_Common.i: src/LAppTextureManager_Common.cpp.i
+.PHONY : src/LAppTextureManager_Common.i
+
+# target to preprocess a source file
+src/LAppTextureManager_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.i
+.PHONY : src/LAppTextureManager_Common.cpp.i
+
+src/LAppTextureManager_Common.s: src/LAppTextureManager_Common.cpp.s
+.PHONY : src/LAppTextureManager_Common.s
+
+# target to generate assembly for a file
+src/LAppTextureManager_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/LAppTextureManager_Common.cpp.s
+.PHONY : src/LAppTextureManager_Common.cpp.s
+
+src/MouseActionManager.o: src/MouseActionManager.cpp.o
+.PHONY : src/MouseActionManager.o
+
+# target to build an object file
+src/MouseActionManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.o
+.PHONY : src/MouseActionManager.cpp.o
+
+src/MouseActionManager.i: src/MouseActionManager.cpp.i
+.PHONY : src/MouseActionManager.i
+
+# target to preprocess a source file
+src/MouseActionManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.i
+.PHONY : src/MouseActionManager.cpp.i
+
+src/MouseActionManager.s: src/MouseActionManager.cpp.s
+.PHONY : src/MouseActionManager.s
+
+# target to generate assembly for a file
+src/MouseActionManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager.cpp.s
+.PHONY : src/MouseActionManager.cpp.s
+
+src/MouseActionManager_Common.o: src/MouseActionManager_Common.cpp.o
+.PHONY : src/MouseActionManager_Common.o
+
+# target to build an object file
+src/MouseActionManager_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.o
+.PHONY : src/MouseActionManager_Common.cpp.o
+
+src/MouseActionManager_Common.i: src/MouseActionManager_Common.cpp.i
+.PHONY : src/MouseActionManager_Common.i
+
+# target to preprocess a source file
+src/MouseActionManager_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.i
+.PHONY : src/MouseActionManager_Common.cpp.i
+
+src/MouseActionManager_Common.s: src/MouseActionManager_Common.cpp.s
+.PHONY : src/MouseActionManager_Common.s
+
+# target to generate assembly for a file
+src/MouseActionManager_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/MouseActionManager_Common.cpp.s
+.PHONY : src/MouseActionManager_Common.cpp.s
+
+src/TouchManager_Common.o: src/TouchManager_Common.cpp.o
+.PHONY : src/TouchManager_Common.o
+
+# target to build an object file
+src/TouchManager_Common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.o
+.PHONY : src/TouchManager_Common.cpp.o
+
+src/TouchManager_Common.i: src/TouchManager_Common.cpp.i
+.PHONY : src/TouchManager_Common.i
+
+# target to preprocess a source file
+src/TouchManager_Common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.i
+.PHONY : src/TouchManager_Common.cpp.i
+
+src/TouchManager_Common.s: src/TouchManager_Common.cpp.s
+.PHONY : src/TouchManager_Common.s
+
+# target to generate assembly for a file
+src/TouchManager_Common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIPet.dir/build.make CMakeFiles/AIPet.dir/src/TouchManager_Common.cpp.s
+.PHONY : src/TouchManager_Common.cpp.s
 
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
-	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... uninstall"
+	@echo "... update_mappings"
 	@echo "... AIPet"
+	@echo "... Framework"
+	@echo "... glew"
+	@echo "... glew_s"
+	@echo "... glfw"
 	@echo "... imgui_lib"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismCdiJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismCdiJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismCdiJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismDefaultParameterId.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismFramework.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismFramework.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismFramework.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/CubismModelSettingJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismBreath.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismEyeBlink.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismPose.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismPose.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Effect/CubismPose.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismId.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismId.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismId.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Id/CubismIdManager.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMath.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMath.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMath.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismMatrix44.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismModelMatrix.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismTargetPoint.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismVector2.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismVector2.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismVector2.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Math/CubismViewMatrix.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismMoc.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismMoc.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismMoc.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModel.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModel.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModel.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserData.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismModelUserDataJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Model/CubismUserModel.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/ACubismMotion.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotion.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismExpressionMotionManager.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotion.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionManager.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueEntry.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Motion/CubismMotionQueueManager.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysics.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Physics/CubismPhysicsJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/CubismRenderer.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismRenderer_OpenGLES2.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Rendering/OpenGL/CubismShader_OpenGLES2.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmRectF.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmRectF.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmRectF.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmString.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmString.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Type/csmString.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismDebug.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismJson.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismJson.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismJson.s"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismString.o"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismString.i"
-	@echo "... lib/CubismSdkForNative/Framework/src/Utils/CubismString.s"
+	@echo "... lib/imgui/backends/imgui_impl_glfw.o"
+	@echo "... lib/imgui/backends/imgui_impl_glfw.i"
+	@echo "... lib/imgui/backends/imgui_impl_glfw.s"
 	@echo "... lib/imgui/backends/imgui_impl_opengl3.o"
 	@echo "... lib/imgui/backends/imgui_impl_opengl3.i"
 	@echo "... lib/imgui/backends/imgui_impl_opengl3.s"
-	@echo "... lib/imgui/backends/imgui_impl_sdl2.o"
-	@echo "... lib/imgui/backends/imgui_impl_sdl2.i"
-	@echo "... lib/imgui/backends/imgui_impl_sdl2.s"
 	@echo "... lib/imgui/imgui.o"
 	@echo "... lib/imgui/imgui.i"
 	@echo "... lib/imgui/imgui.s"
@@ -1496,23 +786,43 @@ help:
 	@echo "... src/AIManager.o"
 	@echo "... src/AIManager.i"
 	@echo "... src/AIManager.s"
-	@echo "... src/Live2DManager.o"
-	@echo "... src/Live2DManager.i"
-	@echo "... src/Live2DManager.s"
-	@echo "... src/WindowManager.o"
-	@echo "... src/WindowManager.i"
-	@echo "... src/WindowManager.s"
+	@echo "... src/CubismSampleViewMatrix_Common.o"
+	@echo "... src/CubismSampleViewMatrix_Common.i"
+	@echo "... src/CubismSampleViewMatrix_Common.s"
+	@echo "... src/CubismUserModelExtend.o"
+	@echo "... src/CubismUserModelExtend.i"
+	@echo "... src/CubismUserModelExtend.s"
+	@echo "... src/LAppAllocator_Common.o"
+	@echo "... src/LAppAllocator_Common.i"
+	@echo "... src/LAppAllocator_Common.s"
+	@echo "... src/LAppDefine.o"
+	@echo "... src/LAppDefine.i"
+	@echo "... src/LAppDefine.s"
+	@echo "... src/LAppModel_Common.o"
+	@echo "... src/LAppModel_Common.i"
+	@echo "... src/LAppModel_Common.s"
+	@echo "... src/LAppPal.o"
+	@echo "... src/LAppPal.i"
+	@echo "... src/LAppPal.s"
+	@echo "... src/LAppTextureManager.o"
+	@echo "... src/LAppTextureManager.i"
+	@echo "... src/LAppTextureManager.s"
+	@echo "... src/LAppTextureManager_Common.o"
+	@echo "... src/LAppTextureManager_Common.i"
+	@echo "... src/LAppTextureManager_Common.s"
+	@echo "... src/MouseActionManager.o"
+	@echo "... src/MouseActionManager.i"
+	@echo "... src/MouseActionManager.s"
+	@echo "... src/MouseActionManager_Common.o"
+	@echo "... src/MouseActionManager_Common.i"
+	@echo "... src/MouseActionManager_Common.s"
+	@echo "... src/TouchManager_Common.o"
+	@echo "... src/TouchManager_Common.i"
+	@echo "... src/TouchManager_Common.s"
 .PHONY : help
 
 
 
 #=============================================================================
 # Special targets to cleanup operation of make.
-
-# Special rule to run CMake to check the build system integrity.
-# No rule that depends on this can have commands that come from listfiles
-# because they might be regenerated.
-cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
-.PHONY : cmake_check_build_system
 

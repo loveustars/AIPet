@@ -1,8 +1,8 @@
 CMakeFiles/imgui_lib.dir/lib/imgui/imgui_demo.cpp.o: \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui_demo.cpp \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imgui_demo.cpp \
  /usr/include/stdc-predef.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imgui.h \
- /home/nick/Desktop/main/AIPet/main/lib/imgui/imconfig.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imgui.h \
+ /home/nick/Desktop/AIPet/main/lib/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h /usr/include/string.h \

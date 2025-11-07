@@ -1,7 +1,7 @@
 CMakeFiles/AIPet.dir/src/AIManager.cpp.o: \
- /home/nick/Desktop/main/AIPet/main/src/AIManager.cpp \
+ /home/nick/Desktop/AIPet/main/src/AIManager.cpp \
  /usr/include/stdc-predef.h \
- /home/nick/Desktop/main/AIPet/main/src/AIManager.hpp \
+ /home/nick/Desktop/AIPet/main/src/AIManager.hpp \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -154,7 +154,7 @@ CMakeFiles/AIPet.dir/src/AIManager.cpp.o: \
  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
  /usr/include/c++/13/atomic /usr/include/c++/13/bits/atomic_base.h \
  /usr/include/c++/13/bits/atomic_lockfree_defines.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/json.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/json.hpp \
  /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
@@ -188,9 +188,9 @@ CMakeFiles/AIPet.dir/src/AIManager.cpp.o: \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h /usr/include/c++/13/utility \
  /usr/include/c++/13/bits/stl_relops.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/adl_serializer.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/abi_macros.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/conversions/from_json.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/adl_serializer.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/abi_macros.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/conversions/from_json.hpp \
  /usr/include/c++/13/forward_list /usr/include/c++/13/bits/forward_list.h \
  /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/map \
  /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
@@ -226,26 +226,26 @@ CMakeFiles/AIPet.dir/src/AIManager.cpp.o: \
  /usr/include/c++/13/bits/gslice_array.h \
  /usr/include/c++/13/bits/mask_array.h \
  /usr/include/c++/13/bits/indirect_array.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/exceptions.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/value_t.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/macro_scope.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/detected.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/void_t.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/thirdparty/hedley/hedley.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/exceptions.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/value_t.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/macro_scope.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/detected.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/void_t.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/thirdparty/hedley/hedley.hpp \
  /usr/include/c++/13/version /usr/include/c++/13/cassert \
  /usr/include/assert.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/string_escape.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/position_t.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/cpp_future.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/type_traits.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/iterator_traits.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/call_std/begin.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/call_std/end.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/json_fwd.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/string_concat.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/string_escape.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/position_t.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/cpp_future.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/type_traits.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/iterator_traits.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/call_std/begin.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/call_std/end.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/json_fwd.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/string_concat.hpp \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/identity_tag.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/std_fs.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/identity_tag.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/std_fs.hpp \
  /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
  /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/locale \
  /usr/include/c++/13/bits/locale_facets.h /usr/include/c++/13/cwctype \
@@ -268,34 +268,34 @@ CMakeFiles/AIPet.dir/src/AIManager.cpp.o: \
  /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/codecvt \
  /usr/include/c++/13/bits/fs_dir.h /usr/include/c++/13/bits/fs_ops.h \
  /usr/include/c++/13/optional \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/conversions/to_json.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/iteration_proxy.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/string_utils.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/byte_container_with_subtype.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/hash.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/binary_reader.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/input_adapters.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/conversions/to_json.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/string_utils.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/byte_container_with_subtype.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/hash.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/binary_reader.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/input_adapters.hpp \
  /usr/include/c++/13/numeric /usr/include/c++/13/bits/stl_numeric.h \
  /usr/include/c++/13/pstl/glue_numeric_defs.h \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/json_sax.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/lexer.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/meta/is_sax.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/input/parser.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/internal_iterator.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/primitive_iterator.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/iter_impl.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/iterators/json_reverse_iterator.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/json_custom_base_class.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/json_pointer.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/json_ref.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/output/binary_writer.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/output/output_adapters.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/output/serializer.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/conversions/to_chars.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/ordered_map.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/json_sax.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/lexer.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/meta/is_sax.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/input/parser.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/internal_iterator.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/iter_impl.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/json_custom_base_class.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/json_pointer.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/json_ref.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/output/binary_writer.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/output/output_adapters.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/output/serializer.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/conversions/to_chars.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/ordered_map.hpp \
  /usr/include/c++/13/any \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/detail/macro_unscope.hpp \
- /home/nick/Desktop/main/AIPet/main/lib/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/detail/macro_unscope.hpp \
+ /home/nick/Desktop/AIPet/main/lib/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  /usr/include/c++/13/iostream /usr/include/x86_64-linux-gnu/curl/curl.h \
  /usr/include/x86_64-linux-gnu/curl/curlver.h \
  /usr/include/x86_64-linux-gnu/curl/system.h \
