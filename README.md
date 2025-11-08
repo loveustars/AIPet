@@ -91,13 +91,13 @@ make -j$(nproc)
 
 由于虚拟机权限以及其他未知问题，我们应当绕过Accessbility Bus来确保窗口Decoration正确显示。
 
-**务必运行这行代码**
+**务必运行这行代码（仅本会话有效）**
 
 ```bash
 export NO_AT_SPI=1
 ```
 
-或者执行：
+或者执行以下代码（永久生效）：
 ```bash
 gedit ~/.bashrc
 
@@ -109,7 +109,7 @@ export NO_AT_SPI=1
 source ~/.bashrc
 ```
 
-4. 在运行之前，将临时的环境变量添加到系统，用于程序获得与大模型的API.
+4. 在运行之前，将临时的环境变量添加到系统，用于程序获得与大模型的API(仅本次会话有效).
 
 ```bash
 export GOOGLE_AI_STUDIO_API_KEY='此处替换为你申请的API'
