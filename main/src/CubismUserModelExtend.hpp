@@ -8,6 +8,7 @@
 #pragma once
 
 #include <functional>
+#include <string>
 
 #include <CubismFramework.hpp>
 #include <CubismModelSettingJson.hpp>
@@ -40,6 +41,28 @@ public:
     * 更新模型的状态和渲染
     */
     void ModelOnUpdate(GLFWwindow* window);
+
+    /**
+    * @brief 根据 AI 回复文本选择并切换表情（简单关键词映射）
+    * @param[in] text AI 回复文本
+    */
+    void SetExpressionByAIText(const std::string& text);
+
+    /**
+    * @brief 按表情名切换表情（表情名与 model3.json 中的 Name 字段对应）
+    * @param[in] name 表情名字（例如 "F01"）
+    */
+    void SetExpressionByName(const std::string& name);
+
+    /**
+    * @brief 返回已加载的表情名称列表（用于调试/UI）
+    */
+    std::vector<std::string> GetExpressionNames() const;
+
+    /**
+    * @brief 设置默认表情持续时间（秒），<=0 表示不自动恢复
+    */
+    void SetDefaultExpressionDuration(float seconds) { _defaultExpressionDuration = seconds; }
 
 private:
     /**
@@ -81,10 +104,14 @@ private:
     */
     void ModelParamUpdate();
 
+
     /**
     * @brief 将纹理加载到 OpenGL 的纹理单元中
     */
     void SetupTextures();
+
+    // 内部播放表情（带持续时间），durationSeconds<=0 表示不自动恢复
+    void PlayExpression(const std::string& name, float durationSeconds);
 
     /**
     * @brief 根据组名批量加载动作数据
@@ -112,4 +139,11 @@ private:
     const Csm::CubismId* _idParamBodyAngleX; ///< 参数 ID: ParamBodyAngleX
     const Csm::CubismId* _idParamEyeBallX; ///< 参数 ID: ParamEyeBallX
     const Csm::CubismId* _idParamEyeBallY; ///< 参数 ID: ParamEyeBallY
+
+    // 当前表情控制（用于超时恢复）
+    std::string _currentExpressionName; ///< 当前播放的表情名
+    float _defaultExpressionDuration = 3.0f; ///< 表情自动恢复到中性所用的默认持续时间（秒）
+    float _expressionDuration = 0.0f; ///< 当前表情的持续时间（若>0表示会在到期后恢复）
+    double _expressionSetTime = 0.0; ///< 设置当前表情时的累计时间点（以 _userTimeSeconds 计）
+    bool _expressionTemporary = false; ///< 当前表情是否为临时表情（到期后恢复）
 };
