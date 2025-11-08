@@ -59,7 +59,6 @@ private:
     * @return 返回已开始动作的识别编号，用于 IsFinished() 判断。无法开始时返回 -1。
     */
     Csm::CubismMotionQueueEntryHandle StartMotion(const Csm::csmChar* group, Csm::csmInt32 no, Csm::csmInt32 priority);
-    Csm::CubismMotionQueueEntryHandle StartMotion(const Csm::csmChar* group, Csm::csmInt32 no, Csm::csmInt32 priority);
 
     /**
     * @brief 释放资源

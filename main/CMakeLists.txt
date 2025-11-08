@@ -7,11 +7,11 @@ set(APP_NAME AIPet)
 set(SDK_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/CubismSdkForNative)
 set(CORE_PATH ${SDK_ROOT_PATH}/Core)
 set(FRAMEWORK_PATH ${SDK_ROOT_PATH}/Framework)
-set(THIRD_PARTY_PATH ${SDK_ROOT_PATH}/Samples/OpenGL/thirdParty)
+set(THIRD_PARTY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(STB_PATH ${THIRD_PARTY_PATH}/stb)
 set(GLEW_PATH ${THIRD_PARTY_PATH}/glew)
 set(GLFW_PATH ${THIRD_PARTY_PATH}/glfw)
-set(COMMON_SRC_PATH ${SDK_ROOT_PATH}/Samples/Common)
+set(COMMON_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 # 设置项目
 project(${APP_NAME})
@@ -164,7 +164,7 @@ add_custom_command(
     $<TARGET_FILE_DIR:${APP_NAME}>/assets
   # 复制着色器文件
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
-    ${FRAMEWORK_PATH}/src/Rendering/OpenGL/Shaders 
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/Shaders
     $<TARGET_FILE_DIR:${APP_NAME}>/FrameworkShaders
 )
 
