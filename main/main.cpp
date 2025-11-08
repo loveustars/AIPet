@@ -59,6 +59,11 @@ static AIManager* g_AIManager = nullptr;
 static char g_InputBuffer[512] = {0};
 static std::vector<std::pair<std::string, std::string>> g_ChatHistory;
 
+// 初始提示词（方便在文件顶部快速编辑）
+static std::string g_AIInitPrompt =
+    "Please include an emotion tag in brackets at the end of your reply (e.g. [happy] or [F05]). "
+    "Reply only once to acknowledge this instruction so the client can proceed.";
+
 // ImGui 字体
 static ImFont* g_ChineseFont = nullptr;
 
@@ -221,6 +226,10 @@ bool InitializeMainWindow() {
             g_ShouldClose = true;
         }
     });
+    // 鼠标滚轮回调（用于模型缩放）
+    glfwSetScrollCallback(g_MainWindow, [](GLFWwindow* window, double xoffset, double yoffset) {
+        EventHandler::OnScroll(window, xoffset, yoffset);
+    });
     
     std::cout << "[MainWindow] ✓ Initialized successfully" << std::endl;
     std::cout << "[MainWindow] Transparent background: ENABLED" << std::endl;
@@ -379,11 +388,8 @@ bool InitializeAI() {
     // 设定 priming 标志为 true，直到收到模型的首次确认回复为止。
     g_AIPriming = true;
     g_AIReady = false;
-    // 初始提示词：告诉模型以方括号包含情绪标签，并请先回复一个确认（其中可以包含情绪标签）
-    std::string initPrompt = "Please include an emotion tag in brackets at the end of your reply (e.g. [happy] or [F05]). "
-                             "Reply only once to acknowledge this instruction so the client can proceed.";
-    // 发送初始化提示（后台线程处理）；收到模型确认后在主循环中会隐藏该回复并提示用户开始
-    g_AIManager->sendMessage(initPrompt);
+    // 使用顶部可编辑的初始提示词，便于快速修改
+    g_AIManager->sendMessage(g_AIInitPrompt);
     g_ChatHistory.push_back({"System", "Welcome! Dual-window AI Desktop Pet."});
     g_ChatHistory.push_back({"System", "Live2D window: Transparent background with decorations."});
     g_ChatHistory.push_back({"System", "Press ESC in any window to exit."});

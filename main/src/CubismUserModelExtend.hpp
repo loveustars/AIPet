@@ -21,6 +21,7 @@
  *
  * 这是一个继承自 CubismUserModel 的示例类。
  * 可以在此类的基础上扩展并实现自定义处理。
+ * 添加了一些辅助方法用于表情切换。
  *
  */
 class CubismUserModelExtend :
@@ -142,7 +143,7 @@ private:
 
     // 当前表情控制（用于超时恢复）
     std::string _currentExpressionName; ///< 当前播放的表情名
-    float _defaultExpressionDuration = 3.0f; ///< 表情自动恢复到中性所用的默认持续时间（秒）
+    float _defaultExpressionDuration = 5.0f; ///< 表情自动恢复到中性所用的默认持续时间（秒）
     float _expressionDuration = 0.0f; ///< 当前表情的持续时间（若>0表示会在到期后恢复）
     double _expressionSetTime = 0.0; ///< 设置当前表情时的累计时间点（以 _userTimeSeconds 计）
     bool _expressionTemporary = false; ///< 当前表情是否为临时表情（到期后恢复）
