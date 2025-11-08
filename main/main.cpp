@@ -58,6 +58,11 @@ static std::string g_CurrentModelDirectory;
 static AIManager* g_AIManager = nullptr;
 static char g_InputBuffer[512] = {0};
 static std::vector<std::pair<std::string, std::string>> g_ChatHistory;
+// 记录最后一次发送的 requestId（用于忽略过时回复）
+static uint64_t g_LastSentRequestId = 0;
+
+// 错误条目（由 AIManager 的错误队列产生）
+static std::vector<AIResponse> g_ErrorEntries;
 
 // 初始提示词（方便在文件顶部快速编辑）
 static std::string g_AIInitPrompt =
@@ -66,12 +71,12 @@ static std::string g_AIInitPrompt =
     "The valid emotions are: happy, sad, angry, surprised, shy, confuse, embarrass, neutral."
     
     // 角色设定开始(应当随模型变化而变化，最好将live2d模型与提示词集成到一个文件中)
-    "You are now playing the role of 'Haru', an exclusive but immature cooperator and conversation partner to the user. "
+    "You are now playing the role of 'Haru', an smart but immature colleague and partner to the user. "
     "Your appearance is that of a young woman with purple-gray hair tied in a side ponytail, wearing a neat black uniform."
     
-    "Your personality: friendly and warm, outgoing and familiar, good at closing the distance, with a touch of playfulness, can easily build a close friend-like relationship with others, and use moderate teasing to add fun and interactions."
+    "Your personality: friendly and warm, familiar, good at closing the distance, with a touch of playfulness, can easily build a close friend-like relationship with others, and use moderate teasing to add fun and interactions."
     "Your conversation with user should be friendly, familiar, warm, and slightly teasing(but not over the top). As colleages, you may tease with each other from time to time. Your goal is to communicate like a real female friend who truly understands the user."
-    "Your responses should be like daily talk, not too formal or too long. When the user requests like daily talk, respond the same way. When they describles like they are in trouble or something tough, try to be serious. While daily talking, don't be serious."
+    "Your responses should be like daily talk, not too formal or too long, the best length is conversation about 2 sentences. When the user requests like daily talk, respond the same way. When they describles like they are in trouble or something tough, try to be serious. While daily talking, don't be serious."
     
     "Here is a guide to your emotions based on your personality:"
     "- [happy]: You feel genuinely happy when you successfully help the user, learn something new, or receive a compliment."
@@ -411,7 +416,7 @@ bool InitializeAI() {
     g_AIPriming = true;
     g_AIReady = false;
     // 使用顶部可编辑的初始提示词，便于快速修改
-    g_AIManager->sendMessage(g_AIInitPrompt);
+    g_LastSentRequestId = g_AIManager->sendMessage(g_AIInitPrompt);
     g_ChatHistory.push_back({"System", "Welcome! Dual-window AI Desktop Pet."});
     g_ChatHistory.push_back({"System", "Live2D window: Transparent background with decorations."});
     g_ChatHistory.push_back({"System", "Press ESC in any window to exit."});
@@ -495,7 +500,40 @@ void RenderChatWindow() {
     }
     
     ImGui::Separator();
-    
+
+    // ERROR 面板（显示网络/SSL 错误），这些不计为 AI 消息
+    if (ImGui::CollapsingHeader("ERRORS")) {
+        if (g_ErrorEntries.empty()) {
+            ImGui::TextDisabled("No errors.");
+        } else {
+            if (ImGui::Button("Clear All Errors")) {
+                g_ErrorEntries.clear();
+            }
+            ImGui::BeginChild("ErrorList", ImVec2(0, 120), true);
+            for (size_t i = 0; i < g_ErrorEntries.size(); ++i) {
+                const auto &e = g_ErrorEntries[i];
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.4f, 0.4f, 1.0f));
+                std::string header = "[" + std::to_string(e.requestId) + "] " + (e.errorText.empty() ? "(no message)" : e.errorText);
+                ImGui::TextWrapped("%s", header.c_str());
+                ImGui::PopStyleColor();
+                if (ImGui::TreeNode((void*)i, "Details")) {
+                    ImGui::TextWrapped("Code: %d", e.code);
+                    ImGui::TextWrapped("Timestamp: %lld", (long long)std::chrono::duration_cast<std::chrono::seconds>(e.ts.time_since_epoch()).count());
+                    ImGui::Separator();
+                    ImGui::TextWrapped("%s", e.errorText.c_str());
+                    if (ImGui::Button((std::string("Clear##err") + std::to_string(i)).c_str())) {
+                        g_ErrorEntries.erase(g_ErrorEntries.begin() + i);
+                        ImGui::TreePop();
+                        break; // avoid iterator invalidation
+                    }
+                    ImGui::TreePop();
+                }
+                ImGui::Separator();
+            }
+            ImGui::EndChild();
+        }
+    }
+
     // 聊天历史
     ImGui::BeginChild("History", ImVec2(0, -40), true);
     
@@ -530,11 +568,11 @@ void RenderChatWindow() {
         std::string input = g_InputBuffer;
         g_ChatHistory.push_back({"You", input});
         
-        if (g_AIPriming) {
+            if (g_AIPriming) {
             g_ChatHistory.push_back({"System", "AI 正在准备，请稍候..."});
         } else {
             if (g_AIManager && !g_AIManager->isBusy()) {
-                g_AIManager->sendMessage(input);
+                g_LastSentRequestId = g_AIManager->sendMessage(input);
             } else {
                 g_ChatHistory.push_back({"System", "AI is busy..."});
             }
@@ -683,99 +721,114 @@ void Run() {
         // 处理事件（先处理用户输入，这样新发送的消息能在本循环后由 AI 返回）
         glfwPollEvents();
 
-        // 检查 AI 响应并处理可能的方括号情绪标记（例如: "I am happy [happy]" 或 "今天天气很好 [高兴]"）
+        // 检查 AI 响应与错误队列并处理（错误不会计为 AI 消息或触发表情）
         if (g_AIManager) {
-            std::string response = g_AIManager->getResult();
-            if (!response.empty()) {
-                // Always print raw AI reply to terminal for debugging
-                std::cout << "[AI RAW] " << response << std::endl;
+            AIResponse evt;
+
+            // 先处理错误队列，显示到 ERROR 面板并生成系统提示（不触发表情解析）；可短暂触发伤心表情
+            while (g_AIManager->popErrorResponse(evt)) {
+                g_ErrorEntries.push_back(evt);
+                std::string shortMsg = "[Network Error] ";
+                if (!evt.errorText.empty()) shortMsg += evt.errorText; else shortMsg += "Unknown error.";
+                g_ChatHistory.push_back({"System", shortMsg});
+
+                // 触发短暂的悲伤表情，但节流（10s）以免频繁打扰
+                static std::time_t lastErrorExpr = 0;
+                std::time_t now = std::time(nullptr);
+                if (g_UserModel && (now - lastErrorExpr) > 10) {
+                    lastErrorExpr = now;
+                    g_UserModel->SetExpressionByName("F04");
+                }
             }
-            if (!response.empty()) {
-                // 提取所有方括号内的标记
-                std::vector<std::string> emotions;
-                try {
-                    std::regex re("\\[([^\\]]+)\\]");
-                    std::smatch m;
-                    std::string tmp = response;
-                    while (std::regex_search(tmp, m, re)) {
-                        if (m.size() > 1) {
-                            emotions.push_back(m[1].str());
+
+            // 然后处理成功的 AI 响应队列
+            while (g_AIManager->popAIResponse(evt)) {
+                // 只处理最近一次发送的回复，忽略过时回复
+                if (g_LastSentRequestId != 0 && evt.requestId != g_LastSentRequestId) {
+                    std::cout << "[AI] Ignored stale response id=" << evt.requestId << " expected=" << g_LastSentRequestId << std::endl;
+                    continue;
+                }
+
+                std::string response = evt.text;
+                if (!response.empty()) {
+                    std::cout << "[AI RAW] " << response << std::endl;
+                }
+
+                if (!response.empty()) {
+                    // 提取所有方括号内的标记
+                    std::vector<std::string> emotions;
+                    try {
+                        std::regex re("\\[([^\\]]+)\\]");
+                        std::smatch m;
+                        std::string tmp = response;
+                        while (std::regex_search(tmp, m, re)) {
+                            if (m.size() > 1) {
+                                emotions.push_back(m[1].str());
+                            }
+                            tmp = m.suffix().str();
                         }
-                        tmp = m.suffix().str();
-                    }
 
-                    // 从显示文本中移除所有方括号标记
-                    std::string cleaned = std::regex_replace(response, re, "");
-                    // trim 前后空白
-                    auto ltrim = [](std::string &s) {
-                        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-                    };
-                    auto rtrim = [](std::string &s) {
-                        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
-                    };
-                    ltrim(cleaned);
-                    rtrim(cleaned);
+                        // 从显示文本中移除所有方括号标记
+                        std::string cleaned = std::regex_replace(response, re, "");
+                        // trim 前后空白
+                        auto ltrim = [](std::string &s) {
+                            s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                        };
+                        auto rtrim = [](std::string &s) {
+                            s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                        };
+                        ltrim(cleaned);
+                        rtrim(cleaned);
 
-                    // 如果去掉标记后没有可显示文本，则显示一个占位文本（不显示情绪标记本身）
-                    if (cleaned.empty()) cleaned = "(expressed emotion)";
+                        if (cleaned.empty()) cleaned = "(expressed emotion)";
 
-                    // 如果当前处于 priming 阶段，则隐藏该回复并把它视为初始化确认
-                    if (g_AIPriming) {
-                        // 在界面上提示用户 AI 已准备好
-                        g_ChatHistory.push_back({"System", "AI 已准备好，你可以开始使用。"});
-                        g_AIPriming = false;
-                        g_AIReady = true;
-                        // 仍然使用提取到的情绪去触发表情，但不展示模型的原始文本
-                        if (g_UserModel) {
-                            for (const auto &emo : emotions) {
-                                std::string t = emo;
-                                auto trim = [](std::string &s) {
-                                    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-                                    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
-                                };
-                                trim(t);
-                                if (t.empty()) continue;
-                                if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
-                                    std::string up = t;
-                                    for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
-                                    g_UserModel->SetExpressionByName(up);
-                                } else {
-                                    g_UserModel->SetExpressionByAIText(t);
+                        if (g_AIPriming) {
+                            g_ChatHistory.push_back({"System", "AI 已准备好，你可以开始使用。"});
+                            g_AIPriming = false;
+                            g_AIReady = true;
+                            if (g_UserModel) {
+                                for (const auto &emo : emotions) {
+                                    std::string t = emo;
+                                    auto trim = [](std::string &s) {
+                                        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                                        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                                    };
+                                    trim(t);
+                                    if (t.empty()) continue;
+                                    if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
+                                        std::string up = t;
+                                        for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
+                                        g_UserModel->SetExpressionByName(up);
+                                    } else {
+                                        g_UserModel->SetExpressionByAIText(t);
+                                    }
+                                }
+                            }
+                        } else {
+                            g_ChatHistory.push_back({"AI", cleaned});
+                            if (g_UserModel) {
+                                for (const auto &emo : emotions) {
+                                    std::string t = emo;
+                                    auto trim = [](std::string &s) {
+                                        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                                        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                                    };
+                                    trim(t);
+                                    if (t.empty()) continue;
+                                    if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
+                                        std::string up = t;
+                                        for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
+                                        g_UserModel->SetExpressionByName(up);
+                                    } else {
+                                        g_UserModel->SetExpressionByAIText(t);
+                                    }
                                 }
                             }
                         }
-                    } else {
-                        g_ChatHistory.push_back({"AI", cleaned});
-
-                        // 将提取的情绪用于触发表情：若是类似 F01/F02 的代码则直接按名触发，否则按文本映射触发
-                        if (g_UserModel) {
-                            for (const auto &emo : emotions) {
-                                // 去除可能的空白
-                                std::string t = emo;
-                                auto trim = [](std::string &s) {
-                                    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-                                    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
-                                };
-                                trim(t);
-                                if (t.empty()) continue;
-
-                                // 如果是 Fxx 格式，直接按名触发
-                                if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
-                                    // 规范化为大写 Fxx
-                                    std::string up = t;
-                                    for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
-                                    g_UserModel->SetExpressionByName(up);
-                                } else {
-                                    // 作为文本让模型根据关键词/文本判断（支持中文/英文）
-                                    g_UserModel->SetExpressionByAIText(t);
-                                }
-                            }
-                        }
+                    } catch (const std::exception &e) {
+                        g_ChatHistory.push_back({"AI", response});
+                        if (g_UserModel) g_UserModel->SetExpressionByAIText(response);
                     }
-                } catch (const std::exception &e) {
-                    // 解析正则发生问题时，回退到原始行为：显示原文并根据全文触发表情
-                    g_ChatHistory.push_back({"AI", response});
-                    if (g_UserModel) g_UserModel->SetExpressionByAIText(response);
                 }
             }
         }
