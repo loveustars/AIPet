@@ -1,8 +1,9 @@
 /**
- * @file main_dual_window_fixed.cpp
- * @brief 双窗口版本（修复版）：Live2D窗口 + 独立聊天窗口
- * @note 修复了鼠标交互导致的卡死问题
- * @note Live2D窗口支持透明背景和窗口装饰
+ * @file main.cpp
+ * @author Drew Nick
+ * @brief 双窗口版本：Live2D窗口 + 独立聊天窗口
+ * @note 修复了鼠标交互导致的卡死问题(部分修复)
+ * @note 窗口支持透明背景和窗口装饰
  */
 
 #include <iostream>
@@ -33,7 +34,7 @@
 // AI Manager
 #include "AIManager.hpp"
 
-// ===== 全局变量 =====
+// 全局变量
 // Live2D 窗口
 static GLFWwindow* g_MainWindow = nullptr;
 static int g_MainWindowWidth = 800;
@@ -63,7 +64,7 @@ static ImFont* g_ChineseFont = nullptr;
 // 窗口关闭标志
 static std::atomic<bool> g_ShouldClose(false);
 
-// ===== 模型配置 =====
+// 模型配置
 static const char* MODEL_NAME = "hiyori_pro_t11";
 
 /**
@@ -135,7 +136,7 @@ void MainWindowMouseButtonCallback(GLFWwindow* window, int button, int action, i
 }
 
 /**
- * @brief 主窗口鼠标移动回调 - 修复版
+ * @brief 主窗口鼠标移动回调
  */
 void MainWindowCursorPosCallback(GLFWwindow* window, double xpos, double ypos) {
     // 确保当前上下文正确
@@ -298,7 +299,7 @@ bool InitializeLive2D() {
     // 初始化鼠标管理器
     MouseActionManager::GetInstance()->Initialize(g_MainWindowWidth, g_MainWindowHeight);
     
-    // 注册回调 - 使用修复版的回调函数
+    // 注册回调
     glfwSetMouseButtonCallback(g_MainWindow, MainWindowMouseButtonCallback);
     glfwSetCursorPosCallback(g_MainWindow, MainWindowCursorPosCallback);
     
@@ -353,7 +354,7 @@ bool InitializeAI() {
 }
 
 /**
- * @brief 渲染主窗口（Live2D）- 修复版
+ * @brief 渲染主窗口（Live2D）
  */
 void RenderMainWindow() {
     // 确保切换到主窗口上下文
@@ -566,7 +567,7 @@ void Cleanup() {
  */
 int main(int argc, char* argv[]) {
     std::cout << "========================================" << std::endl;
-    std::cout << " AIPet - Dual Window Mode (Fixed)" << std::endl;
+    std::cout << " AIPet - Dual Window Mode " << std::endl;
     std::cout << "========================================" << std::endl;
     
     if (!InitializeMainWindow()) {
