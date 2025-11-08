@@ -1,10 +1,7 @@
 /**
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
-
+ * @file MouseActionManager.cpp
+ * 这个文件实现了鼠标操作管理器，支持鼠标拖拽模型和视图平移缩放功能。
+ */
 #include "MouseActionManager.hpp"
 #include <iostream>
 

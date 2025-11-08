@@ -1,10 +1,7 @@
 /**
- * Copyright(c) Live2D Inc. All rights reserved.
- *
- * Use of this source code is governed by the Live2D Open Software license
- * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * @file LAppTextureManager.cpp
+ * 这个文件实现了纹理管理器，负责从 PNG 文件加载纹理并管理其生命周期。
  */
-
 #include "LAppTextureManager.hpp"
 #include <iostream>
 #define STBI_NO_STDIO
