@@ -15,6 +15,7 @@
 #include <atomic>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <regex>
 
 // ImGui
 #include "imgui.h"
@@ -61,11 +62,22 @@ static std::vector<std::pair<std::string, std::string>> g_ChatHistory;
 // ImGui 字体
 static ImFont* g_ChineseFont = nullptr;
 
+// 保存被 ImGui_ImplGlfw 安装的先前回调（若存在），以便我们在设置自定义回调时转发事件
+static GLFWkeyfun g_prevChatKeyCallback = nullptr;
+static GLFWcharfun g_prevChatCharCallback = nullptr;
+static GLFWmousebuttonfun g_prevChatMouseButtonCallback = nullptr;
+static GLFWcursorposfun g_prevChatCursorPosCallback = nullptr;
+static GLFWscrollfun g_prevChatScrollCallback = nullptr;
+
+// AI priming flags
+static std::atomic<bool> g_AIPriming(false);
+static std::atomic<bool> g_AIReady(false);
+
 // 窗口关闭标志
 static std::atomic<bool> g_ShouldClose(false);
 
 // 模型配置
-static const char* MODEL_NAME = "hiyori_pro_t11";
+static const char* MODEL_NAME = "Haru";
 
 /**
  * @brief 设置应用程序执行路径
@@ -273,11 +285,29 @@ bool InitializeChatWindow() {
         std::cerr << "[Warning] Failed to load Chinese font" << std::endl;
     }
     
-    // 键盘回调
-    glfwSetKeyCallback(g_ChatWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+    // 回调：保留并转发 ImGui/GLFW 之前设置的回调，避免覆盖导致 IME 与文本输入异常
+    // 键盘
+    g_prevChatKeyCallback = glfwSetKeyCallback(g_ChatWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+        if (g_prevChatKeyCallback) g_prevChatKeyCallback(window, key, scancode, action, mods);
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
             g_ShouldClose = true;
         }
+    });
+    // 字符（IME 需要）
+    g_prevChatCharCallback = glfwSetCharCallback(g_ChatWindow, [](GLFWwindow* window, unsigned int c) {
+        if (g_prevChatCharCallback) g_prevChatCharCallback(window, c);
+    });
+    // 鼠标按键
+    g_prevChatMouseButtonCallback = glfwSetMouseButtonCallback(g_ChatWindow, [](GLFWwindow* window, int button, int action, int mods) {
+        if (g_prevChatMouseButtonCallback) g_prevChatMouseButtonCallback(window, button, action, mods);
+    });
+    // 光标移动
+    g_prevChatCursorPosCallback = glfwSetCursorPosCallback(g_ChatWindow, [](GLFWwindow* window, double xpos, double ypos) {
+        if (g_prevChatCursorPosCallback) g_prevChatCursorPosCallback(window, xpos, ypos);
+    });
+    // 滚轮
+    g_prevChatScrollCallback = glfwSetScrollCallback(g_ChatWindow, [](GLFWwindow* window, double xoffset, double yoffset) {
+        if (g_prevChatScrollCallback) g_prevChatScrollCallback(window, xoffset, yoffset);
     });
     
     std::cout << "[ChatWindow] ✓ Initialized successfully" << std::endl;
@@ -345,16 +375,25 @@ bool InitializeAI() {
     }
     
     g_AIManager = new AIManager(apiKey);
+    // 向大模型发送一次性初始提示，要求它以后在回复中附带方括号情绪标记。
+    // 设定 priming 标志为 true，直到收到模型的首次确认回复为止。
+    g_AIPriming = true;
+    g_AIReady = false;
+    // 初始提示词：告诉模型以方括号包含情绪标签，并请先回复一个确认（其中可以包含情绪标签）
+    std::string initPrompt = "Please include an emotion tag in brackets at the end of your reply (e.g. [happy] or [F05]). "
+                             "Reply only once to acknowledge this instruction so the client can proceed.";
+    // 发送初始化提示（后台线程处理）；收到模型确认后在主循环中会隐藏该回复并提示用户开始
+    g_AIManager->sendMessage(initPrompt);
     g_ChatHistory.push_back({"System", "Welcome! Dual-window AI Desktop Pet."});
     g_ChatHistory.push_back({"System", "Live2D window: Transparent background with decorations."});
     g_ChatHistory.push_back({"System", "Press ESC in any window to exit."});
-    
-    std::cout << "[AI] ✓ Initialized" << std::endl;
     return true;
+
 }
 
 /**
  * @brief 渲染主窗口（Live2D）
+ * 
  */
 void RenderMainWindow() {
     // 确保切换到主窗口上下文
@@ -463,13 +502,125 @@ void RenderChatWindow() {
         std::string input = g_InputBuffer;
         g_ChatHistory.push_back({"You", input});
         
-        if (g_AIManager && !g_AIManager->isBusy()) {
-            g_AIManager->sendMessage(input);
+        if (g_AIPriming) {
+            g_ChatHistory.push_back({"System", "AI 正在准备，请稍候..."});
         } else {
-            g_ChatHistory.push_back({"System", "AI is busy..."});
+            if (g_AIManager && !g_AIManager->isBusy()) {
+                g_AIManager->sendMessage(input);
+            } else {
+                g_ChatHistory.push_back({"System", "AI is busy..."});
+            }
         }
         
         memset(g_InputBuffer, 0, sizeof(g_InputBuffer));
+    }
+
+    // ===== 表情调试面板 =====
+    ImGui::Separator();
+    if (ImGui::CollapsingHeader("Expressions (debug)")) {
+        if (g_UserModel) {
+            auto exprs = g_UserModel->GetExpressionNames();
+            ImGui::Text("Loaded expressions: %zu", exprs.size());
+            ImGui::BeginChild("ExprList", ImVec2(0, 120), true);
+            int col = 0;
+            for (const auto &ename : exprs) {
+                ImGui::PushID(ename.c_str());
+                if (ImGui::Button(ename.c_str())) {
+                    g_UserModel->SetExpressionByName(ename);
+                }
+                ImGui::PopID();
+                ++col;
+                if (col % 3 != 0) ImGui::SameLine();
+                else ImGui::NewLine();
+            }
+            ImGui::EndChild();
+        } else {
+            ImGui::TextDisabled("No model loaded");
+        }
+    }
+
+    // 手动加载文件面板（用于模型或字体加载失败时的手工选择）
+    ImGui::Separator();
+    if (ImGui::CollapsingHeader("Manual file loader")) {
+        static bool showModelPopup = false;
+        static bool showFontPopup = false;
+        static char modelDirBuf[512] = "";
+        static char modelFileBuf[256] = ""; // e.g. Haru.model3.json
+        static char fontPathBuf[512] = "";
+
+        ImGui::TextWrapped("If model or font failed to load, enter paths here and press Load.");
+        if (ImGui::Button("Manual Load Model")) showModelPopup = true;
+        ImGui::SameLine();
+        if (ImGui::Button("Manual Load Font")) showFontPopup = true;
+
+        if (showModelPopup) ImGui::OpenPopup("LoadModelPopup");
+        if (ImGui::BeginPopupModal("LoadModelPopup", NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+            ImGui::InputText("Model Directory", modelDirBuf, sizeof(modelDirBuf));
+            ImGui::InputText("Model filename (e.g. Haru.model3.json)", modelFileBuf, sizeof(modelFileBuf));
+            if (ImGui::Button("Load")) {
+                // 尝试加载模型（在主 OpenGL 上下文）
+                std::string dir = std::string(modelDirBuf);
+                std::string file = std::string(modelFileBuf);
+                if (!dir.empty() && !file.empty()) {
+                    try {
+                        // 切换上下文并重建模型
+                        glfwMakeContextCurrent(g_MainWindow);
+                        if (g_UserModel) {
+                            g_UserModel->DeleteRenderer();
+                            delete g_UserModel;
+                            g_UserModel = nullptr;
+                        }
+                        g_CurrentModelDirectory = dir;
+                        g_UserModel = new CubismUserModelExtend(std::string(MODEL_NAME), g_CurrentModelDirectory);
+                        g_UserModel->LoadAssets(file.c_str());
+                        MouseActionManager::GetInstance()->SetUserModel(g_UserModel);
+                        g_ChatHistory.push_back({"System", "Model loaded successfully."});
+                    } catch (const std::exception &e) {
+                        g_ChatHistory.push_back({"System", std::string("Model load failed: ") + e.what()});
+                    }
+                } else {
+                    g_ChatHistory.push_back({"System", "Model directory or filename empty."});
+                }
+                showModelPopup = false;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel")) { showModelPopup = false; ImGui::CloseCurrentPopup(); }
+            ImGui::EndPopup();
+        }
+
+        if (showFontPopup) ImGui::OpenPopup("LoadFontPopup");
+        if (ImGui::BeginPopupModal("LoadFontPopup", NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+            ImGui::InputText("Font file path", fontPathBuf, sizeof(fontPathBuf));
+            if (ImGui::Button("Load")) {
+                std::string fpath = std::string(fontPathBuf);
+                if (!fpath.empty()) {
+                    try {
+                        ImGuiIO& io = ImGui::GetIO();
+                        ImFont* font = io.Fonts->AddFontFromFileTTF(fpath.c_str(), 18.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+                        if (font) {
+                            // 重新创建设备纹理对象以确保字体生效（在新 imgui 后端里使用 CreateDeviceObjects）
+                            io.Fonts->Build();
+                            ImGui_ImplOpenGL3_DestroyDeviceObjects();
+                            ImGui_ImplOpenGL3_CreateDeviceObjects();
+                            g_ChineseFont = font;
+                            g_ChatHistory.push_back({"System", "Font loaded successfully."});
+                        } else {
+                            g_ChatHistory.push_back({"System", "Font load failed (AddFontFromFileTTF returned null)."});
+                        }
+                    } catch (const std::exception &e) {
+                        g_ChatHistory.push_back({"System", std::string("Font load failed: ") + e.what()});
+                    }
+                } else {
+                    g_ChatHistory.push_back({"System", "Font path empty."});
+                }
+                showFontPopup = false;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel")) { showFontPopup = false; ImGui::CloseCurrentPopup(); }
+            ImGui::EndPopup();
+        }
     }
     
     ImGui::End();
@@ -497,11 +648,107 @@ void Run() {
         // 更新时间
         LAppPal::UpdateTime();
         
-        // 检查 AI 响应
+        // 渲染两个窗口
+        RenderMainWindow();
+        RenderChatWindow();
+        
+        // 处理事件（先处理用户输入，这样新发送的消息能在本循环后由 AI 返回）
+        glfwPollEvents();
+
+        // 检查 AI 响应并处理可能的方括号情绪标记（例如: "I am happy [happy]" 或 "今天天气很好 [高兴]"）
         if (g_AIManager) {
             std::string response = g_AIManager->getResult();
             if (!response.empty()) {
-                g_ChatHistory.push_back({"AI", response});
+                // Always print raw AI reply to terminal for debugging
+                std::cout << "[AI RAW] " << response << std::endl;
+            }
+            if (!response.empty()) {
+                // 提取所有方括号内的标记
+                std::vector<std::string> emotions;
+                try {
+                    std::regex re("\\[([^\\]]+)\\]");
+                    std::smatch m;
+                    std::string tmp = response;
+                    while (std::regex_search(tmp, m, re)) {
+                        if (m.size() > 1) {
+                            emotions.push_back(m[1].str());
+                        }
+                        tmp = m.suffix().str();
+                    }
+
+                    // 从显示文本中移除所有方括号标记
+                    std::string cleaned = std::regex_replace(response, re, "");
+                    // trim 前后空白
+                    auto ltrim = [](std::string &s) {
+                        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                    };
+                    auto rtrim = [](std::string &s) {
+                        s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                    };
+                    ltrim(cleaned);
+                    rtrim(cleaned);
+
+                    // 如果去掉标记后没有可显示文本，则显示一个占位文本（不显示情绪标记本身）
+                    if (cleaned.empty()) cleaned = "(expressed emotion)";
+
+                    // 如果当前处于 priming 阶段，则隐藏该回复并把它视为初始化确认
+                    if (g_AIPriming) {
+                        // 在界面上提示用户 AI 已准备好
+                        g_ChatHistory.push_back({"System", "AI 已准备好，你可以开始使用。"});
+                        g_AIPriming = false;
+                        g_AIReady = true;
+                        // 仍然使用提取到的情绪去触发表情，但不展示模型的原始文本
+                        if (g_UserModel) {
+                            for (const auto &emo : emotions) {
+                                std::string t = emo;
+                                auto trim = [](std::string &s) {
+                                    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                                    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                                };
+                                trim(t);
+                                if (t.empty()) continue;
+                                if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
+                                    std::string up = t;
+                                    for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
+                                    g_UserModel->SetExpressionByName(up);
+                                } else {
+                                    g_UserModel->SetExpressionByAIText(t);
+                                }
+                            }
+                        }
+                    } else {
+                        g_ChatHistory.push_back({"AI", cleaned});
+
+                        // 将提取的情绪用于触发表情：若是类似 F01/F02 的代码则直接按名触发，否则按文本映射触发
+                        if (g_UserModel) {
+                            for (const auto &emo : emotions) {
+                                // 去除可能的空白
+                                std::string t = emo;
+                                auto trim = [](std::string &s) {
+                                    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+                                    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+                                };
+                                trim(t);
+                                if (t.empty()) continue;
+
+                                // 如果是 Fxx 格式，直接按名触发
+                                if ((t.size() == 3 || t.size() == 4) && (t[0] == 'F' || t[0] == 'f')) {
+                                    // 规范化为大写 Fxx
+                                    std::string up = t;
+                                    for (auto &c : up) c = static_cast<char>(::toupper(static_cast<unsigned char>(c)));
+                                    g_UserModel->SetExpressionByName(up);
+                                } else {
+                                    // 作为文本让模型根据关键词/文本判断（支持中文/英文）
+                                    g_UserModel->SetExpressionByAIText(t);
+                                }
+                            }
+                        }
+                    }
+                } catch (const std::exception &e) {
+                    // 解析正则发生问题时，回退到原始行为：显示原文并根据全文触发表情
+                    g_ChatHistory.push_back({"AI", response});
+                    if (g_UserModel) g_UserModel->SetExpressionByAIText(response);
+                }
             }
         }
         

@@ -21,6 +21,7 @@
 #include "MouseActionManager.hpp"
 
 #include "CubismUserModelExtend.hpp"
+#include <iostream>
 
 using namespace Live2D::Cubism::Framework;
 using namespace DefaultParameterId;
@@ -324,6 +325,18 @@ void CubismUserModelExtend::ModelParamUpdate()
         _expressionManager->UpdateMotion(_model, deltaTimeSeconds);
     }
 
+    // 如果当前表情是临时的并且已经过期，则恢复到中性表情(F01)
+    if (_expressionTemporary && _expressionDuration > 0.0f)
+    {
+        if ((_userTimeSeconds - _expressionSetTime) >= _expressionDuration)
+        {
+            // 恢复到中性并取消临时标记（此调用不应再次设置计时）
+            PlayExpression(std::string("F01"), 0.0f);
+            _expressionTemporary = false;
+            _expressionDuration = 0.0f;
+        }
+    }
+
     // 由拖拽引起的变化
     /**
     * 通过拖拽调整面部朝向
@@ -396,6 +409,122 @@ void CubismUserModelExtend::SetupTextures()
 
     // 设置是否启用预乘（premultiplied）alpha
     GetRenderer<Rendering::CubismRenderer_OpenGLES2>()->IsPremultipliedAlpha(false);
+}
+
+// 按表情名查找并切换表情（如果存在）
+void CubismUserModelExtend::SetExpressionByName(const std::string& name)
+{
+    // 默认播放并将其设置为临时表情（使用默认持续时间）
+    PlayExpression(name, _defaultExpressionDuration);
+}
+
+// 根据 AI 文本进行简单关键词映射到表情名，然后调用 SetExpressionByName
+void CubismUserModelExtend::SetExpressionByAIText(const std::string& text)
+{
+    if (text.empty()) return;
+    // 中英混合关键词映射
+    std::string name = "";
+    std::string lower = text;
+    for (auto &c : lower) c = static_cast<char>(::tolower(static_cast<unsigned char>(c)));
+    auto contains = [&](const std::string &s) {
+        return text.find(s) != std::string::npos || lower.find(s) != std::string::npos;
+    };
+
+    if (contains("高兴") || contains("开心") || contains("笑") || contains("happy") || contains("glad") || contains("joy"))
+    {
+        name = "F05"; // 开心
+    }
+    else if (contains("生气") || contains("愤怒") || contains("气") || contains("angry") || contains("mad"))
+    {
+        name = "F03"; // 生气
+    }
+    else if (contains("难过") || contains("伤心") || contains("哭") || contains("sad") || contains("unhappy") || contains("sorrow"))
+    {
+        name = "F04"; // 悲伤
+    }
+    else if (contains("惊讶") || contains("惊") || contains("surprise") || contains("surprised") || contains("wow"))
+    {
+        name = "F06"; // 惊讶
+    }
+    else if (contains("害羞") || contains("脸红") || contains("不好意思") || contains("shy") || contains("embarrass"))
+    {
+        name = "F07"; // 害羞
+    }
+    else if (contains("困惑") || contains("疑惑") || contains("疑问") || contains("confuse") || contains("confused") || contains("huh"))
+    {
+        name = "F08"; // 疑惑不解
+    }
+    else if (contains("open") || contains("mouth") || contains("说话") || contains("嘴"))
+    {
+        name = "F02"; // 张开嘴巴
+    }
+    else
+    {
+        // 错误信息映射为悲伤
+        if (contains("error:") || contains("failed") || contains("http request failed") || contains("curl_easy_perform") || contains("curl"))
+        {
+            name = "F04";
+        }
+        else
+        {
+            name = "F01"; // 中性作为默认
+        }
+    }
+
+    // 播放表情，默认使用默认持续时间（会在到期后恢复）
+    PlayExpression(name, _defaultExpressionDuration);
+}
+
+// 内部通用播放函数，可指定持续时间（<=0 表示不自动恢复）
+void CubismUserModelExtend::PlayExpression(const std::string& name, float durationSeconds)
+{
+    std::cout << "[Expression] Request PlayExpression name='" << name << "' duration=" << durationSeconds << std::endl;
+    if (!_expressionManager) {
+        std::cout << "[Expression] No _expressionManager available" << std::endl;
+        return;
+    }
+
+    Csm::ACubismMotion* motion = nullptr;
+    for (auto iter = _expressions.Begin(); iter != _expressions.End(); ++iter)
+    {
+        const std::string k = iter->First.GetRawString();
+        if (k == name && iter->Second != nullptr)
+        {
+            motion = iter->Second;
+            break;
+        }
+    }
+
+    if (!motion) {
+        std::cout << "[Expression] Motion '" << name << "' not found in _expressions" << std::endl;
+        return;
+    }
+
+    std::cout << "[Expression] Found motion for '" << name << "', starting" << std::endl;
+    _expressionManager->StartMotion(motion, false);
+
+    _currentExpressionName = name;
+    if (durationSeconds > 0.0f)
+    {
+        _expressionTemporary = true;
+        _expressionDuration = durationSeconds;
+        _expressionSetTime = _userTimeSeconds;
+    }
+    else
+    {
+        _expressionTemporary = false;
+        _expressionDuration = 0.0f;
+    }
+}
+
+std::vector<std::string> CubismUserModelExtend::GetExpressionNames() const
+{
+    std::vector<std::string> list;
+    for (auto iter = _expressions.Begin(); iter != _expressions.End(); ++iter)
+    {
+        list.emplace_back(iter->First.GetRawString());
+    }
+    return list;
 }
 
 void CubismUserModelExtend::ModelOnUpdate(GLFWwindow* window)
