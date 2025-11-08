@@ -56,6 +56,18 @@ public:
      * @param[in] y 光标 Y 坐标
      */
   void OnMouseCallBack(GLFWwindow* window, double x, double y);
+  
+  /**
+   * @brief 鼠标滚轮回调
+   */
+  void OnScroll(GLFWwindow* window, double xoffset, double yoffset);
+
+protected:
+  // 当中键按下时用于平移视图的标记
+  bool _middleCaptured;
+  // 记录上一次鼠标位置（用于计算中键平移的增量）
+  float _lastMouseX;
+  float _lastMouseY;
 };
 
 class EventHandler
@@ -76,4 +88,8 @@ public:
     {
         MouseActionManager::GetInstance()->OnMouseCallBack(window, x, y);
     }
+  static void OnScroll(GLFWwindow* window, double xoffset, double yoffset)
+  {
+    MouseActionManager::GetInstance()->OnScroll(window, xoffset, yoffset);
+  }
 };
