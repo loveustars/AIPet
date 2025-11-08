@@ -84,7 +84,8 @@ git clone https://github.com/loveustars/AIPet.git
 rm -rf build  
 mkdir build && cd build  
 cmake ..
-make
+# 这个快一点
+make -j$(nproc)
 ```
 3. **如果你是虚拟机这步相当重要！！！**
 
