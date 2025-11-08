@@ -33,6 +33,11 @@ sudo apt install libsdl2-dev
 sudo apt install libfreetype-dev
 ```
 
+```bash
+# 安装有关于窗口装饰的组件
+sudo apt install libgtk-3-dev
+```
+
 ### 2. 准备第三方库 (仓库中已经有了)
 
 **项目结构约定:**
@@ -42,6 +47,8 @@ main/
 │   ├── CubismSdkForNative/  # Live2D SDK
 │   ├── dear_imgui/          # Dear ImGui 源码
 │   ├── stb/                 # 官方建議的图形解析头文件
+│   ├── glew                 # 图形库1
+│   ├── glfw                 # 图形库2
 │   └── nlohmann/            # nlohmann/json.hpp
 ├── src/
 │   ├── *.cpp
@@ -53,6 +60,7 @@ main/
 │   ├── live2d_models/       # live2d模型
 │   │   ├── hiyori_pro_t11
 │   │   └── Haru
+│   ├── Shaders/             # 着色器文件
 │   └── ...
 │
 │
@@ -61,6 +69,8 @@ main/
 ├── main.cpp
 └── ... 
 ```
+
+### 3.尝试编译及运行
 
 **操作步骤:**
 
@@ -75,9 +85,38 @@ rm -rf build
 mkdir build && cd build  
 cmake ..
 make
-# 在运行之前，将临时的环境变量添加到系统，用于程序获得与大模型的API.
-export GOOGLE_AI_STUDIO_API_KEY='此处替换为你申请的API'
+```
+3. **如果你是虚拟机这步相当重要！！！**
 
+由于虚拟机权限以及其他未知问题，我们应当绕过Accessbility Bus来确保窗口Decoration正确显示。
+
+**务必运行这行代码**
+
+```bash
+export NO_AT_SPI=1
+```
+
+或者执行：
+```bash
+gedit ~/.bashrc
+
+# 在文件的最末尾添加这一行
+export NO_AT_SPI=1
+
+# 保存并关闭文件
+# 运行下面一行使其立即生效
+source ~/.bashrc
+```
+
+4. 在运行之前，将临时的环境变量添加到系统，用于程序获得与大模型的API.
+
+```bash
+export GOOGLE_AI_STUDIO_API_KEY='此处替换为你申请的API'
+```
+
+5. 不要关闭终端，直接在**当前终端**运行，否则临时变量API会失效
+
+``` bash
 # 以防路径问题，请在bin文件夹直接进行运行。
 cd bin
 ./AIPet
@@ -86,9 +125,8 @@ cd bin
 ---
 
 ### 已知问题：
-1. 当前模型窗口以及对话窗口几乎叠在一块并且无法拖拽，还没找到解决方案。
-2. 长时间将鼠标焦点置于窗口外部时，闲置后有相当大的概率卡死。
-3. 模型加载，字体选择都是硬编码在源代码中，使用不便利。
+1. 长时间将鼠标焦点置于窗口外部时，闲置后有相当大的概率卡死。在对话窗口单击有概率恢复。
+2. 模型加载，字体选择都是硬编码在源代码中，使用不便利。
 
 ---
 
@@ -118,3 +156,24 @@ A: 有没有在bin文件夹执行？如果有那就得把根目录的assets和Sh
 **Q: 窗口加载失败？**
 
 A: 可能的错误太多了导致我不知道写什么，发在issue里可能会更好。
+
+**Q: 没有标题栏以及最小化那些按钮？**
+
+A: 有没有执行操作步骤3？如果有，请提交issue。
+
+**Q: 每次启动都要输入API好麻烦..**
+
+A: 可以将其加入永久环境变量。
+```bash
+
+gedit ~/.bashrc
+
+# 将下面一行加入这个文件最后一行（别忘了替换）
+export GOOGLE_AI_STUDIO_API_KEY='此处替换为你申请的API'
+
+# 保存，重启终端，或运行命令使其改变生效：
+source ~/.bashrc
+```
+完成！以后不用每次启动前输入了！但存在小概率风险导致API被盗用读取。
+
+问题待补充：
