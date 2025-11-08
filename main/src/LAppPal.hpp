@@ -3,6 +3,7 @@
  *
  * Use of this source code is governed by the Live2D Open Software license
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * 官方源代码注释是日语的，翻译成中文比较好一点
  */
 
 #pragma once

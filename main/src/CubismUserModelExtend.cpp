@@ -300,7 +300,6 @@ void CubismUserModelExtend::ModelParamUpdate()
     // 是否有动作（motion）更新参数
     Csm::csmBool motionUpdated = false;
 
-    //-----------------------------------------------------------------
     // 加载上一次保存的状态
     _model->LoadParameters();
 
@@ -317,7 +316,6 @@ void CubismUserModelExtend::ModelParamUpdate()
 
     // 保存状态
     _model->SaveParameters();
-    //-----------------------------------------------------------------
 
     if (_expressionManager)
     {
